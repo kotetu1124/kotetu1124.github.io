@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progate</title>
+  <title>BLASTERS | 東京農工大学アメフト部</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+  <!-- ヘッダー -->
   <header>
-    <div class="container">
-      <div class="header-left">
-        <img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-left">
+          <img class="logo" src="images/BLASTERSロゴ.png" alt="BLASTERS">
+        </div>
+        <div class="header-right">
+          <a href="#" class="sns-icon instagram" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+          <a href="#" class="sns-icon x" aria-label="X"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="sns-icon youtube" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+        </div>
       </div>
-      <span class="fa fa-bars menu-icon"></span>
-      <div class="header-right">
-        <a href="./subpage.html">ニュース</a>
+    </div>
+    <nav class="header-nav">
+      <div class="container">
+        <a href="#">ニュース</a>
         <a href="#">試合状況</a>
         <a href="#">チーム</a>
         <a href="#">チケット</a>
@@ -23,71 +32,98 @@
         <a href="#">新入生の方へ</a>
         <a href="#">問合せ</a>
       </div>
-    </div>
+    </nav>
   </header>
-  <div class="top-wrapper">
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <div class="hero-content">
+      <img class="hero-logo" src="images/BLASTERSロゴ.png" alt="BLASTERS">
+      <p class="hero-text">BLASTERS公式サイトへようこそ | 東京農工大学アメリカンフットボール部</p>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
     <div class="container">
-      <h1>Let's start!プログラミング<br>楽々にHPが作れます</h1>
-      <p>誰でも簡単につくれます<br>さあ、あなたも始めましょう！</p>
-      <div class="btn-wrapper">
-        <a href="#" class="btn signup">新規登録はこちら</a>
-        <p>or</p>
-        <a href="#" class="btn facebook"><span class="fa fa-facebook"></span>Facebookで登録</a>
-        <a href="#" class="btn twitter"><span class="fa fa-twitter"></span>Twitterで登録</a>
+      <div class="content-wrapper">
+        <!-- 左カラム：BLASTERSについて -->
+        <div class="content-left">
+          <h2 class="section-title">BLASTERSについて</h2>
+          <div class="about-text">
+            <p>東京都府中市（農学部）と小金井市（工学部）にキャンパスを構える東京農工大学は、比較的小規模の理系大学ですが、多くの学生が日々学業に励んでおります。本学には42の体育系大学公認サークルがあり、その一つがアメリカンフットボール部Blastersです。本部は、「歴史」と「伝統」そして「実績」を併せ持つことから、部員はまさしく文武両道を目標として掲げ、人生の貴重で多感な学生生活を過ごしております。</p>
+            <p>現在、本部は関東学生アメリカンフットボール連盟2リーグに属していますが、2部上位定着を目標に、日々厳しい練習に励んでおります。選手・スタッフ・コーチ陣が一丸となって必ずや2部で勝ち抜くことのできるチームを作っていきたいと思います。</p>
+            <p>引き続き、皆さまからのご声援とご支援を賜りますよう、お願い申し上げます。</p>
+          </div>
+        </div>
+
+        <!-- 右カラム：試合情報 -->
+        <div class="content-right">
+          <div class="match-info">
+            <div class="match-result">
+              <h3 class="match-title">最新の試合結果</h3>
+              <div class="match-details">
+                <p class="match-date">202X年10月16日 (日) 17:00</p>
+                <p class="match-opponent">GAF</p>
+                <p class="match-score">0-37</p>
+              </div>
+            </div>
+            <div class="match-next">
+              <h3 class="match-title">次の試合情報</h3>
+              <div class="match-details">
+                <p class="match-date">202X年11月16日 (日) 13:00</p>
+                <p class="match-opponent">GRX</p>
+                <p class="match-location">〇〇競技場</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 監督メッセージ -->
+      <div class="coach-section">
+        <div class="coach-content">
+          <div class="coach-text">
+            <h2 class="section-title">監督 鳥居稔</h2>
+            <div class="about-text">
+              <p>
+                アメフトにはあなたのサイズと能力に適したポジションが必ずあります。 そして、BLASTERSでは筋トレと練習を頑張って１年の夏から選手として 試合に出るチャンスがあります。1年生から試合に出てアメフトを楽しみ ましょう！ アメフトは選手がハードな練習をしただけでは勝てません。頭脳と組織力が 重要です。BLASTERSのスタッフは練習を統制し、対戦校をデータと 映像で分析して作戦を考え、チームに勝利をもたらします。一緒に勝利を 勝ち取りましょう。 BLASTERSは東京農工大において最高レベルの活動をしている団体です。 80校以上が加盟する関東学生連盟の2部リーグに所属しています。 2部に昇格した2024年は2勝を挙げました。2025年秋リーグ戦の 対戦校も強敵です。 BLASTERSの仲間と一緒に、強い対戦校との熱くて厳しい戦いに打ち 込みませんか。濃い一年間になります。</p>
+            </div>
+          </div>
+          <div class="coach-image">
+            <img src="images/監督.png" alt="監督 鳥居稔">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="lesson-wrapper">
-    <div class="container">
-      <div class="heading">
-        <h2>Learn Where to Get Started!</h2>
-      </div>
-      <div class="lessons">
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/html.png">
-            <p>HTML & CSS</p>
-          </div>
-          <p class="text-contents">ウェブページの作成に使用される言語です。HTMLとCSSを組み合わせることで、静的なページを作り上げることができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/jQuery.png">
-            <p>jQuery</p>
-          </div>
-          <p class="text-contents">素敵な動きを手軽に実装できるJavaScriptライブラリです。 アニメーション効果をつけたり、Ajax（エイジャックス）を使って外部ファイルを読み込んだりと色々なことができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/ruby.png">
-            <p>Ruby</p>
-          </div>
-          <p class="text-contents">オープンソースの動的なプログラミング言語で、 シンプルさと高い生産性を備えています。大きなWebアプリケーションから小さな日用ツールまで、さまざまなソフトウェアを作ることができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/php.png">
-            <p>PHP</p>
-          </div>
-          <p class="text-contents">HTMLだけではページの内容を変えることはできません。PHPはHTMLにプログラムを埋め込み、それを可能にします。</p>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-  <div class="message-wrapper">
-    <div class="container">
-      <div class="heading">
-        <h2>さぁ、あなたもProgateでプログラミングを学んでみませんか?</h2>
-        <h3>Let's learn to code, learn to be creative!</h3>
-      </div>
-      <span class="btn message">さっそく開発する</span>
-    </div>
-  </div>
+  </main>
+
+  <!-- フッター -->
   <footer>
     <div class="container">
-      <img src="https://prog-8.com/images/html/advanced/footer_logo.png">
-      <p>Learn to Code, Learn to be Creative.</p>
+      <div class="footer-content">
+        <div class="footer-left">
+          <a href="#" class="to-top">ページトップへ</a>
+          <img class="footer-logo" src="images/BLASTERSロゴ.png" alt="BLASTERS">
+        </div>
+        <div class="footer-center">
+          <p class="footer-label">公式SNS</p>
+          <div class="footer-sns">
+            <a href="#" class="sns-icon instagram" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="sns-icon x" aria-label="X"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="sns-icon youtube" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+          </div>
+        </div>
+        <div class="footer-right">
+          <a href="#" class="footer-link">寄付はこちら</a>
+          <div class="footer-access">
+            <p class="footer-label">大学アクセス</p>
+            <p>〇〇駅徒歩〇分</p>
+            <p>〇〇駅からバス</p>
+          </div>
+          <a href="#" class="footer-link">よくある質問</a>
+        </div>
+      </div>
     </div>
   </footer>
 </body>
