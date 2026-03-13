@@ -77,10 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
           opponentTd.textContent = match.opponent || "";
           tr.appendChild(opponentTd);
 
-          // 会場
+          // 会場（必ずリンク化：venueUrl がなければ Google マップ検索リンクを生成）
           const venueTd = document.createElement("td");
           const venueName = match.venueName || "";
-          const venueUrl = match.venueUrl || "";
+          let venueUrl = match.venueUrl || "";
+          if (!venueUrl && venueName) {
+            const q = encodeURIComponent(venueName);
+            venueUrl = "https://www.google.com/maps/search/?api=1&query=" + q;
+          }
           if (venueUrl) {
             const a = document.createElement("a");
             a.href = venueUrl;
@@ -93,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           tr.appendChild(venueTd);
 
-          // 結果
+          // 結果（先頭に ○ / × / △ を表示）
           const resultTd = document.createElement("td");
           const result = match.result || {};
           const status = result.status || "scheduled";
@@ -103,12 +107,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const us = result.scoreUs;
             const them = result.scoreThem;
             if (typeof us === "number" && typeof them === "number") {
-              resultText = us + " - " + them;
+              let mark = "△";
               if (us > them) {
+                mark = "○";
                 resultTd.classList.add("result-win");
               } else if (us < them) {
+                mark = "×";
                 resultTd.classList.add("result-lose");
               }
+              resultText = mark + " " + us + " - " + them;
             } else {
               resultText = "終了（スコア未入力）";
             }
