@@ -159,7 +159,7 @@ a {
 }
 
 .design-a .sns-icon:hover { opacity: 0.85; }
-.design-a .sns-icon.instgram { background: #E4405F; }
+.design-a .sns-icon.instagram { background: #E4405F; }
 .design-a .sns-icon.x { background: #000; }
 .design-a .sns-icon.youtube { background: #FF0000; }
 
@@ -432,7 +432,7 @@ a {
 }
 
 .design-b .sns-icon:hover { transform: scale(1.05); }
-.design-b .sns-icon.instgram { background: #E4405F; }
+.design-b .sns-icon.instagram { background: #E4405F; }
 .design-b .sns-icon.x { background: #000; }
 .design-b .sns-icon.youtube { background: #FF0000; }
 
@@ -712,7 +712,7 @@ a {
 }
 
 .design-c .sns-icon:hover { opacity: 0.9; }
-.design-c .sns-icon.instgram { background: #E4405F; }
+.design-c .sns-icon.instagram { background: #E4405F; }
 .design-c .sns-icon.x { background: #000; }
 .design-c .sns-icon.youtube { background: #FF0000; }
 
