@@ -1081,6 +1081,14 @@ footer {
     border-radius: 8px;
 }
 
+/* 詳細ページでは商品全体が見えるように表示 */
+.shop-detail-card .shop-card-image {
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  background: #fff;
+}
+
 .shop-card-title {
   font-size: 18px;
   line-height: 1.5;
