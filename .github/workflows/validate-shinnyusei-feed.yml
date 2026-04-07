@@ -1,0 +1,32 @@
+# 新入生向けフィード JSON（手動メンテ）の検証
+# Instagram Graph API は使いません（docs/shinnyusei-instagram-github-pages-plan.md 参照）。
+# 将来的に別データソースから JSON を生成する場合は、このジョブにステップを足してください。
+name: Validate shinnyusei feed JSON
+
+on:
+  push:
+    branches: [main, toppage]
+    paths:
+      - "data/shinnyusei-feed.json"
+      - "scripts/validate-shinnyusei-feed.mjs"
+      - ".github/workflows/validate-shinnyusei-feed.yml"
+  pull_request:
+    branches: [main, toppage]
+    paths:
+      - "data/shinnyusei-feed.json"
+      - "scripts/validate-shinnyusei-feed.mjs"
+      - ".github/workflows/validate-shinnyusei-feed.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate data/shinnyusei-feed.json
+        run: node scripts/validate-shinnyusei-feed.mjs
+
+# （雛形）取得バッチを足す場合のメモ:
+# - シークレットは GitHub Actions Secrets にのみ保存し、リポジトリにコミットしない
+# - 生成した JSON をコミットするなら、別ブランチ + PR か、artifact 運用のどちらかを方針決め

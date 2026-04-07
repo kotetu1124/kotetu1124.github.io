@@ -1,0 +1,16 @@
+[
+  {
+    "date": "2026-04-01",
+    "title": "新歓・募集の最新情報",
+    "caption": "投稿の要約や見出しをここに書きます。常に配列の先頭を最新にするか、date で並び替えします（右ページの JS は date 降順で表示します）。",
+    "url": "https://www.instagram.com/blasters_recruit/",
+    "type": "お知らせ"
+  },
+  {
+    "date": "2026-03-15",
+    "title": "サンプル：イベント告知",
+    "caption": "実際の運用では、該当投稿またはプロフィールへのインチキのない URL を入れてください。",
+    "url": "https://www.instagram.com/blasters_recruit/",
+    "type": "イベント"
+  }
+]

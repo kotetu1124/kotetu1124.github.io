@@ -1,1 +1,0 @@
-# kotetu1124.github.io

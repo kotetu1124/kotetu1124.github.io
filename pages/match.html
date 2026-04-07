@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>試合状況 | 東京農工大学アメリカンフットボール部 BLASTERS</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <div class="container">
+        <div class="header-left">
+          <a href="../index.html">
+            <img class="logo" src="../image/BLASTERSロゴ.png" alt="BLASTERSロゴ">
+          </a>
+        </div>
+        <div class="header-right">
+          <a href="#" class="sns-icon instagram" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+          <a href="#" class="sns-icon x" aria-label="X"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="sns-icon youtube" aria-label="Youtube"><i class="fa fa-youtube-play"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <div class="container">
+        <a href="news.html">ニュース</a>
+        <a href="match.html" class="active">試合状況</a>
+        <a href="team/player/team.html">チーム</a>
+        <a href="ticket.html">チケット</a>
+        <a href="event.html">イベント</a>
+        <a href="new_student.html">新入生の方へ</a>
+        <a href="contact.html">問い合わせ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <h1 class="page-title">試合状況</h1>
+
+      <section class="match-filter-section">
+        <div class="match-filter-inner">
+          <label for="season-select">シーズン</label>
+          <select id="season-select">
+            <option value="all">すべて</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="match-table-section">
+        <div class="table-wrapper">
+          <table class="match-table">
+            <thead>
+              <tr>
+                <th>日付</th>
+                <th>キックオフ</th>
+                <th>対戦相手</th>
+                <th>会場</th>
+                <th>結果</th>
+                <th>備考</th>
+              </tr>
+            </thead>
+            <tbody id="match-table-body">
+              <!-- JavaScript で試合データを挿入 -->
+            </tbody>
+          </table>
+        </div>
+        <p id="match-message" class="match-message"></p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <a href="#" class="to-top">ページトップ </a>
+          <img class="footer-logo" src="../image/BLASTERSロゴ.png" alt="BLASTERS">
+        </div>
+        <div class="footer-center">
+          <p class="footer-label">公式SNS</p>
+          <div class="footer-sns">
+            <a href="#" class="sns-icon instagram" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="sns-icon x" aria-label="X"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="sns-icon youtube" aria-label="Youtube"><i class="fa fa-youtube-play"></i></a>
+          </div>
+        </div>
+        <div class="footer-right">
+          <a href="#" class="footer-link">寄付はこちら</a>
+          <div class="footer-access">
+            <p class="footer-label">大学アクセス</p>
+            <p>JR中央線・武蔵小金井駅下車 徒歩約15分</p>
+            <p>JR南武線・府中本町駅下車 徒歩約10分</p>
+          </div>
+          <a href="#" class="footer-link">よくある質問</a>
+        </div>
+      </div> 
+    </div>
+  </footer>
+
+  <script src="../js/match.js"></script>
+</body>
+</html>
+
