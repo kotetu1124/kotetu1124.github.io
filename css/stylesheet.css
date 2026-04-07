@@ -780,7 +780,10 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
+  object-position: center 22%;
+  transform: scale(1.03);
+  transform-origin: center 22%;
 }
 
 .player-info {
@@ -822,7 +825,7 @@ footer {
 }
 
 .player-card.no-number .player-info {
-  min-height: 100px;
+  min-height: 120px;
 }
   
 .team-sidebar {

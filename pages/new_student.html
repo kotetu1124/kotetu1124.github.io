@@ -3,9 +3,77 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>試合状況 | 東京農工大学アメリカンフットボール部 BLASTERS</title>
+  <title>新入生の方へ | 東京農工大学アメリカンフットボール部 BLASTERS</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
+  <style>
+    .shinnyusei-hero h2 {
+      font-size: 1.15rem;
+      margin: 0 0 0.5rem;
+    }
+    .shinnyusei-hero {
+      margin-bottom: 1.5rem;
+    }
+    .shinnyusei-hero p {
+      margin: 0.5rem 0 1rem;
+      line-height: 1.6;
+    }
+    .shinnyusei-insta-btn {
+      display: inline-block;
+      padding: 0.65rem 1.25rem;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff !important;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .shinnyusei-insta-btn:hover {
+      opacity: 0.92;
+    }
+    .shinnyusei-feed-section h2 {
+      font-size: 1.15rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .shinnyusei-feed-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .shinnyusei-feed-item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      background: #fafafa;
+    }
+    .shinnyusei-feed-meta {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 0.35rem;
+    }
+    .shinnyusei-feed-link {
+      font-weight: 600;
+      color: #c13584;
+      word-break: break-all;
+    }
+    .shinnyusei-feed-caption {
+      margin: 0.5rem 0 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #333;
+    }
+    .shinnyusei-feed-fallback {
+      padding: 1rem;
+      background: #fff8e6;
+      border-radius: 6px;
+      border: 1px solid #f0e0b2;
+    }
+    .shinnyusei-feed-fallback a {
+      color: #c13584;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body id="top">
   <header>
@@ -26,48 +94,33 @@
     <nav class="header-nav">
       <div class="container">
         <a href="news.html">ニュース</a>
-        <a href="match.html" class="active">試合状況</a>
+        <a href="match.html">試合状況</a>
         <a href="team/player/team.html">チーム</a>
         <a href="shop.html">グッズ</a>
         <a href="event.html">イベント</a>
-        <a href="new_student.html">新入生の方へ</a>
+        <a href="new_student.html" class="active">新入生の方へ</a>
         <a href="contact.html">問い合わせ</a>
       </div>
     </nav>
   </header>
 
   <main class="main-content">
-    <div class="container">
-      <h1 class="page-title">試合状況</h1>
+    <div class="container">Welcome to BLASTERS
+      <h1 class="page-title"></h1>
 
-      <section class="match-filter-section">
-        <div class="match-filter-inner">
-          <label for="season-select">シーズン</label>
-          <select id="season-select">
-            <option value="all">すべて</option>
-          </select>
-        </div>
+      <section class="shinnyusei-hero" aria-labelledby="shinnyusei-insta-heading">
+        <h2 id="shinnyusei-insta-heading">募集用 Instagram</h2>
+        <p>新歓・部員募集の<strong>最新情報は Instagram が中心</strong>です。ぜひフォローしてご覧ください。</p>
+        <a class="shinnyusei-insta-btn" href="https://www.instagram.com/blasters_recruit/" rel="noopener noreferrer" target="_blank">
+          <i class="fa fa-instagram" aria-hidden="true"></i> @blasters_recruit を開く
+        </a>
       </section>
 
-      <section class="match-table-section">
-        <div class="table-wrapper">
-          <table class="match-table">
-            <thead>
-              <tr>
-                <th>日付</th>
-                <th>キックオフ</th>
-                <th>対戦相手</th>
-                <th>会場</th>
-                <th>結果</th>
-                <th>備考</th>
-              </tr>
-            </thead>
-            <tbody id="match-table-body">
-              <!-- JavaScript で試合データを挿入 -->
-            </tbody>
-          </table>
-        </div>
-        <p id="match-message" class="match-message"></p>
+      <section class="shinnyusei-feed-section" aria-label="お知らせ一覧">
+        <h2>サイト上のお知らせ一覧</h2>
+        <p class="shinnyusei-feed-intro">以下はリポジトリ内の <code>data/shinnyusei-feed.json</code> から読み込んでいます（手動更新）。</p>
+        <ul id="shinnyusei-feed-list" class="shinnyusei-feed-list"></ul>
+        <div id="shinnyusei-feed-message" class="shinnyusei-feed-message" role="status"></div>
       </section>
     </div>
   </main>
@@ -96,11 +149,10 @@
           </div>
           <a href="faq.html" class="footer-link">よくある質問</a>
         </div>
-      </div> 
+      </div>
     </div>
   </footer>
 
-  <script src="../js/match.js"></script>
+  <script src="../js/shinnyusei-feed.js"></script>
 </body>
 </html>
-
