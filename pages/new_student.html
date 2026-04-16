@@ -7,71 +7,243 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
   <style>
-    .shinnyusei-hero h2 {
+    .new-student-hero {
+      margin-bottom: 1.5rem;
+    }
+
+    .new-student-hero h2 {
       font-size: 1.15rem;
       margin: 0 0 0.5rem;
     }
-    .shinnyusei-hero {
-      margin-bottom: 1.5rem;
-    }
-    .shinnyusei-hero p {
+
+    .new-student-hero p {
       margin: 0.5rem 0 1rem;
       line-height: 1.6;
     }
-    .shinnyusei-insta-btn {
+
+    .new-student-insta-btn {
       display: inline-block;
       padding: 0.65rem 1.25rem;
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: #fff !important;
+      color: #fff;
       text-decoration: none;
       border-radius: 6px;
       font-weight: 600;
     }
-    .shinnyusei-insta-btn:hover {
-      opacity: 0.92;
-    }
-    .shinnyusei-feed-section h2 {
+
+    .new-student-gallery-section h2 {
       font-size: 1.15rem;
-      margin-top: 2rem;
       margin-bottom: 0.75rem;
     }
-    .shinnyusei-feed-list {
-      list-style: none;
-      padding: 0;
+
+    .new-student-gallery-intro {
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .new-student-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .new-student-post-card {
       margin: 0;
     }
-    .shinnyusei-feed-item {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 0.75rem;
-      background: #fafafa;
+
+    .new-student-post-image-link {
+      display: block;
+      position: relative;
+      width: 100%;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      background: #f3f3f3;
     }
-    .shinnyusei-feed-meta {
-      font-size: 0.85rem;
-      color: #555;
-      margin-bottom: 0.35rem;
+
+    .new-student-post-image-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.2s ease;
     }
-    .shinnyusei-feed-link {
-      font-weight: 600;
-      color: #c13584;
-      word-break: break-all;
+
+    .new-student-post-image-link::after {
+      content: "Instagramで開く";
+      position: absolute;
+      right: 0.55rem;
+      bottom: 0.55rem;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
     }
-    .shinnyusei-feed-caption {
-      margin: 0.5rem 0 0;
-      font-size: 0.95rem;
+
+    .new-student-post-image-link:hover img,
+    .new-student-post-image-link:focus-visible img {
+      filter: brightness(0.82);
+    }
+
+    .new-student-post-image-link:hover::after,
+    .new-student-post-image-link:focus-visible::after {
+      opacity: 1;
+    }
+
+    .new-student-post-caption {
+      margin-top: 0.45rem;
+      font-size: 0.9rem;
       line-height: 1.5;
       color: #333;
     }
-    .shinnyusei-feed-fallback {
-      padding: 1rem;
-      background: #fff8e6;
-      border-radius: 6px;
-      border: 1px solid #f0e0b2;
-    }
-    .shinnyusei-feed-fallback a {
+
+    .new-student-post-link {
+      display: inline-block;
+      margin-top: 0.3rem;
       color: #c13584;
+      font-size: 0.86rem;
+      text-decoration: none;
       font-weight: 600;
+    }
+
+    .new-student-post-link:hover {
+      text-decoration: underline;
+    }
+
+    .new-student-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 2000;
+    }
+
+    .new-student-modal.is-open {
+      display: flex;
+    }
+
+    .new-student-modal-content {
+      position: relative;
+      width: min(92vw, 900px);
+      max-height: 90vh;
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .new-student-modal-header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.55rem;
+    }
+
+    .new-student-modal-close {
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 1.9rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .new-student-modal-image-area {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.5rem;
+    }
+
+    .new-student-modal-image {
+      width: 100%;
+      max-height: 68vh;
+      object-fit: contain;
+      display: block;
+      background: #000;
+    }
+
+    .new-student-modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      width: 2.3rem;
+      height: 2.3rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.84);
+      color: #111;
+      font-size: 1.35rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .new-student-modal-arrow:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .new-student-modal-arrow-left {
+      left: 0.65rem;
+    }
+
+    .new-student-modal-arrow-right {
+      right: 0.65rem;
+    }
+
+    .new-student-modal-footer {
+      padding: 0.75rem 1rem 1rem;
+      text-align: center;
+    }
+
+    .new-student-modal-dots {
+      display: inline-flex;
+      gap: 0.45rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .new-student-modal-dot {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      display: inline-block;
+    }
+
+    .new-student-modal-dot.is-active {
+      background: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .new-student-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 540px) {
+      .new-student-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .new-student-modal-arrow {
+        width: 2rem;
+        height: 2rem;
+      }
     }
   </style>
 </head>
@@ -105,25 +277,42 @@
   </header>
 
   <main class="main-content">
-    <div class="container">Welcome to BLASTERS
-      <h1 class="page-title"></h1>
+    <div class="container">
+      <h1 class="page-title">新入生向けInstagramギャラリー</h1>
 
-      <section class="shinnyusei-hero" aria-labelledby="shinnyusei-insta-heading">
-        <h2 id="shinnyusei-insta-heading">募集用 Instagram</h2>
-        <p>新歓・部員募集の<strong>最新情報は Instagram が中心</strong>です。ぜひフォローしてご覧ください。</p>
-        <a class="shinnyusei-insta-btn" href="https://www.instagram.com/blasters_recruit/" rel="noopener noreferrer" target="_blank">
+      <section class="new-student-hero" aria-labelledby="new-student-insta-heading">
+        <h2 id="new-student-insta-heading">募集用 Instagram</h2>
+        <p>気になる投稿は画像をクリックしてInstagramで確認できます。詳しく見たいときは「拡大表示」から投稿内の複数画像を切り替えてご覧ください。</p>
+        <a class="new-student-insta-btn" href="https://www.instagram.com/blasters_recruit/" rel="noopener noreferrer" target="_blank">
           <i class="fa fa-instagram" aria-hidden="true"></i> @blasters_recruit を開く
         </a>
       </section>
 
-      <section class="shinnyusei-feed-section" aria-label="お知らせ一覧">
-        <h2>サイト上のお知らせ一覧</h2>
-        <p class="shinnyusei-feed-intro">以下はリポジトリ内の <code>data/shinnyusei-feed.json</code> から読み込んでいます（手動更新）。</p>
-        <ul id="shinnyusei-feed-list" class="shinnyusei-feed-list"></ul>
-        <div id="shinnyusei-feed-message" class="shinnyusei-feed-message" role="status"></div>
+      <section class="new-student-gallery-section" aria-label="Instagram投稿ギャラリー">
+        <h2>投稿ギャラリー</h2>
+        <p class="new-student-gallery-intro">投稿ごとに1枚目を一覧表示しています。画像をクリックすると拡大表示、各カード下のリンクからInstagram投稿を開けます。</p>
+        <div id="new-student-gallery-grid" class="new-student-gallery-grid"></div>
       </section>
     </div>
   </main>
+
+  <div id="new-student-modal" class="new-student-modal" aria-hidden="true">
+    <div class="new-student-modal-content" role="dialog" aria-modal="true" aria-label="投稿画像の拡大表示">
+      <div class="new-student-modal-header">
+        <button id="new-student-modal-close" class="new-student-modal-close" type="button" aria-label="閉じる">&times;</button>
+      </div>
+      <div class="new-student-modal-image-area">
+        <button id="new-student-modal-prev" class="new-student-modal-arrow new-student-modal-arrow-left" type="button" aria-label="前の画像">&lsaquo;</button>
+        <a id="new-student-modal-post-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram投稿を開く">
+          <img id="new-student-modal-image" class="new-student-modal-image" src="" alt="投稿画像">
+        </a>
+        <button id="new-student-modal-next" class="new-student-modal-arrow new-student-modal-arrow-right" type="button" aria-label="次の画像">&rsaquo;</button>
+      </div>
+      <div class="new-student-modal-footer">
+        <div id="new-student-modal-dots" class="new-student-modal-dots" aria-label="画像インジケータ"></div>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="container">
@@ -153,6 +342,139 @@
     </div>
   </footer>
 
-  <script src="../js/shinnyusei-feed.js"></script>
+  <script>
+    const posts = [
+      {
+        postUrl: "https://www.instagram.com/p/DWnqiQugAuW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+        caption: "新歓投稿 1（イベント案内）",
+        images: ["../image/post1_1.jpg", "../image/post1_2.jpg"]
+      },
+      {
+        postUrl: "https://www.instagram.com/p/DW-S5AOgVic/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+        caption: "新歓投稿 2（募集情報）",
+        images: ["../image/post2_1.jpg"]
+      },
+      {
+        postUrl: "https://www.instagram.com/blasters_recruit/",
+        caption: "新歓投稿 3（公式アカウント）",
+        images: ["../image/post3_1.jpg", "../image/post3_2.jpg", "../image/post3_3.jpg"]
+      }
+    ];
+
+    const grid = document.getElementById("new-student-gallery-grid");
+    const modal = document.getElementById("new-student-modal");
+    const modalImage = document.getElementById("new-student-modal-image");
+    const modalPrev = document.getElementById("new-student-modal-prev");
+    const modalNext = document.getElementById("new-student-modal-next");
+    const modalClose = document.getElementById("new-student-modal-close");
+    const modalDots = document.getElementById("new-student-modal-dots");
+    const modalPostLink = document.getElementById("new-student-modal-post-link");
+
+    let currentPostIndex = 0;
+    let currentImageIndex = 0;
+
+    function renderGrid() {
+      const cards = posts.map((post, index) => {
+        const firstImage = post.images[0];
+        return `
+          <article class="new-student-post-card">
+            <button class="new-student-post-image-link" type="button" data-post-index="${index}" aria-label="投稿画像を拡大表示">
+              <img src="${firstImage}" alt="Instagram投稿サムネイル ${index + 1}">
+            </button>
+            <p class="new-student-post-caption">${post.caption}</p>
+            <a class="new-student-post-link" href="${post.postUrl}" target="_blank" rel="noopener noreferrer">Instagram投稿を見る</a>
+          </article>
+        `;
+      }).join("");
+
+      grid.innerHTML = cards;
+
+      const modalButtons = grid.querySelectorAll(".new-student-post-image-link");
+      modalButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const postIndex = Number(button.dataset.postIndex);
+          openModal(postIndex, 0);
+        });
+      });
+    }
+
+    function renderDots(length, activeIndex) {
+      modalDots.innerHTML = "";
+      for (let i = 0; i < length; i += 1) {
+        const dot = document.createElement("span");
+        dot.className = "new-student-modal-dot";
+        if (i === activeIndex) {
+          dot.classList.add("is-active");
+        }
+        modalDots.appendChild(dot);
+      }
+    }
+
+    function updateModal() {
+      const targetPost = posts[currentPostIndex];
+      const imageCount = targetPost.images.length;
+      modalImage.src = targetPost.images[currentImageIndex];
+      modalImage.alt = `投稿${currentPostIndex + 1}の画像 ${currentImageIndex + 1}`;
+      modalPostLink.href = targetPost.postUrl;
+      modalPrev.disabled = imageCount <= 1;
+      modalNext.disabled = imageCount <= 1;
+      renderDots(imageCount, currentImageIndex);
+    }
+
+    function openModal(postIndex, imageIndex) {
+      currentPostIndex = postIndex;
+      currentImageIndex = imageIndex;
+      updateModal();
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      modalImage.src = "";
+    }
+
+    function goToNextImage() {
+      const imageCount = posts[currentPostIndex].images.length;
+      currentImageIndex = (currentImageIndex + 1) % imageCount;
+      updateModal();
+    }
+
+    function goToPrevImage() {
+      const imageCount = posts[currentPostIndex].images.length;
+      currentImageIndex = (currentImageIndex - 1 + imageCount) % imageCount;
+      updateModal();
+    }
+
+    modalPrev.addEventListener("click", goToPrevImage);
+    modalNext.addEventListener("click", goToNextImage);
+    modalClose.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!modal.classList.contains("is-open")) {
+        return;
+      }
+      if (event.key === "Escape") {
+        closeModal();
+      }
+      if (event.key === "ArrowRight") {
+        goToNextImage();
+      }
+      if (event.key === "ArrowLeft") {
+        goToPrevImage();
+      }
+    });
+
+    renderGrid();
+  </script>
 </body>
 </html>
