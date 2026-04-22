@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — BLASTERS | 東京農工大学アメリカンフットボール部</title>
+<meta name="description" content="BLASTERS公式ニュース。試合結果、お知らせ、イベント情報、メディア掲載情報など最新情報をお届けします。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+/* ================================================
+   DESIGN TOKENS (index-newと共通)
+================================================ */
+:root {
+  --abyss: #06100a;
+  --ink: #0a1812;
+  --forest: #12241a;
+  --moss: #1c3527;
+  --sage: #2d5043;
+  --gold: #c9a747;
+  --gold-bright: #e8c76a;
+  --gold-deep: #8a6f1f;
+  --bone: #ede4d0;
+  --ash: #8d8676;
+  --blood: #8b1a1a;
+  --win: #3a7a4a;
+
+  --ff-display: 'Anton', sans-serif;
+  --ff-display-2: 'Bebas Neue', sans-serif;
+  --ff-label: 'Barlow Condensed', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+  --ff-body: 'Zen Kaku Gothic New', "Hiragino Kaku Gothic ProN", sans-serif;
+  --ff-serif-jp: 'Noto Serif JP', serif;
+
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.8, 0, .2, 1);
+}
+
+/* ================================================
+   RESET
+================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--abyss);
+  color: var(--bone);
+  font-family: var(--ff-body);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; border: none; background: none; cursor: none; color: inherit; }
+
+/* ノイズ・ヴィネット */
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+  opacity: 0.035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.8 0 0 0 0 0.75 0 0 0 0 0.6 0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 999;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+}
+
+/* ================================================
+   CURSOR
+================================================ */
+.cursor-dot {
+  position: fixed; width: 6px; height: 6px;
+  background: var(--gold-bright); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out);
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed; width: 40px; height: 40px;
+  border: 1px solid var(--gold); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s;
+}
+body.cursor-hover .cursor-dot { width: 0; height: 0; }
+body.cursor-hover .cursor-ring { width: 60px; height: 60px; border-color: var(--gold-bright); }
+@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } a, button { cursor: pointer; } }
+
+/* ================================================
+   NAV
+================================================ */
+nav.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 24px 48px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: center;
+  mix-blend-mode: difference;
+  color: var(--bone);
+  animation: navIn 0.8s 0.3s var(--ease-out) both;
+}
+@keyframes navIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+.nav-brand {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-brand .slash { color: var(--gold); }
+.nav-brand-sub {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  opacity: 0.7;
+  display: block;
+  margin-top: 2px;
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--ff-label);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 8px 0;
+}
+.nav-links a::before {
+  content: attr(data-num);
+  font-size: 9px;
+  color: var(--gold);
+  margin-right: 6px;
+  vertical-align: super;
+  opacity: 0.7;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 2px;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.4s var(--ease-out);
+}
+.nav-links a:hover::after,
+.nav-links a.current::after { width: 100%; }
+.nav-links a.current { color: var(--gold); }
+.nav-cta {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--ff-label); font-size: 12px;
+  letter-spacing: 0.2em; font-weight: 700;
+  text-transform: uppercase;
+}
+.nav-cta .live-dot {
+  width: 8px; height: 8px; background: var(--blood); border-radius: 50%;
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,26,26,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(139,26,26,0); }
+}
+
+/* ================================================
+   PAGE HERO (ヘッダー下のページ見出し)
+================================================ */
+.page-hero {
+  position: relative;
+  padding: 200px 48px 80px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-hero-mesh {
+  position: absolute; inset: -20%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 25% 40%, rgba(45,80,67,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(201,167,71,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(18,36,26,0.85) 0%, transparent 60%),
+    linear-gradient(180deg, var(--abyss) 0%, var(--ink) 100%);
+  filter: blur(40px);
+}
+.page-hero-stripes {
+  position: absolute; inset: 0; z-index: 1;
+  background: repeating-linear-gradient(
+    117deg,
+    transparent 0 90px,
+    rgba(201,167,71,0.03) 90px 92px
+  );
+}
+.page-hero-bg-word {
+  position: absolute;
+  right: -3vw;
+  bottom: -4vw;
+  z-index: 2;
+  font-family: var(--ff-display);
+  font-size: clamp(160px, 24vw, 440px);
+  line-height: 0.78;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,167,71,0.1);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.page-hero-inner {
+  position: relative; z-index: 10;
+  max-width: 1400px; margin: 0 auto;
+}
+.page-hero-breadcrumb {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.55);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s 0.4s var(--ease-out) both;
+}
+.page-hero-breadcrumb a { color: var(--gold); transition: opacity 0.3s; }
+.page-hero-breadcrumb a:hover { opacity: 0.7; }
+.page-hero-breadcrumb .sep { color: var(--ash); opacity: 0.6; }
+.page-hero-meta {
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 16px;
+  animation: fadeUp 0.8s 0.5s var(--ease-out) both;
+}
+.page-hero-meta .line { width: 32px; height: 1px; background: var(--gold); }
+.page-hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(72px, 14vw, 220px);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--bone);
+  overflow: hidden;
+}
+.page-hero-title span {
+  display: inline-block;
+  animation: titleRise 1.1s 0.4s var(--ease-out) both;
+}
+.page-hero-title em {
+  font-style: normal;
+  color: var(--gold);
+}
+@keyframes titleRise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+.page-hero-sub {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(237,228,208,0.15);
+  display: flex; justify-content: space-between;
+  gap: 40px; align-items: baseline;
+  font-family: var(--ff-serif-jp);
+  font-weight: 400;
+  animation: fadeUp 0.8s 0.7s var(--ease-out) both;
+}
+.page-hero-sub p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(237,228,208,0.85);
+  max-width: 620px;
+}
+.page-hero-stats {
+  display: flex; gap: 40px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.55);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.page-hero-stats strong {
+  display: block;
+  font-family: var(--ff-display);
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 4px;
+  line-height: 1;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================
+   FILTER BAR (カテゴリタブ)
+================================================ */
+.filter-bar {
+  background: var(--ink);
+  border-top: 1px solid rgba(201,167,71,0.15);
+  border-bottom: 1px solid rgba(201,167,71,0.15);
+  padding: 24px 48px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+.filter-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(237,228,208,0.45);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.filter-tab {
+  padding: 10px 20px;
+  font-family: var(--ff-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.65);
+  text-transform: uppercase;
+  border: 1px solid rgba(237,228,208,0.15);
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.filter-tab .count {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--gold);
+  opacity: 0.7;
+}
+.filter-tab:hover {
+  border-color: var(--gold);
+  color: var(--bone);
+}
+.filter-tab.active {
+  background: var(--gold);
+  color: var(--abyss);
+  border-color: var(--gold);
+}
+.filter-tab.active .count { color: var(--abyss); opacity: 0.5; }
+.filter-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid rgba(237,228,208,0.15);
+  min-width: 220px;
+}
+.filter-search i { color: var(--gold); font-size: 12px; }
+.filter-search input {
+  background: none; border: none;
+  color: var(--bone);
+  font-family: var(--ff-body);
+  font-size: 13px;
+  outline: none;
+  width: 100%;
+}
+.filter-search input::placeholder { color: rgba(237,228,208,0.4); letter-spacing: 0.05em; }
+
+/* ================================================
+   CONTENT LAYOUT
+================================================ */
+.content-section {
+  padding: 100px 48px;
+  position: relative;
+}
+.content-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 80px;
+}
+
+/* ================================================
+   FEATURED ARTICLE (先頭記事を大きく)
+================================================ */
+.featured {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 48px 0 80px;
+  border-bottom: 1px solid rgba(237,228,208,0.15);
+  margin-bottom: 60px;
+}
+.featured-img {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--sage), var(--forest), var(--abyss));
+  overflow: hidden;
+  border: 1px solid rgba(201,167,71,0.2);
+}
+.featured-img::before {
+  content: 'FEATURED';
+  position: absolute;
+  top: 20px; left: 20px;
+  padding: 6px 12px;
+  font-family: var(--ff-label);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--abyss);
+  background: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  z-index: 2;
+}
+.featured-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(201,167,71,0.3), transparent 60%),
+    linear-gradient(135deg, transparent 40%, rgba(6,16,10,0.8) 100%);
+}
+.featured-img-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-display);
+  font-size: clamp(60px, 8vw, 120px);
+  color: rgba(237,228,208,0.15);
+  -webkit-text-stroke: 1px rgba(201,167,71,0.3);
+  letter-spacing: 0.02em;
+  z-index: 1;
+}
+.featured-body .meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.featured-body .date {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+.featured-body .category {
+  padding: 4px 12px;
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--abyss);
+  background: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.featured-body h2 {
+  font-family: var(--ff-serif-jp);
+  font-weight: 900;
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.3;
+  color: var(--bone);
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+}
+.featured-body h2 a { transition: color 0.3s; }
+.featured-body h2 a:hover { color: var(--gold); }
+.featured-body p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(237,228,208,0.75);
+  margin-bottom: 28px;
+}
+.featured-body .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--ff-label);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gold);
+  transition: gap 0.3s;
+}
+.featured-body .more:hover { gap: 20px; }
+
+/* ================================================
+   NEWS LIST (記事一覧)
+================================================ */
+.news-list { list-style: none; }
+.news-item {
+  display: grid;
+  grid-template-columns: 140px 120px 1fr auto;
+  gap: 32px;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(237,228,208,0.1);
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+}
+.news-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px; height: 0;
+  background: var(--gold);
+  transition: height 0.4s var(--ease-out);
+}
+.news-item:hover {
+  padding-left: 24px;
+  background: linear-gradient(90deg, rgba(201,167,71,0.04), transparent);
+}
+.news-item:hover::before { height: 100%; }
+
+.news-item-date {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  line-height: 1.4;
+}
+.news-item-date .year {
+  display: block;
+  font-size: 10px;
+  opacity: 0.5;
+  margin-bottom: 2px;
+}
+.news-item-date .md {
+  font-family: var(--ff-display);
+  font-size: 24px;
+  color: var(--bone);
+  letter-spacing: 0.02em;
+}
+
+.news-item-category {
+  justify-self: start;
+  padding: 6px 14px;
+  font-family: var(--ff-label);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 1px solid;
+  text-align: center;
+  white-space: nowrap;
+}
+.news-item-category.notice { color: var(--gold); border-color: var(--gold); }
+.news-item-category.match { color: var(--win); border-color: var(--win); }
+.news-item-category.event { color: var(--bone); border-color: rgba(237,228,208,0.3); }
+.news-item-category.media { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+.news-item-title {
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--bone);
+  transition: color 0.3s;
+}
+.news-item:hover .news-item-title { color: var(--gold); }
+
+.news-item-arrow {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(237,228,208,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s var(--ease-out);
+  color: var(--bone);
+}
+.news-item:hover .news-item-arrow {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--abyss);
+  transform: rotate(-45deg);
+}
+.news-item-arrow svg { width: 14px; height: 14px; }
+
+/* ================================================
+   PAGINATION
+================================================ */
+.pagination {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.page-info {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.5);
+  text-transform: uppercase;
+  margin-right: 16px;
+}
+.page-link {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-display);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--bone);
+  border: 1px solid rgba(237,228,208,0.15);
+  transition: all 0.3s;
+}
+.page-link:hover {
+  background: var(--gold);
+  color: var(--abyss);
+  border-color: var(--gold);
+}
+.page-link.active {
+  background: var(--bone);
+  color: var(--abyss);
+  border-color: var(--bone);
+}
+.page-link.nav-prev,
+.page-link.nav-next {
+  padding: 0 16px;
+  font-family: var(--ff-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.page-ellipsis {
+  color: rgba(237,228,208,0.3);
+  font-family: var(--ff-mono);
+  padding: 0 4px;
+}
+
+/* ================================================
+   SIDEBAR
+================================================ */
+.sidebar { position: relative; }
+.sidebar-sticky {
+  position: sticky;
+  top: 120px;
+}
+.widget {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(237,228,208,0.1);
+}
+.widget:last-child { border-bottom: none; }
+.widget-title {
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(201,167,71,0.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.widget-title::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: var(--gold);
+}
+.category-list,
+.archive-list { list-style: none; }
+.category-list li,
+.archive-list li {
+  border-bottom: 1px dashed rgba(237,228,208,0.1);
+}
+.category-list li:last-child,
+.archive-list li:last-child {
+  border-bottom: none;
+}
+.category-list a,
+.archive-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  font-family: var(--ff-body);
+  font-size: 14px;
+  color: rgba(237,228,208,0.8);
+  transition: all 0.3s;
+}
+.category-list a::before,
+.archive-list a::before {
+  content: '›';
+  color: var(--gold);
+  font-size: 18px;
+  margin-right: 10px;
+  transition: transform 0.3s;
+}
+.category-list a:hover,
+.archive-list a:hover {
+  color: var(--gold);
+  padding-left: 6px;
+}
+.category-list a:hover::before,
+.archive-list a:hover::before {
+  transform: translateX(4px);
+}
+.category-list .count,
+.archive-list .count {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--gold);
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+  margin-left: auto;
+}
+.widget-social {
+  display: flex;
+  gap: 10px;
+}
+.widget-social a {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(201,167,71,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bone);
+  transition: all 0.3s;
+  font-size: 15px;
+}
+.widget-social a:hover {
+  background: var(--gold);
+  color: var(--abyss);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+/* ================================================
+   FOOTER (index-newと同じ)
+================================================ */
+footer.site-footer {
+  background: var(--abyss);
+  color: var(--bone);
+  padding: 100px 48px 32px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(201,167,71,0.1);
+}
+.footer-bg-word {
+  position: absolute;
+  bottom: -8vw; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--ff-display);
+  font-size: clamp(200px, 32vw, 600px);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,167,71,0.06);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.footer-grid {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+.footer-brand { max-width: 400px; }
+.footer-brand-mark {
+  font-family: var(--ff-display);
+  font-size: clamp(72px, 8vw, 120px);
+  line-height: 0.9;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.footer-brand-desc {
+  font-family: var(--ff-serif-jp);
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(237,228,208,0.7);
+  margin-bottom: 24px;
+}
+.footer-socials { display: flex; gap: 12px; }
+.footer-sns-icon {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(201,167,71,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--bone);
+  transition: all 0.3s var(--ease-out);
+  font-size: 16px;
+}
+.footer-sns-icon:hover {
+  background: var(--gold); color: var(--abyss); border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.footer-col h4 {
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(201,167,71,0.2);
+}
+.footer-col a {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 14px;
+  padding: 8px 0;
+  color: rgba(237,228,208,0.8);
+  transition: all 0.3s;
+}
+.footer-col a:hover {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+.footer-access p {
+  font-size: 13px; line-height: 1.7;
+  color: rgba(237,228,208,0.75);
+  margin-bottom: 12px;
+}
+.footer-access .station {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.footer-bottom {
+  max-width: 1400px; margin: 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(201,167,71,0.15);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.4);
+  text-transform: uppercase;
+  position: relative; z-index: 2;
+}
+.footer-top-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--gold);
+  transition: gap 0.3s;
+}
+.footer-top-link:hover { gap: 16px; }
+
+/* ================================================
+   VERSION SWITCH
+================================================ */
+.version-switch {
+  position: fixed;
+  right: 24px; bottom: 24px;
+  z-index: 600;
+  padding: 14px 22px;
+  background: var(--abyss);
+  border: 1px solid var(--gold);
+  color: var(--bone);
+  display: flex; flex-direction: column; gap: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  transition: all 0.4s var(--ease-out);
+  max-width: 240px;
+}
+.version-switch:hover {
+  background: var(--forest);
+  transform: translateY(-3px);
+  box-shadow: 0 26px 70px rgba(0,0,0,0.8);
+}
+.version-switch-label {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.version-switch-title {
+  font-family: var(--ff-display);
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  color: var(--bone);
+  line-height: 1;
+}
+.version-switch-link {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(201,167,71,0.3);
+}
+
+/* ================================================
+   SCROLL REVEAL
+================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+[data-reveal].in {
+  opacity: 1; transform: translateY(0);
+}
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media (max-width: 1024px) {
+  .content-grid { grid-template-columns: 1fr; gap: 60px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .featured { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+  nav.site-nav { padding: 16px 20px; grid-template-columns: auto auto; }
+  .nav-links { display: none; }
+  .nav-cta { font-size: 10px; gap: 8px; }
+  .page-hero { padding: 140px 20px 60px; }
+  .page-hero-sub { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .page-hero-stats { gap: 28px; flex-wrap: wrap; }
+  .filter-bar { padding: 20px 20px; position: relative; top: auto; }
+  .filter-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .filter-search { min-width: 100%; }
+  .content-section { padding: 60px 20px; }
+  .news-item {
+    grid-template-columns: auto auto;
+    gap: 16px;
+    padding: 24px 0;
+  }
+  .news-item-title {
+    grid-column: 1 / -1;
+    font-size: 15px;
+  }
+  .news-item-arrow { display: none; }
+  .news-item:hover { padding-left: 16px; }
+  .featured { padding: 24px 0 60px; }
+  .featured-body h2 { font-size: 24px; }
+  footer.site-footer { padding: 60px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .version-switch { right: 12px; bottom: 12px; padding: 10px 16px; max-width: 200px; }
+  .version-switch-title { font-size: 14px; }
+  .pagination { gap: 4px; }
+  .page-link { min-width: 38px; height: 38px; font-size: 14px; }
+  .page-link.nav-prev span,
+  .page-link.nav-next span { display: none; }
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ==================== CURSOR ==================== -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- ==================== NAV ==================== -->
+<nav class="site-nav">
+  <div class="nav-brand">
+    <div>
+      <a href="index-new.html">BLASTERS<span class="slash">/</span></a>
+      <span class="nav-brand-sub">TUAT AMERICAN FOOTBALL</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="pages/news-new.html" data-num="01" class="current">News</a></li>
+    <li><a href="pages/match-new.html" data-num="02">Match</a></li>
+    <li><a href="pages/team/player/team.html" data-num="03">Team</a></li>
+    <li><a href="pages/shop.html" data-num="04">Shop</a></li>
+    <li><a href="pages/event.html" data-num="05">Event</a></li>
+    <li><a href="pages/new_student.html" data-num="06">Join</a></li>
+  </ul>
+  <div class="nav-cta">
+    <span class="live-dot"></span>
+    <span>2026 SEASON · LIVE</span>
+  </div>
+</nav>
+
+<!-- ==================== PAGE HERO ==================== -->
+<section class="page-hero">
+  <div class="page-hero-mesh"></div>
+  <div class="page-hero-stripes"></div>
+  <div class="page-hero-bg-word" aria-hidden="true">NEWS</div>
+
+  <div class="page-hero-inner">
+    <div class="page-hero-breadcrumb">
+      <a href="index-new.html">HOME</a>
+      <span class="sep">/</span>
+      <span>NEWS</span>
+    </div>
+
+    <div class="page-hero-meta">
+      <span class="line"></span>
+      <span>Chapter · 01 / News &amp; Updates</span>
+    </div>
+
+    <h1 class="page-hero-title"><span>News <em>&amp;</em> Updates</span></h1>
+
+    <div class="page-hero-sub">
+      <p>
+        BLASTERSの最新情報をお届けします。試合結果、お知らせ、イベント情報、メディア掲載情報など、チームの動きをこのページで確認できます。公式SNSもあわせてチェックしてください。
+      </p>
+      <div class="page-hero-stats">
+        <div><strong>47</strong>Total Articles</div>
+        <div><strong>04</strong>Categories</div>
+        <div><strong>LIVE</strong>Updated Daily</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FILTER BAR ==================== -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+      <span class="filter-label">FILTER BY</span>
+      <ul class="filter-tabs">
+        <li><a href="#" class="filter-tab active">ALL <span class="count">47</span></a></li>
+        <li><a href="#" class="filter-tab">NOTICE <span class="count">18</span></a></li>
+        <li><a href="#" class="filter-tab">MATCH <span class="count">12</span></a></li>
+        <li><a href="#" class="filter-tab">EVENT <span class="count">09</span></a></li>
+        <li><a href="#" class="filter-tab">MEDIA <span class="count">08</span></a></li>
+      </ul>
+    </div>
+    <div class="filter-search">
+      <i class="fa fa-search"></i>
+      <input type="text" placeholder="記事を検索 · SEARCH">
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONTENT ==================== -->
+<section class="content-section">
+  <div class="content-inner">
+    <div class="content-grid">
+
+      <!-- MAIN COLUMN -->
+      <div class="main-col">
+
+        <!-- FEATURED ARTICLE -->
+        <article class="featured" data-reveal>
+          <div class="featured-img">
+            <div class="featured-img-placeholder">PHOTO</div>
+          </div>
+          <div class="featured-body">
+            <div class="meta">
+              <span class="date">2026.04.18</span>
+              <span class="category">NOTICE</span>
+            </div>
+            <h2><a href="#">【重要】2026シーズン開幕戦のお知らせ — 関東3部リーグ、再始動。</a></h2>
+            <p>BLASTERSは2026シーズン、関東学生アメリカンフットボール連盟3部リーグで再出発を切ります。開幕戦は5月某日、東京農工大学グラウンドにて開催予定。詳細・チケット情報は追って公式サイトにて発表します。</p>
+            <a href="#" class="more">続きを読む <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5H19M19 5L14 1M19 5L14 9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </article>
+
+        <!-- NEWS LIST -->
+        <ul class="news-list">
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">04.12</span>
+            </div>
+            <span class="news-item-category notice">NOTICE</span>
+            <div class="news-item-title">
+              <a href="#">2026シーズン 新体制発表 — コーチ陣・キャプテン就任のお知らせ</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">04.08</span>
+            </div>
+            <span class="news-item-category event">EVENT</span>
+            <div class="news-item-title">
+              <a href="#">新歓試合開催決定 — 4月29日(祝) 小金井キャンパスにて</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">03.30</span>
+            </div>
+            <span class="news-item-category match">MATCH</span>
+            <div class="news-item-title">
+              <a href="#">春季オープン戦 第2節 — 対 帝京大学戦 試合結果レポート</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">03.22</span>
+            </div>
+            <span class="news-item-category media">MEDIA</span>
+            <div class="news-item-title">
+              <a href="#">東京農工大学公式広報誌『ハッケンコウケン』にBLASTERSが掲載されました</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">03.15</span>
+            </div>
+            <span class="news-item-category notice">NOTICE</span>
+            <div class="news-item-title">
+              <a href="#">春季合宿（山梨県・河口湖）の実施報告 — 3日間の総括</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">03.08</span>
+            </div>
+            <span class="news-item-category match">MATCH</span>
+            <div class="news-item-title">
+              <a href="#">春季オープン戦 第1節 — 対 成蹊大学戦 試合結果レポート</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">02.28</span>
+            </div>
+            <span class="news-item-category event">EVENT</span>
+            <div class="news-item-title">
+              <a href="#">2026年度オフィシャルファンクラブ 入会受付開始のお知らせ</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">02.20</span>
+            </div>
+            <span class="news-item-category notice">NOTICE</span>
+            <div class="news-item-title">
+              <a href="#">新入部員の紹介ページを公開しました — 2026年度 新1年生メンバー</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">02.14</span>
+            </div>
+            <span class="news-item-category media">MEDIA</span>
+            <div class="news-item-title">
+              <a href="#">YouTube公式チャンネル 新シリーズ「BLASTERS INSIDE」配信開始</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+          <li class="news-item" data-reveal>
+            <div class="news-item-date">
+              <span class="year">2026</span>
+              <span class="md">02.05</span>
+            </div>
+            <span class="news-item-category notice">NOTICE</span>
+            <div class="news-item-title">
+              <a href="#">2026年度 新歓イベントスケジュール公開 — 4月〜5月の説明会・練習見学</a>
+            </div>
+            <div class="news-item-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </li>
+
+        </ul>
+
+        <!-- PAGINATION -->
+        <nav class="pagination">
+          <span class="page-info">PAGE 01 / 05</span>
+          <a href="#" class="page-link nav-prev"><span>← PREV</span></a>
+          <a href="#" class="page-link active">1</a>
+          <a href="#" class="page-link">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">4</a>
+          <span class="page-ellipsis">···</span>
+          <a href="#" class="page-link">10</a>
+          <a href="#" class="page-link nav-next"><span>NEXT →</span></a>
+        </nav>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-sticky">
+
+          <div class="widget">
+            <h3 class="widget-title">Category</h3>
+            <ul class="category-list">
+              <li><a href="#">お知らせ<span class="count">18</span></a></li>
+              <li><a href="#">試合結果<span class="count">12</span></a></li>
+              <li><a href="#">イベント<span class="count">09</span></a></li>
+              <li><a href="#">メディア<span class="count">08</span></a></li>
+            </ul>
+          </div>
+
+          <div class="widget">
+            <h3 class="widget-title">Archive</h3>
+            <ul class="archive-list">
+              <li><a href="#">2026<span class="count">10</span></a></li>
+              <li><a href="#">2025<span class="count">18</span></a></li>
+              <li><a href="#">2024<span class="count">12</span></a></li>
+              <li><a href="#">2023<span class="count">07</span></a></li>
+            </ul>
+          </div>
+
+          <div class="widget">
+            <h3 class="widget-title">Follow Us</h3>
+            <div class="widget-social">
+              <a href="https://www.instagram.com/blasters_noko/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+              <a href="https://x.com/BLASTERS_noko" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa fa-twitter"></i></a>
+              <a href="https://www.youtube.com/channel/UCIcFFuSZwOZVh5TpxAFk4BQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="footer-bg-word">BLASTERS</div>
+
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-mark">BLASTERS</div>
+      <p class="footer-brand-desc">
+        東京農工大学アメリカンフットボール部<br>
+        関東学生アメリカンフットボール連盟 3部所属<br>
+        Tokyo University of Agriculture and Technology American Football Club
+      </p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/blasters_noko/" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="https://x.com/BLASTERS_noko" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.youtube.com/channel/UCIcFFuSZwOZVh5TpxAFk4BQ" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Club</h4>
+      <a href="pages/news-new.html">ニュース</a>
+      <a href="pages/match-new.html">試合状況</a>
+      <a href="pages/team/player/team.html">チーム</a>
+      <a href="pages/event.html">イベント</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Get Involved</h4>
+      <a href="pages/new_student.html">新入生の方へ</a>
+      <a href="pages/shop.html">グッズ</a>
+      <a href="https://example.com/donate?club=blasters-temp-id" target="_blank" rel="noopener noreferrer">ご寄付のお願い</a>
+      <a href="pages/contact.html">お問い合わせ</a>
+      <a href="pages/faq.html">よくある質問</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Access</h4>
+      <div class="footer-access">
+        <p><span class="station">工学部キャンパス</span>JR中央線 武蔵小金井駅<br>徒歩約15分</p>
+        <p><span class="station">農学部キャンパス</span>JR南武線 府中本町駅<br>徒歩約10分</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 BLASTERS · TUAT AMERICAN FOOTBALL · ALL RIGHTS RESERVED</span>
+    <a href="#top" class="footer-top-link">Back to Top <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 14V1M7 1L1 7M7 1L13 7" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  </div>
+</footer>
+
+<!-- ==================== VERSION SWITCH ==================== -->
+<a href="news.html" class="version-switch" title="元のバージョンを表示">
+  <span class="version-switch-label">Current</span>
+  <span class="version-switch-title">NEWS v2</span>
+  <span class="version-switch-link">元のバージョンを見る →</span>
+</a>
+
+<script>
+  // Custom Cursor
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  document.querySelectorAll('a, button, .news-item, .filter-tab, .featured-img').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // Scroll Reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 6) * 0.06}s`;
+    io.observe(el);
+  });
+
+  // Filter tab (UI only - 実装時はJSで記事をフィルタする)
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
