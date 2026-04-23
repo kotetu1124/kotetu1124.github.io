@@ -251,6 +251,22 @@ section.chapter {
   background: radial-gradient(circle at 20% 80%, rgba(201,167,71,0.12), transparent 70%);
   pointer-events: none;
 }
+.upcoming-main-image {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 24px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.upcoming-main-image-link {
+  display: block;
+  width: 100%;
+}
+.upcoming-main-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 .upcoming-badge {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 6px 14px; background: var(--blood); color: var(--bone);
@@ -287,26 +303,34 @@ section.chapter {
   font-size: 20px; color: rgba(237,228,208,0.85);
   margin-bottom: 24px; position: relative; z-index: 2;
 }
-.upcoming-main p {
-  font-size: 14px; line-height: 1.9;
-  color: rgba(237,228,208,0.8);
-  margin-bottom: 28px; position: relative; z-index: 2;
+.upcoming-card-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  background: rgba(0,0,0,0.28);
+  border-left: 3px solid var(--gold);
+  position: relative;
+  z-index: 2;
 }
-.upcoming-main .info-list {
-  margin-bottom: 28px; padding: 20px 24px;
-  background: rgba(0,0,0,0.3); border-left: 3px solid var(--gold);
-  position: relative; z-index: 2;
+.upcoming-card-meta > div {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(237,228,208,0.55);
+  text-transform: uppercase;
+  line-height: 1.4;
 }
-.upcoming-main .info-list > div {
-  display: grid; grid-template-columns: 80px 1fr;
-  gap: 16px; padding: 6px 0;
-  border-bottom: 1px dashed rgba(237,228,208,0.08);
-  font-size: 13px;
-}
-.upcoming-main .info-list > div:last-child { border-bottom: none; }
-.upcoming-main .info-list .label {
-  font-family: var(--ff-label); font-size: 10px; letter-spacing: 0.25em;
-  color: var(--gold); font-weight: 700; text-transform: uppercase;
+.upcoming-card-meta strong {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--ff-body);
+  font-size: 20px;
+  color: var(--bone);
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 700;
 }
 .upcoming-actions {
   display: flex; gap: 12px; flex-wrap: wrap;
@@ -454,11 +478,12 @@ section.chapter {
   color: transparent; -webkit-text-stroke: 1px rgba(201,167,71,0.05);
   letter-spacing: -0.03em; line-height: 0.8; pointer-events: none;
 }
-.poster-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.poster-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .poster-card {
   background: var(--abyss); border: 1px solid rgba(201,167,71,0.25);
-  overflow: hidden; transition: all 0.4s var(--ease-out);
+  overflow: hidden; transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
   position: relative;
+  border-radius: 16px;
 }
 .poster-card::before {
   content: ''; position: absolute; top: 0; left: 0;
@@ -466,31 +491,43 @@ section.chapter {
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.5s var(--ease-out); z-index: 4;
 }
-.poster-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+.poster-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(201,167,71,0.2);
+}
 .poster-card:hover::before { transform: scaleX(1); }
 .poster-image {
-  position: relative; aspect-ratio: 16/10;
-  background: linear-gradient(135deg, var(--moss), var(--ink));
+  position: relative; aspect-ratio: 4/3;
+  background: #e6e6e6;
   overflow: hidden;
+}
+.poster-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.poster-image-link img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.poster-card:hover .poster-image-link img {
+  transform: scale(1.05);
+}
+.poster-card.poster-card-match .poster-image-link img {
+  object-position: center 28%;
+}
+.poster-card.poster-card-schedule0425 .poster-image-link img {
+  object-position: center 40%;
 }
 .poster-image::after {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(circle at 50% 50%, rgba(201,167,71,0.12), transparent 60%);
-}
-.poster-image-placeholder {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 12px;
-}
-.poster-image-placeholder .big {
-  font-family: var(--ff-display); font-size: clamp(60px, 8vw, 100px);
-  line-height: 1; color: transparent;
-  -webkit-text-stroke: 1px rgba(201,167,71,0.3);
-  letter-spacing: 0.02em;
-}
-.poster-image-placeholder .small {
-  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.25em;
-  color: rgba(237,228,208,0.4); text-transform: uppercase;
+  pointer-events: none;
 }
 .poster-image-badge {
   position: absolute; top: 16px; left: 16px;
@@ -543,7 +580,6 @@ section.chapter {
   margin-top: 4px; font-weight: 500;
   letter-spacing: 0; text-transform: none;
 }
-.poster-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
 /* CATEGORY CARDS */
 .chapter-categories { background: var(--ink); }
@@ -778,7 +814,7 @@ footer.site-footer {
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .upcoming-grid { grid-template-columns: 1fr; }
-  .poster-grid { grid-template-columns: 1fr; }
+  .poster-grid { grid-template-columns: repeat(2, 1fr); }
   .category-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -797,14 +833,14 @@ footer.site-footer {
   .upcoming-main { padding: 28px 24px; }
   .upcoming-actions { flex-direction: column; }
   .upcoming-actions .btn { width: 100%; }
+  .upcoming-card-meta { grid-template-columns: 1fr; }
   .timeline { padding-left: 32px; }
   .timeline-item { padding-left: 28px; padding-bottom: 28px; }
   .timeline-item::before { left: -28px; }
   .timeline-item.current::before { left: -30px; }
   .poster-body { padding: 24px 20px; }
+  .poster-grid { grid-template-columns: 1fr; }
   .poster-meta { grid-template-columns: 1fr; }
-  .poster-actions { flex-direction: column; }
-  .poster-actions .btn { width: 100%; }
   .category-grid { grid-template-columns: 1fr; }
   .insta-cta { padding: 60px 20px; }
   footer.site-footer { padding: 60px 20px 24px; }
@@ -887,28 +923,24 @@ footer.site-footer {
 
     <div class="upcoming-grid">
       <article class="upcoming-main" data-reveal>
+        <a href="https://www.instagram.com/p/DW-S5AOgVic/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="upcoming-main-image upcoming-main-image-link" aria-label="新歓試合をInstagramで開く">
+          <img src="../image/0425新歓試合.jpg" alt="新歓試合の写真" loading="lazy" onerror="this.style.display='none'">
+        </a>
         <div class="upcoming-badge">NEXT EVENT</div>
         <div class="date-row">
-          <span class="big">04.29</span>
-          <span class="sub">TUE · 祝 · 2026</span>
+          <span class="big">04.25</span>
+          <span class="sub">SAT · 2026</span>
         </div>
         <h3>SHINKAN MATCH</h3>
         <div class="jp">新歓試合 — 2026</div>
-        <p>新入生向けの公開試合を開催します。アメフトを間近で体感できる絶好の機会。観戦無料、家族・友人もお誘いのうえ、ぜひお越しください。初心者大歓迎、見学だけでもOK。</p>
 
-        <div class="info-list">
-          <div><span class="label">DATE</span><span>2026年4月29日（火・祝）</span></div>
-          <div><span class="label">TIME</span><span>13:00 キックオフ（開場 12:00）</span></div>
-          <div><span class="label">VENUE</span><span>東京農工大学 小金井キャンパス グラウンド</span></div>
-          <div><span class="label">FEE</span><span>観戦無料 · 予約不要</span></div>
-          <div><span class="label">TARGET</span><span>新入生・在学生・保護者・OB/OG・一般</span></div>
+        <div class="upcoming-card-meta">
+          <div>DATE<strong>4/25（土）</strong></div>
+          <div>TIME<strong>13:00 KICKOFF</strong></div>
+          <div>VENUE<strong>小金井キャンパス グラウンド</strong></div>
         </div>
 
         <div class="upcoming-actions">
-          <a href="https://www.instagram.com/p/DW-S5AOgVic/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="btn btn-insta">
-            <i class="fa fa-instagram"></i>
-            <span>Instagram投稿を見る</span>
-          </a>
           <a href="new_student.html" class="btn btn-ghost">
             <span>新入生の方へ</span>
             <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2"/></svg>
@@ -1066,61 +1098,64 @@ footer.site-footer {
     <div class="poster-grid">
       <article class="poster-card" data-reveal>
         <div class="poster-image">
-          <span class="poster-image-badge">NEW</span>
-          <span class="poster-image-date">04.15 →</span>
-          <div class="poster-image-placeholder">
-            <span class="big">SCHEDULE</span>
-            <span class="small">新入生イベント一覧</span>
-          </div>
+          <a href="https://www.instagram.com/p/DWnqiQugAuW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="poster-image-link" aria-label="新入生イベントスケジュールをInstagramで開く">
+            <img src="../image/新入生イベントスケジュール.jpg" alt="新入生イベントスケジュールのサムネイル画像" loading="lazy" onerror="this.style.display='none'">
+            <span class="poster-image-badge">NEW</span>
+            <span class="poster-image-date">04.15 →</span>
+          </a>
         </div>
         <div class="poster-body">
           <span class="cat">新入生向け</span>
           <h3>EVENT SCHEDULE</h3>
           <div class="jp">新入生イベントスケジュール</div>
-          <p>4月から5月にかけて開催される、新入生向けイベントの一覧をInstagramで公開しています。説明会、練習見学、新歓試合の日程をご確認ください。</p>
-
           <div class="poster-meta">
             <div>PERIOD<strong>4月〜5月</strong></div>
             <div>VENUE<strong>小金井キャンパス</strong></div>
             <div>STATUS<strong>開催予定</strong></div>
           </div>
 
-          <div class="poster-actions">
-            <a href="https://www.instagram.com/p/DWnqiQugAuW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="btn btn-insta">
-              <i class="fa fa-instagram"></i>
-              <span>Instagramで見る</span>
-            </a>
-          </div>
         </div>
       </article>
 
-      <article class="poster-card" data-reveal>
+      <article class="poster-card poster-card-match" data-reveal>
         <div class="poster-image">
-          <span class="poster-image-badge">HOT</span>
-          <span class="poster-image-date">04.29</span>
-          <div class="poster-image-placeholder">
-            <span class="big">MATCH</span>
-            <span class="small">新歓試合</span>
-          </div>
+          <a href="https://www.instagram.com/p/DW-S5AOgVic/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="poster-image-link" aria-label="新歓試合をInstagramで開く">
+            <img src="../image/0425新歓試合.jpg" alt="新歓試合のサムネイル画像" loading="lazy" onerror="this.style.display='none'">
+            <span class="poster-image-badge">HOT</span>
+            <span class="poster-image-date">04.25</span>
+          </a>
         </div>
         <div class="poster-body">
           <span class="cat">試合観戦</span>
           <h3>SHINKAN MATCH</h3>
           <div class="jp">新歓試合</div>
-          <p>アメフトを間近で体感できる絶好の機会。新入生はもちろん、在学生・保護者・OB/OG・一般の方も大歓迎です。観戦無料・予約不要。</p>
-
           <div class="poster-meta">
-            <div>DATE<strong>4/29（火・祝）</strong></div>
+            <div>DATE<strong>4/25（土）</strong></div>
             <div>TIME<strong>13:00 KICKOFF</strong></div>
-            <div>FEE<strong>観戦無料</strong></div>
+            <div>VENUE<strong>東京農工大学 小金井キャンパス グラウンド</strong></div>
           </div>
 
-          <div class="poster-actions">
-            <a href="https://www.instagram.com/p/DW-S5AOgVic/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="btn btn-insta">
-              <i class="fa fa-instagram"></i>
-              <span>Instagramで見る</span>
-            </a>
+        </div>
+      </article>
+
+      <article class="poster-card poster-card-schedule0425" data-reveal>
+        <div class="poster-image">
+          <a href="https://www.instagram.com/p/DXVt59agG_7/" target="_blank" rel="noopener noreferrer" class="poster-image-link" aria-label="4月25日スケジュールをInstagramで開く">
+            <img src="../image/スケジュール0425.jpg" alt="4月25日イベントスケジュールのサムネイル画像" loading="lazy" onerror="this.style.display='none'">
+            <span class="poster-image-badge">INFO</span>
+            <span class="poster-image-date">04.25</span>
+          </a>
+        </div>
+        <div class="poster-body">
+          <span class="cat">新入生向け</span>
+          <h3>APRIL 25 SCHEDULE</h3>
+          <div class="jp">4月25日スケジュール</div>
+          <div class="poster-meta">
+            <div>DATE<strong>4/25（金）</strong></div>
+            <div>TYPE<strong>イベント情報</strong></div>
+            <div>STATUS<strong>公開中</strong></div>
           </div>
+
         </div>
       </article>
     </div>
