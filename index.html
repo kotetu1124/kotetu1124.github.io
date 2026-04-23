@@ -1123,107 +1123,6 @@ section.chapter {
 }
 
 /* ================================================
-   JOIN / FEATURE (Chapter 04)
-================================================ */
-.chapter-join {
-  background: var(--abyss);
-  position: relative;
-  overflow: hidden;
-}
-.chapter-join .bg-word {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--ff-display);
-  font-size: clamp(180px, 25vw, 480px);
-  color: rgba(201,167,71,0.025);
-  line-height: 0.8;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.join-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(201,167,71,0.15);
-  border: 1px solid rgba(201,167,71,0.15);
-  position: relative;
-  z-index: 2;
-}
-.join-card {
-  position: relative;
-  background: var(--ink);
-  padding: 48px 40px 140px;
-  min-height: 440px;
-  display: block;
-  overflow: hidden;
-  transition: background 0.5s var(--ease-out);
-}
-.join-card:hover { background: var(--moss); }
-.join-card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 0; height: 0;
-  border-top: 60px solid var(--gold);
-  border-left: 60px solid transparent;
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-.join-card:hover::before { opacity: 1; }
-.join-card-num {
-  font-family: var(--ff-mono);
-  font-size: 12px;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 48px;
-}
-.join-card-title {
-  font-family: var(--ff-display);
-  font-size: clamp(32px, 3.5vw, 48px);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--bone);
-  margin-bottom: 24px;
-  transition: color 0.4s;
-}
-.join-card:hover .join-card-title { color: var(--gold); }
-.join-card-jp {
-  font-family: var(--ff-serif-jp);
-  font-size: 14px;
-  color: rgba(237,228,208,0.75);
-  line-height: 1.9;
-  margin-bottom: 28px;
-}
-.join-card-arrow {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  right: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 24px;
-  border-top: 1px solid rgba(237,228,208,0.15);
-  font-family: var(--ff-label);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: var(--gold);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.join-card-arrow svg {
-  width: 32px;
-  height: 12px;
-  transition: transform 0.4s var(--ease-out);
-}
-.join-card:hover .join-card-arrow svg { transform: translateX(8px); }
-
-/* ================================================
    CTA FOOTER BANNER
 ================================================ */
 .cta-banner {
@@ -1514,7 +1413,6 @@ footer.site-footer {
   .hero-helmet-art { opacity: 0.25; width: 60vw; }
   .about-grid, .coach-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-facts { grid-template-columns: 1fr 1fr; }
-  .join-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .stat-cell:nth-child(2) { border-right: none; }
@@ -1579,7 +1477,7 @@ footer.site-footer {
     <li><a href="pages/team/player/team.html" data-num="03">Team</a></li>
     <li><a href="pages/shop.html" data-num="04">Shop</a></li>
     <li><a href="pages/event.html" data-num="05">Event</a></li>
-    <li><a href="pages/contact.html" data-num="06">Contact</a></li>
+    <li><a href="pages/contact.html" data-num="06">contact</a></li>
   </ul>
   <div class="nav-cta">
     <span class="live-dot"></span>
@@ -1813,53 +1711,6 @@ footer.site-footer {
   </div>
 </section>
 
-<!-- ==================== JOIN ==================== -->
-<section class="chapter chapter-join" id="join">
-  <div class="bg-word" aria-hidden="true">JOIN</div>
-  <div class="chapter-inner">
-    <div class="chapter-header">
-      <div class="chapter-num">Chapter 04</div>
-      <h2 class="chapter-title">Join The <em>Blast</em></h2>
-      <div class="chapter-meta">
-        3 WAYS TO SUPPORT<br>
-        君もBLASTERSに
-      </div>
-    </div>
-
-    <div class="join-grid">
-      <a href="pages/new_student.html" class="join-card" data-reveal>
-        <div class="join-card-num">01 / FOR NEW STUDENTS</div>
-        <h3 class="join-card-title">PLAY<br>WITH US</h3>
-        <p class="join-card-jp">初心者大歓迎。大学からアメフトを始める仲間が大多数です。まずはグラウンドに遊びに来てください。</p>
-        <div class="join-card-arrow">
-          <span>新入生の方へ</span>
-          <svg viewBox="0 0 32 12" fill="none"><path d="M0 6H30M30 6L25 1M30 6L25 11" stroke="currentColor" stroke-width="1.5"/></svg>
-        </div>
-      </a>
-
-      <a href="pages/shop.html" class="join-card" data-reveal>
-        <div class="join-card-num">02 / OFFICIAL SHOP</div>
-        <h3 class="join-card-title">WEAR<br>THE PRIDE</h3>
-        <p class="join-card-jp">応援グッズから日常使いのアイテムまで、BLASTERSオフィシャルグッズを販売中。</p>
-        <div class="join-card-arrow">
-          <span>グッズを見る</span>
-          <svg viewBox="0 0 32 12" fill="none"><path d="M0 6H30M30 6L25 1M30 6L25 11" stroke="currentColor" stroke-width="1.5"/></svg>
-        </div>
-      </a>
-
-      <a href="https://example.com/donate?club=blasters-temp-id" target="_blank" rel="noopener noreferrer" class="join-card" data-reveal>
-        <div class="join-card-num">03 / SUPPORT US</div>
-        <h3 class="join-card-title">FUEL<br>THE FIRE</h3>
-        <p class="join-card-jp">OB・OG・保護者・ファンの皆様からのご支援が、選手の練習環境と挑戦を支えています。</p>
-        <div class="join-card-arrow">
-          <span>ご寄付のお願い</span>
-          <svg viewBox="0 0 32 12" fill="none"><path d="M0 6H30M30 6L25 1M30 6L25 11" stroke="currentColor" stroke-width="1.5"/></svg>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== CTA BANNER ==================== -->
 <section class="cta-banner">
   <div class="cta-label">2026 SEASON · NOW LIVE</div>
@@ -1900,10 +1751,9 @@ footer.site-footer {
 
     <div class="footer-col">
       <h4>Get Involved</h4>
-      <a href="pages/new_student.html">新入生の方へ</a>
+      <a href="pages/contact.html">contact</a>
       <a href="pages/shop.html">グッズ</a>
       <a href="https://example.com/donate?club=blasters-temp-id" target="_blank" rel="noopener noreferrer">ご寄付のお願い</a>
-      <a href="pages/contact.html">お問い合わせ</a>
       <a href="pages/faq.html">よくある質問</a>
     </div>
 
@@ -1955,7 +1805,7 @@ footer.site-footer {
   }
   animateRing();
 
-  document.querySelectorAll('a, button, .tool-card, .join-card, .stat-cell').forEach(el => {
+  document.querySelectorAll('a, button, .tool-card, .stat-cell').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
