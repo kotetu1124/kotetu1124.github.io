@@ -581,73 +581,6 @@ section.chapter {
   letter-spacing: 0; text-transform: none;
 }
 
-/* CATEGORY CARDS */
-.chapter-categories { background: var(--ink); }
-.chapter-categories::before {
-  content: 'CATEGORY'; position: absolute;
-  top: 30px; left: -20px;
-  font-family: var(--ff-display); font-size: clamp(160px, 22vw, 380px);
-  color: transparent; -webkit-text-stroke: 1px rgba(201,167,71,0.03);
-  letter-spacing: -0.04em; line-height: 0.8; pointer-events: none;
-}
-.category-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
-}
-.category-card {
-  padding: 40px 28px;
-  background: var(--abyss); border: 1px solid rgba(237,228,208,0.1);
-  transition: all 0.5s var(--ease-out);
-  position: relative; overflow: hidden; display: block;
-}
-.category-card::after {
-  content: ''; position: absolute; bottom: 0; left: 0;
-  width: 100%; height: 3px; background: var(--gold);
-  transform: scaleX(0); transform-origin: right;
-  transition: transform 0.5s var(--ease-out);
-}
-.category-card:hover {
-  background: var(--forest); border-color: var(--gold);
-  transform: translateY(-6px);
-}
-.category-card:hover::after { transform: scaleX(1); transform-origin: left; }
-.category-card .icon {
-  width: 48px; height: 48px;
-  border: 1px solid var(--gold); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--gold); font-size: 18px;
-  margin-bottom: 24px; transition: all 0.4s;
-}
-.category-card:hover .icon {
-  background: var(--gold); color: var(--abyss); transform: rotate(360deg);
-}
-.category-card .num {
-  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.25em;
-  color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
-}
-.category-card h3 {
-  font-family: var(--ff-display); font-size: 28px;
-  line-height: 1; letter-spacing: 0.02em;
-  color: var(--bone); text-transform: uppercase; margin-bottom: 6px;
-}
-.category-card .jp {
-  font-family: var(--ff-serif-jp); font-weight: 700;
-  font-size: 14px; color: rgba(237,228,208,0.75);
-  margin-bottom: 16px; padding-bottom: 16px;
-  border-bottom: 1px dashed rgba(237,228,208,0.15);
-}
-.category-card p {
-  font-size: 13px; line-height: 1.8;
-  color: rgba(237,228,208,0.7); margin-bottom: 16px;
-}
-.category-card .count {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.2em;
-  color: var(--gold); text-transform: uppercase;
-}
-.category-card .count strong {
-  font-family: var(--ff-display); font-size: 18px; letter-spacing: 0.02em;
-}
-
 /* INSTAGRAM CTA */
 .insta-cta {
   padding: 100px 48px;
@@ -815,7 +748,6 @@ footer.site-footer {
 @media (max-width: 1024px) {
   .upcoming-grid { grid-template-columns: 1fr; }
   .poster-grid { grid-template-columns: repeat(2, 1fr); }
-  .category-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
@@ -841,7 +773,6 @@ footer.site-footer {
   .poster-body { padding: 24px 20px; }
   .poster-grid { grid-template-columns: 1fr; }
   .poster-meta { grid-template-columns: 1fr; }
-  .category-grid { grid-template-columns: 1fr; }
   .insta-cta { padding: 60px 20px; }
   footer.site-footer { padding: 60px 20px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1162,55 +1093,6 @@ footer.site-footer {
   </div>
 </section>
 
-<!-- CATEGORIES -->
-<section class="chapter chapter-categories">
-  <div class="section-inner">
-    <div class="section-head">
-      <div class="num">04 / Categories</div>
-      <h2>Event <em>Types</em></h2>
-      <div class="right">FOUR CATEGORIES<br>イベント分類</div>
-    </div>
-
-    <div class="category-grid">
-      <a href="#" class="category-card" data-reveal>
-        <div class="icon"><i class="fa fa-users"></i></div>
-        <div class="num">TYPE / 01</div>
-        <h3>Welcome</h3>
-        <div class="jp">新歓イベント</div>
-        <p>新入生・見学者向けのイベント。説明会、練習見学、新歓試合など、アメフトを体感できる機会を提供します。</p>
-        <span class="count"><strong>05</strong>Events</span>
-      </a>
-
-      <a href="#" class="category-card" data-reveal>
-        <div class="icon"><i class="fa fa-eye"></i></div>
-        <div class="num">TYPE / 02</div>
-        <h3>Practice</h3>
-        <div class="jp">練習見学</div>
-        <p>週3〜4回の練習は、見学・体験参加いつでも可能。グラウンドの雰囲気を直接感じてください。</p>
-        <span class="count"><strong>ALWAYS</strong>Open</span>
-      </a>
-
-      <a href="#" class="category-card" data-reveal>
-        <div class="icon"><i class="fa fa-trophy"></i></div>
-        <div class="num">TYPE / 03</div>
-        <h3>Games</h3>
-        <div class="jp">試合観戦</div>
-        <p>春のオープン戦から秋のリーグ戦まで。スタジアムで選手たちの熱い戦いを応援しよう。</p>
-        <span class="count"><strong>10+</strong>Games</span>
-      </a>
-
-      <a href="#" class="category-card" data-reveal>
-        <div class="icon"><i class="fa fa-heart"></i></div>
-        <div class="num">TYPE / 04</div>
-        <h3>OB / OG</h3>
-        <div class="jp">OB・OG会</div>
-        <p>世代を超えた交流の場。年次総会、懇親会、チーム支援活動など、BLASTERSのつながりを深めるイベント。</p>
-        <span class="count"><strong>02</strong>Annual</span>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- INSTAGRAM CTA -->
 <section class="insta-cta">
   <div class="insta-inner">
@@ -1298,7 +1180,7 @@ footer.site-footer {
     requestAnimationFrame(animateRing);
   }
   animateRing();
-  document.querySelectorAll('a, button, .upcoming-mini, .poster-card, .category-card, .timeline-item').forEach(el => {
+  document.querySelectorAll('a, button, .upcoming-mini, .poster-card, .timeline-item').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
