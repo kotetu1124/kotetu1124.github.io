@@ -1251,3 +1251,663 @@ footer {
     font-size: 12px;
   }
 }
+
+/* =================================================
+   New Taste Global Theme Overrides
+   index-new.html のデザイン言語を既存ページへ適用
+================================================= */
+:root {
+  --new-abyss: #06100a;
+  --new-ink: #0a1812;
+  --new-forest: #12241a;
+  --new-moss: #1c3527;
+  --new-sage: #2d5043;
+  --new-gold: #c9a747;
+  --new-gold-bright: #e8c76a;
+  --new-bone: #ede4d0;
+  --new-muted: #8d8676;
+  --new-border: rgba(201, 167, 71, 0.28);
+  --new-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(45, 80, 67, 0.22), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(201, 167, 71, 0.12), transparent 38%),
+    var(--new-abyss);
+  color: var(--new-bone);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  transition: color 0.25s ease, opacity 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.container {
+  max-width: 1240px;
+}
+
+header {
+  background: rgba(6, 16, 10, 0.88);
+  border-bottom: 1px solid var(--new-border);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(10px);
+}
+
+.header-top {
+  border-bottom: 1px solid rgba(201, 167, 71, 0.18);
+}
+
+.header-left .logo {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+.header-nav {
+  background: linear-gradient(180deg, rgba(18, 36, 26, 0.95), rgba(10, 24, 18, 0.9));
+}
+
+.header-nav a {
+  color: var(--new-bone);
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+
+.header-nav a:hover {
+  background-color: rgba(201, 167, 71, 0.12);
+  border-bottom-color: var(--new-gold);
+}
+
+.header-nav a.active {
+  background-color: rgba(201, 167, 71, 0.18);
+  color: var(--new-gold-bright);
+  border-bottom-color: var(--new-gold-bright);
+}
+
+.main-content,
+.news-main,
+.team-main,
+.player-main,
+.shop-main {
+  background: transparent;
+}
+
+.hero::before {
+  background: linear-gradient(180deg, rgba(6, 16, 10, 0.35), rgba(6, 16, 10, 0.75));
+  backdrop-filter: blur(1px);
+}
+
+.hero-text {
+  color: var(--new-bone);
+}
+
+.section-title,
+.page-title,
+.widget-title,
+.section-title-small {
+  color: var(--new-bone);
+  border-bottom-color: var(--new-gold);
+  letter-spacing: 0.04em;
+}
+
+.about-text,
+.about-text p,
+.news-excerpt,
+.shop-lead p,
+.match-message,
+.footer-access p {
+  color: #d7ceba;
+}
+
+.match-result,
+.match-next,
+.next-match {
+  background: linear-gradient(160deg, var(--new-moss), var(--new-forest));
+  border: 1px solid var(--new-border);
+  box-shadow: var(--new-shadow);
+}
+
+.match-title {
+  color: var(--new-gold-bright);
+  border-bottom-color: rgba(201, 167, 71, 0.34);
+}
+
+.news-item,
+.category-list li,
+.archive-list li,
+.match-table th,
+.match-table td,
+.pagination {
+  border-color: rgba(201, 167, 71, 0.18);
+}
+
+.news-title a,
+.category-list a,
+.archive-list a,
+.page-link,
+.footer-link {
+  color: var(--new-bone);
+}
+
+.news-title a:hover,
+.category-list a:hover,
+.archive-list a:hover,
+.footer-link:hover {
+  color: var(--new-gold-bright);
+}
+
+.news-category,
+.player-info,
+.player-section-title {
+  background: linear-gradient(135deg, #254434, #1a3226);
+  border: 1px solid var(--new-border);
+  color: var(--new-bone);
+}
+
+.sidebar-widget,
+.team-content,
+.shop-content,
+.shop-card,
+.player-detail-name-box,
+.page-link,
+.match-table,
+.match-filter-inner {
+  background: rgba(18, 36, 26, 0.82);
+  border: 1px solid var(--new-border);
+  color: var(--new-bone);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.page-link:hover,
+.page-link.active,
+.shop-card-btn {
+  background: linear-gradient(135deg, #d9ba62, #b28b30);
+  border-color: #e0c271;
+  color: #1c1407;
+}
+
+.shop-card-price,
+.breadcrumb a,
+.result-win {
+  color: var(--new-gold-bright);
+}
+
+.result-lose {
+  color: #d56b6b;
+}
+
+.result-upcoming {
+  color: #cdc5b3;
+}
+
+.player-card {
+  border-color: var(--new-border);
+  background: rgba(18, 36, 26, 0.8);
+}
+
+.player-card:hover {
+  box-shadow: var(--new-shadow);
+}
+
+.year-link {
+  background: rgba(18, 36, 26, 0.8);
+  border-color: var(--new-border);
+  color: var(--new-bone);
+}
+
+.year-link:hover,
+.year-link.active {
+  background: rgba(201, 167, 71, 0.16);
+  border-color: var(--new-gold);
+  color: var(--new-gold-bright);
+}
+
+.player-detail-wrapper {
+  background: linear-gradient(160deg, var(--new-moss), var(--new-forest));
+  border: 1px solid var(--new-border);
+}
+
+.player-detail-name-box {
+  background: rgba(237, 228, 208, 0.08);
+}
+
+.player-detail-name,
+.player-detail-position,
+.player-detail-name-kana {
+  color: var(--new-bone);
+}
+
+.player-detail-table tr {
+  border-bottom-color: rgba(201, 167, 71, 0.18);
+}
+
+.breadcrumb {
+  background: rgba(10, 24, 18, 0.86);
+  border-top: 1px solid rgba(201, 167, 71, 0.12);
+  border-bottom: 1px solid rgba(201, 167, 71, 0.12);
+  color: #d8cfbb;
+}
+
+.breadcrumb .separator,
+.breadcrumb-separator {
+  color: var(--new-muted);
+}
+
+footer {
+  background: linear-gradient(180deg, #0a1812, #06100a);
+  border-top: 1px solid var(--new-border);
+}
+
+.to-top {
+  color: var(--new-bone);
+}
+
+.to-top:hover {
+  color: var(--new-gold-bright);
+}
+
+/* =================================================
+   Global tone match for non-index pages
+   index.html の「重厚・競技感」トンマナに寄せる
+================================================= */
+.header-nav .container {
+  position: relative;
+  counter-reset: nav-item;
+}
+
+.header-nav .container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 167, 71, 0.45), transparent);
+}
+
+.header-nav a {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  padding-top: 18px;
+  padding-bottom: 16px;
+}
+
+.header-nav a::before {
+  counter-increment: nav-item;
+  content: counter(nav-item, decimal-leading-zero);
+  margin-right: 8px;
+  font-size: 10px;
+  color: rgba(201, 167, 71, 0.78);
+  letter-spacing: 0.05em;
+}
+
+.header-nav a:first-child {
+  padding-left: 58px;
+}
+
+.header-nav a:first-child::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--new-gold);
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 1px rgba(201, 167, 71, 0.2) inset;
+}
+
+.header-nav a:first-child::before {
+  margin-left: 10px;
+}
+
+.header-nav a:first-child:focus-visible::after,
+.header-nav a:first-child:hover::after {
+  background: radial-gradient(circle at center, var(--new-gold-bright) 0 2px, transparent 3px);
+}
+
+.main-content,
+.news-main,
+.team-main,
+.player-main,
+.shop-main {
+  position: relative;
+  isolation: isolate;
+}
+
+.main-content::before,
+.news-main::before,
+.team-main::before,
+.player-main::before,
+.shop-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.24;
+  background-image: repeating-linear-gradient(
+    -25deg,
+    rgba(201, 167, 71, 0.07) 0 1px,
+    transparent 1px 12px
+  );
+}
+
+.page-title,
+.section-title {
+  font-size: clamp(28px, 3.1vw, 44px);
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+}
+
+.news-item,
+.sidebar-widget,
+.team-content,
+.shop-content,
+.player-detail-wrapper,
+.shop-card,
+.player-card,
+.match-table {
+  backdrop-filter: blur(3px);
+}
+
+.event-insta-btn,
+.shop-card-btn,
+.footer-link {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+@media all and (max-width: 750px) {
+  .header-nav a {
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .header-nav a::before {
+    font-size: 9px;
+    margin-right: 6px;
+  }
+
+  .header-nav a:first-child {
+    padding-left: 52px;
+  }
+
+  .header-nav a:first-child::after {
+    left: 16px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* =================================================
+   Shared index-style navigation/footer components
+================================================= */
+nav.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  padding: 18px 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px;
+  align-items: center;
+  background: rgba(6, 16, 10, 0.86);
+  border-bottom: 1px solid rgba(201, 167, 71, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.nav-brand {
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--new-bone);
+  font-family: "Anton", "Bebas Neue", sans-serif;
+}
+
+.nav-brand .slash {
+  color: var(--new-gold);
+}
+
+.nav-brand-sub {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  opacity: 0.7;
+  display: block;
+  margin-top: 2px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 8px 0;
+  color: var(--new-bone);
+}
+
+.nav-links a::before {
+  content: attr(data-num);
+  font-size: 9px;
+  color: var(--new-gold);
+  margin-right: 6px;
+  vertical-align: super;
+  opacity: 0.7;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 0;
+  height: 1px;
+  background: var(--new-gold);
+  transition: width 0.35s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--new-bone);
+}
+
+.nav-cta .live-dot {
+  width: 8px;
+  height: 8px;
+  background: #8b1a1a;
+  border-radius: 50%;
+  animation: navPulse 1.6s infinite;
+}
+
+@keyframes navPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 26, 26, 0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(139, 26, 26, 0); }
+}
+
+footer.site-footer {
+  position: relative;
+  overflow: hidden;
+  padding: 60px 20px 24px;
+  background: linear-gradient(180deg, #0a1812, #06100a);
+  border-top: 1px solid rgba(201, 167, 71, 0.2);
+}
+
+.footer-bg-word {
+  position: absolute;
+  right: -20px;
+  top: -18px;
+  font-size: clamp(60px, 14vw, 180px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: rgba(201, 167, 71, 0.08);
+  pointer-events: none;
+  user-select: none;
+}
+
+.footer-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1fr 1fr;
+  gap: 34px;
+}
+
+.footer-brand-mark {
+  font-family: "Anton", "Bebas Neue", sans-serif;
+  font-size: 34px;
+  letter-spacing: 0.06em;
+  color: var(--new-gold-bright);
+  margin-bottom: 12px;
+}
+
+.footer-brand-desc {
+  color: #d8cfbb;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.footer-socials {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.footer-sns-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 167, 71, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--new-bone);
+}
+
+.footer-sns-icon:hover {
+  border-color: var(--new-gold-bright);
+  color: var(--new-gold-bright);
+}
+
+.footer-col h4 {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--new-gold-bright);
+  margin-bottom: 14px;
+}
+
+.footer-col a {
+  display: block;
+  color: #e7ddc8;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-col a:hover {
+  color: var(--new-gold-bright);
+}
+
+.footer-access .station {
+  display: block;
+  color: var(--new-gold-bright);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.footer-bottom {
+  max-width: 1240px;
+  margin: 24px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(201, 167, 71, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  color: #c9c0ad;
+  font-size: 12px;
+}
+
+.footer-top-link {
+  color: var(--new-bone);
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-top-link:hover {
+  color: var(--new-gold-bright);
+}
+
+@media all and (max-width: 1000px) {
+  nav.site-nav {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    text-align: center;
+    padding: 14px 16px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .nav-cta {
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media all and (max-width: 750px) {
+  .nav-links a {
+    letter-spacing: 0.14em;
+    font-size: 12px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

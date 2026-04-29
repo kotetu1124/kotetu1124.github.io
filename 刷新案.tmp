@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TEAM_NAME}} | Official Website</title>
+
+<!-- ========================================
+  プレースホルダー一覧（あとで差し替えてください）
+  {{TEAM_NAME}}        : チーム名（例: TOKYO WARRIORS）
+  {{TEAM_NAME_JP}}     : チーム名・日本語（例: 東京ウォリアーズ）
+  {{TEAM_SHORT}}       : チーム略称（例: TW）
+  {{EST_YEAR}}         : 創設年（例: 1985）
+  {{LEAGUE}}           : リーグ名（例: Xリーグ DIV.1）
+  {{CATCHPHRASE}}      : キャッチコピー（例: 圧倒せよ、フィールドを。）
+  {{HEAD_COACH}}       : ヘッドコーチ名
+  {{HOME_FIELD}}       : ホームグラウンド名
+  {{NEXT_OPPONENT}}    : 次の対戦相手
+  {{NEXT_DATE}}        : 次戦の日付
+  {{NEXT_KICKOFF}}     : キックオフ時刻
+  {{NEXT_VENUE}}       : 試合会場
+  
+  画像パス:
+  hero-main.jpg        : ヒーロー集合写真（2400x1400px推奨）
+  player-01.png 〜 05.png : 選手切り抜き写真（透過PNG・縦長推奨）
+  field-bg.jpg         : フィールド背景
+  logos/               : スポンサーロゴ画像を入れるフォルダ
+======================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Anton&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* ==== チームカラー（パッカーズ系・黒緑） ==== */
+    --team-green: #1a3a2e;       /* ダークフォレスト */
+    --team-green-deep: #0d2318;  /* 深緑（ほぼ黒） */
+    --team-gold: #c9b87a;        /* ゴールド（アクセント） */
+    --team-cream: #f5f1e8;       /* クリーム（サブ） */
+
+    --ink: #0a0f0c;
+    --paper: #ffffff;
+    --muted: #6b7570;
+    --line: #e5e7e4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', 'Barlow Condensed', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ================ TOP BAR ================ */
+  .top-bar {
+    background: var(--team-green-deep);
+    color: var(--team-cream);
+    padding: 8px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+  }
+  .top-bar .socials { display: flex; gap: 16px; }
+  .top-bar .socials a {
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(245,241,232,0.3);
+    border-radius: 50%;
+    font-size: 10px;
+    transition: all 0.3s;
+  }
+  .top-bar .socials a:hover {
+    background: var(--team-gold);
+    color: var(--team-green-deep);
+    border-color: var(--team-gold);
+  }
+
+  /* ================ NAV ================ */
+  nav {
+    background: var(--paper);
+    padding: 16px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    border-bottom: 3px solid var(--team-green-deep);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  }
+  .nav-left, .nav-right {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  .nav-left { justify-content: flex-end; }
+  nav a.menu-item {
+    font-family: 'Oswald', 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s;
+  }
+  nav a.menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    width: 0; height: 3px;
+    background: var(--team-gold);
+    transition: all 0.3s;
+    transform: translateX(-50%);
+  }
+  nav a.menu-item:hover { color: var(--team-green); }
+  nav a.menu-item:hover::after { width: 100%; }
+
+  .logo-center {
+    width: 72px; height: 72px;
+    background: var(--team-green-deep);
+    border: 3px solid var(--team-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--team-gold);
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 6px 20px rgba(26,58,46,0.3);
+    transform: translateY(12px);
+    position: relative;
+  }
+  .logo-center::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1px solid var(--team-gold);
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+
+  /* ================ HERO ================ */
+  .hero {
+    position: relative;
+    min-height: 680px;
+    background: var(--team-green-deep);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 80px 40px 100px;
+  }
+
+  /* 斜めストライプ背景 */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        115deg,
+        transparent 0px,
+        transparent 80px,
+        rgba(201,184,122,0.04) 80px,
+        rgba(201,184,122,0.04) 82px
+      );
+    z-index: 1;
+  }
+
+  /* フィールドライン風背景 */
+  .field-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, transparent 49.7%, rgba(245,241,232,0.06) 50%, transparent 50.3%);
+    background-size: 10% 100%;
+    transform: perspective(600px) rotateX(55deg) translateY(20%) scaleY(2);
+    transform-origin: center bottom;
+    opacity: 0.6;
+    z-index: 1;
+  }
+
+  /* グラデーションオーバーレイ */
+  .hero-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(201,184,122,0.15) 0%, transparent 60%);
+    z-index: 1;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-text {
+    color: var(--team-cream);
+  }
+  .hero-season {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    color: var(--team-gold);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    font-weight: 700;
+  }
+  .hero-season::before {
+    content: '';
+    width: 40px; height: 2px;
+    background: var(--team-gold);
+  }
+  .hero-title-en {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(56px, 9vw, 128px);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--team-cream);
+    margin-bottom: 12px;
+  }
+  .hero-title-en .accent {
+    color: var(--team-gold);
+    -webkit-text-stroke: 2px var(--team-gold);
+  }
+  .hero-catchphrase {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 2.8vw, 36px);
+    line-height: 1.3;
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 4px solid var(--team-gold);
+  }
+  .hero-desc {
+    margin-top: 24px;
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.85;
+    max-width: 460px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 28px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary {
+    background: var(--team-gold);
+    color: var(--team-green-deep);
+    border: 2px solid var(--team-gold);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--team-gold);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--team-cream);
+    border: 2px solid rgba(245,241,232,0.4);
+  }
+  .btn-ghost:hover {
+    border-color: var(--team-cream);
+    transform: translateY(-2px);
+  }
+  .btn svg { transition: transform 0.3s; }
+  .btn:hover svg { transform: translateX(4px); }
+
+  /* ヒーロー選手画像枠 */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    max-height: 600px;
+  }
+  .hero-visual-frame {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,184,122,0.2), transparent 70%);
+    border: 2px solid var(--team-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--team-gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+  .hero-visual-frame::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px;
+    width: 60px; height: 60px;
+    border-top: 4px solid var(--team-gold);
+    border-left: 4px solid var(--team-gold);
+  }
+  .hero-visual-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; right: -2px;
+    width: 60px; height: 60px;
+    border-bottom: 4px solid var(--team-gold);
+    border-right: 4px solid var(--team-gold);
+  }
+  .placeholder-note {
+    padding: 20px;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .placeholder-note strong {
+    display: block;
+    font-size: 24px;
+    color: var(--team-cream);
+    margin-bottom: 8px;
+  }
+
+  /* 背景の巨大文字 */
+  .hero-bg-text {
+    position: absolute;
+    right: -60px; bottom: -40px;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(140px, 20vw, 320px);
+    line-height: 0.8;
+    letter-spacing: -0.02em;
+    color: rgba(201,184,122,0.05);
+    pointer-events: none;
+    z-index: 2;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  /* ================ NEXT GAME ================ */
+  .next-game {
+    background: var(--ink);
+    color: var(--team-cream);
+    padding: 60px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .next-game::before {
+    content: 'NEXT GAME';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(120px, 18vw, 280px);
+    color: rgba(255,255,255,0.03);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .next-game-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .next-game-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .next-game-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.1em;
+    color: var(--team-gold);
+  }
+  .next-game-header p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+  .match-card {
+    background: linear-gradient(135deg, var(--team-green) 0%, var(--team-green-deep) 100%);
+    border: 1px solid rgba(201,184,122,0.25);
+    padding: 48px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+  }
+  .match-card::before, .match-card::after {
+    content: '';
+    position: absolute;
+    width: 40px; height: 40px;
+    border-color: var(--team-gold);
+  }
+  .match-card::before {
+    top: -1px; left: -1px;
+    border-top: 2px solid; border-left: 2px solid;
+  }
+  .match-card::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid; border-right: 2px solid;
+  }
+  .team-block {
+    text-align: center;
+  }
+  .team-block.home { text-align: left; }
+  .team-block.away { text-align: right; }
+  .team-block .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--team-gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .team-block .name {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .team-block .sub {
+    font-size: 13px;
+    opacity: 0.6;
+    margin-top: 8px;
+  }
+  .vs-block {
+    text-align: center;
+    padding: 0 40px;
+    border-left: 1px solid rgba(201,184,122,0.3);
+    border-right: 1px solid rgba(201,184,122,0.3);
+  }
+  .vs-block .vs {
+    font-family: 'Anton', sans-serif;
+    font-size: 52px;
+    color: var(--team-gold);
+    line-height: 1;
+  }
+  .vs-block .date {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+  .vs-block .time {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+  .match-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  /* ================ SECTION HEADERS ================ */
+  .section {
+    padding: 100px 32px;
+  }
+  .section-head {
+    max-width: 1300px;
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .section-head-left .kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--team-green);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-head-left .kicker::before {
+    content: '';
+    width: 32px; height: 2px;
+    background: var(--team-gold);
+  }
+  .section-head-left h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  .section-head-left h2 span {
+    color: var(--team-gold);
+    -webkit-text-stroke: 2px var(--team-green-deep);
+  }
+  .view-all {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--team-green);
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--team-gold);
+  }
+
+  /* ================ NEWS ================ */
+  .news-grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+  }
+  .news-list { list-style: none; }
+  .news-item {
+    display: grid;
+    grid-template-columns: 110px 140px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    transition: all 0.3s;
+    align-items: center;
+  }
+  .news-item:hover {
+    padding-left: 16px;
+    background: linear-gradient(90deg, rgba(26,58,46,0.03), transparent);
+  }
+  .news-date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .news-category {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 6px 12px;
+    background: var(--team-green-deep);
+    color: var(--team-gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    justify-self: start;
+  }
+  .news-title {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .news-item:hover .news-title { color: var(--team-green); }
+
+  .social-card {
+    background: var(--team-green-deep);
+    color: var(--team-cream);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .social-card h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    color: var(--team-gold);
+    letter-spacing: 0.05em;
+  }
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid rgba(201,184,122,0.2);
+    transition: all 0.3s;
+  }
+  .social-link:hover {
+    background: rgba(201,184,122,0.1);
+    border-color: var(--team-gold);
+  }
+  .social-link .name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+  /* ================ PLAYERS (ROSTER) ================ */
+  .players-section {
+    background: var(--team-green-deep);
+    color: var(--team-cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .players-section::before {
+    content: 'ROSTER';
+    position: absolute;
+    top: 50%; right: -5%;
+    transform: translateY(-50%);
+    font-family: 'Anton', sans-serif;
+    font-size: 280px;
+    color: rgba(201,184,122,0.04);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .players-section .section-head h2 { color: var(--team-cream); }
+  .players-section .section-head h2 span { -webkit-text-stroke-color: var(--team-cream); }
+  .players-section .section-head-left .kicker { color: var(--team-gold); }
+  .players-section .view-all { color: var(--team-gold); }
+
+  .roster-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: rgba(201,184,122,0.15);
+    border: 1px solid rgba(201,184,122,0.15);
+    position: relative;
+    z-index: 2;
+  }
+  .player-card {
+    background: var(--team-green);
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s;
+  }
+  .player-card:hover { transform: translateY(-6px); }
+
+  .player-number-bg {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-family: 'Anton', sans-serif;
+    font-size: 120px;
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--team-gold);
+    opacity: 0.7;
+    letter-spacing: -0.02em;
+  }
+  .player-photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(26,58,46,0.3) 0%, rgba(13,35,24,0.95) 100%);
+  }
+  .player-photo-placeholder .helmet {
+    width: 120px; height: 120px;
+    border: 2px dashed rgba(201,184,122,0.4);
+    border-radius: 50% 50% 45% 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(201,184,122,0.5);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-align: center;
+    padding: 10px;
+  }
+  .player-info {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 24px 20px;
+    background: linear-gradient(180deg, transparent 0%, rgba(13,35,24,0.95) 60%);
+    z-index: 2;
+  }
+  .player-info .position {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--team-gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .player-info .name-jp {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-bottom: 2px;
+  }
+  .player-info .name-en {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* ================ FEATURE CARDS ================ */
+  .feature-grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .feature-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--team-green-deep);
+    color: var(--team-cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    transition: all 0.4s;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 30%, rgba(13,35,24,0.95) 100%),
+      repeating-linear-gradient(45deg,
+        transparent 0,
+        transparent 20px,
+        rgba(201,184,122,0.03) 20px,
+        rgba(201,184,122,0.03) 21px);
+    transition: transform 0.6s;
+  }
+  .feature-card:hover::before { transform: scale(1.05); }
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    left: 32px; right: 32px; top: 32px;
+    height: 1px;
+    background: var(--team-gold);
+    transform-origin: left;
+    transform: scaleX(0.3);
+    transition: transform 0.4s;
+  }
+  .feature-card:hover::after { transform: scaleX(1); }
+  .feature-card > * { position: relative; z-index: 2; }
+  .feature-card .num {
+    font-family: 'Anton', sans-serif;
+    font-size: 48px;
+    color: var(--team-gold);
+    line-height: 1;
+    margin-bottom: auto;
+    padding-top: 40px;
+  }
+  .feature-card h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .feature-card .arrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--team-gold);
+    text-transform: uppercase;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--team-gold);
+    align-self: flex-start;
+  }
+
+  /* ================ STATS BAR ================ */
+  .stats-bar {
+    background: var(--team-gold);
+    color: var(--team-green-deep);
+    padding: 48px 32px;
+  }
+  .stats-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .stat {
+    text-align: center;
+    position: relative;
+  }
+  .stat:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -20px; top: 50%;
+    transform: translateY(-50%);
+    width: 1px; height: 60%;
+    background: rgba(13,35,24,0.3);
+  }
+  .stat .num {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* ================ SPONSORS ================ */
+  .sponsors {
+    padding: 80px 32px;
+    text-align: center;
+    background: #fafaf7;
+    border-top: 1px solid var(--line);
+  }
+  .sponsors h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    color: var(--team-green-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .sponsors p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .sponsor-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .sponsor-cell {
+    background: white;
+    aspect-ratio: 3/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding: 16px;
+    text-align: center;
+  }
+
+  /* ================ FOOTER ================ */
+  footer {
+    background: var(--team-green-deep);
+    color: var(--team-cream);
+    padding: 80px 32px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  footer::before {
+    content: '{{TEAM_SHORT}}';
+    position: absolute;
+    right: -40px; bottom: -60px;
+    font-family: 'Anton', sans-serif;
+    font-size: 320px;
+    color: rgba(201,184,122,0.05);
+    letter-spacing: -0.03em;
+    line-height: 0.8;
+    pointer-events: none;
+  }
+  .footer-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-brand .team-mark {
+    width: 72px; height: 72px;
+    border: 2px solid var(--team-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--team-gold);
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .footer-brand h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .footer-brand p {
+    font-size: 13px;
+    opacity: 0.7;
+    line-height: 1.7;
+    max-width: 340px;
+  }
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--team-gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(201,184,122,0.2);
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    padding: 6px 0;
+    opacity: 0.8;
+    transition: all 0.3s;
+  }
+  .footer-col a:hover { opacity: 1; color: var(--team-gold); padding-left: 6px; }
+
+  .footer-bottom {
+    max-width: 1300px;
+    margin: 60px auto 0;
+    padding-top: 32px;
+    border-top: 1px solid rgba(201,184,122,0.15);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ================ ANIMATIONS ================ */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1);
+  }
+  [data-reveal].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================ RESPONSIVE ================ */
+  @media (max-width: 960px) {
+    .top-bar { display: none; }
+    nav {
+      grid-template-columns: 1fr auto;
+      padding: 12px 20px;
+    }
+    .nav-left, .nav-right { display: none; }
+    .logo-center { transform: none; width: 52px; height: 52px; font-size: 18px; }
+    .hero { padding: 60px 24px; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { max-height: 420px; aspect-ratio: 1/1; }
+    .hero-ctas { flex-direction: column; }
+    .btn { justify-content: center; }
+    .match-card {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      text-align: center;
+      padding: 32px 20px;
+    }
+    .team-block.home, .team-block.away { text-align: center; }
+    .vs-block {
+      border: none;
+      border-top: 1px solid rgba(201,184,122,0.3);
+      border-bottom: 1px solid rgba(201,184,122,0.3);
+      padding: 16px 0;
+    }
+    .section { padding: 60px 20px; }
+    .news-grid { grid-template-columns: 1fr; }
+    .news-item { grid-template-columns: 100px 1fr; }
+    .news-item .news-category { grid-column: 2; justify-self: start; }
+    .news-item .news-title { grid-column: 1 / -1; }
+    .roster-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .stat:not(:last-child)::after { display: none; }
+    .sponsor-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================ TOP BAR ================ -->
+<div class="top-bar">
+  <div>{{LEAGUE}} · EST. {{EST_YEAR}}</div>
+  <div class="socials">
+    <a href="#" aria-label="Twitter">X</a>
+    <a href="#" aria-label="Instagram">IG</a>
+    <a href="#" aria-label="YouTube">YT</a>
+    <a href="#" aria-label="Facebook">FB</a>
+  </div>
+</div>
+
+<!-- ================ NAV ================ -->
+<nav>
+  <div class="nav-left">
+    <a href="#home" class="menu-item">HOME</a>
+    <a href="#team" class="menu-item">TEAM</a>
+    <a href="#schedule" class="menu-item">SCHEDULE</a>
+  </div>
+  <div class="logo-center">{{TEAM_SHORT}}</div>
+  <div class="nav-right">
+    <a href="#news" class="menu-item">NEWS</a>
+    <a href="#fan" class="menu-item">FAN</a>
+    <a href="#contact" class="menu-item">CONTACT</a>
+  </div>
+</nav>
+
+<!-- ================ HERO ================ -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="field-lines"></div>
+  <div class="hero-bg-text">{{TEAM_SHORT}}</div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-season">Season 2026</div>
+      <h1 class="hero-title-en">
+        {{TEAM_NAME}}<br>
+        <span class="accent">FOOTBALL</span>
+      </h1>
+      <p class="hero-catchphrase">
+        {{CATCHPHRASE}}
+      </p>
+      <p class="hero-desc">
+        {{TEAM_NAME_JP}}は{{EST_YEAR}}年の創設以来、フィールド上で積み重ねてきた矜持と闘志で、勝利を掴み取る。今シーズン、俺たちは、更なる高みへ。
+      </p>
+      <div class="hero-ctas">
+        <a href="#schedule" class="btn btn-primary">
+          試合日程を見る
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#team" class="btn btn-ghost">
+          ロースター
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-visual-frame">
+        <div class="placeholder-note">
+          <strong>HERO VISUAL</strong>
+          ここに集合写真や<br>
+          ユニフォーム姿の選手写真を配置<br>
+          <br>
+          推奨: 1200×1500px以上<br>
+          透過PNG推奨
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ NEXT GAME ================ -->
+<section class="next-game" id="schedule">
+  <div class="next-game-inner">
+    <div class="next-game-header">
+      <h2>NEXT GAME</h2>
+      <p>{{LEAGUE}} · 2026 Season</p>
+    </div>
+    <div class="match-card">
+      <div class="team-block home">
+        <div class="label">HOME</div>
+        <div class="name">{{TEAM_NAME}}</div>
+        <div class="sub">{{HOME_FIELD}}</div>
+      </div>
+      <div class="vs-block">
+        <div class="vs">VS</div>
+        <div class="date">{{NEXT_DATE}}</div>
+        <div class="time">KICK OFF {{NEXT_KICKOFF}}</div>
+      </div>
+      <div class="team-block away">
+        <div class="label">AWAY</div>
+        <div class="name">{{NEXT_OPPONENT}}</div>
+        <div class="sub">{{NEXT_VENUE}}</div>
+      </div>
+    </div>
+    <div class="match-actions">
+      <a href="#" class="btn btn-primary">
+        チケット購入
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" class="btn btn-ghost">
+        全日程
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================ STATS BAR ================ -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat" data-reveal>
+      <div class="num">27</div>
+      <div class="label">Wins · 2025 Season</div>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="num">38</div>
+      <div class="label">Years of History</div>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="num">52</div>
+      <div class="label">Active Roster</div>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="num">12</div>
+      <div class="label">Championships</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ NEWS ================ -->
+<section class="section" id="news">
+  <div class="section-head">
+    <div class="section-head-left">
+      <div class="kicker">Latest Update</div>
+      <h2>NEWS &<br><span>TOPICS</span></h2>
+    </div>
+    <a href="#" class="view-all">VIEW ALL →</a>
+  </div>
+
+  <div class="news-grid">
+    <ul class="news-list">
+      <li class="news-item" data-reveal>
+        <span class="news-date">2026.04.18</span>
+        <span class="news-category">試合結果</span>
+        <span class="news-title">【試合結果】2026シーズン開幕戦　相手チーム名に○-○で勝利</span>
+      </li>
+      <li class="news-item" data-reveal>
+        <span class="news-date">2026.04.12</span>
+        <span class="news-category">お知らせ</span>
+        <span class="news-title">2026シーズン　新体制発表会のお知らせ</span>
+      </li>
+      <li class="news-item" data-reveal>
+        <span class="news-date">2026.04.05</span>
+        <span class="news-category">選手情報</span>
+        <span class="news-title">【新加入】○○選手　加入のお知らせ（ポジション：QB）</span>
+      </li>
+      <li class="news-item" data-reveal>
+        <span class="news-date">2026.03.28</span>
+        <span class="news-category">イベント</span>
+        <span class="news-title">春季トレーニングキャンプ一般公開日のご案内</span>
+      </li>
+      <li class="news-item" data-reveal>
+        <span class="news-date">2026.03.20</span>
+        <span class="news-category">ファンクラブ</span>
+        <span class="news-title">2026年度オフィシャルファンクラブ会員募集開始</span>
+      </li>
+      <li class="news-item" data-reveal>
+        <span class="news-date">2026.03.10</span>
+        <span class="news-category">スポンサー</span>
+        <span class="news-title">新スポンサー契約締結のお知らせ</span>
+      </li>
+    </ul>
+
+    <aside class="social-card">
+      <h3>FOLLOW US</h3>
+      <a href="#" class="social-link">
+        <span class="name">X / Twitter</span>
+        <span>→</span>
+      </a>
+      <a href="#" class="social-link">
+        <span class="name">Instagram</span>
+        <span>→</span>
+      </a>
+      <a href="#" class="social-link">
+        <span class="name">YouTube</span>
+        <span>→</span>
+      </a>
+      <a href="#" class="social-link">
+        <span class="name">Facebook</span>
+        <span>→</span>
+      </a>
+    </aside>
+  </div>
+</section>
+
+<!-- ================ ROSTER / PLAYERS ================ -->
+<section class="section players-section" id="team">
+  <div class="section-head">
+    <div class="section-head-left">
+      <div class="kicker">2026 Season Roster</div>
+      <h2>OUR<br><span>WARRIORS</span></h2>
+    </div>
+    <a href="#" class="view-all">VIEW ROSTER →</a>
+  </div>
+
+  <div class="roster-grid">
+    <div class="player-card" data-reveal>
+      <div class="player-photo-placeholder">
+        <div class="helmet">PLAYER<br>PHOTO</div>
+      </div>
+      <div class="player-number-bg">12</div>
+      <div class="player-info">
+        <div class="position">QB · Captain</div>
+        <div class="name-jp">氏名</div>
+        <div class="name-en">PLAYER NAME</div>
+      </div>
+    </div>
+    <div class="player-card" data-reveal>
+      <div class="player-photo-placeholder">
+        <div class="helmet">PLAYER<br>PHOTO</div>
+      </div>
+      <div class="player-number-bg">05</div>
+      <div class="player-info">
+        <div class="position">RB</div>
+        <div class="name-jp">氏名</div>
+        <div class="name-en">PLAYER NAME</div>
+      </div>
+    </div>
+    <div class="player-card" data-reveal>
+      <div class="player-photo-placeholder">
+        <div class="helmet">PLAYER<br>PHOTO</div>
+      </div>
+      <div class="player-number-bg">88</div>
+      <div class="player-info">
+        <div class="position">WR</div>
+        <div class="name-jp">氏名</div>
+        <div class="name-en">PLAYER NAME</div>
+      </div>
+    </div>
+    <div class="player-card" data-reveal>
+      <div class="player-photo-placeholder">
+        <div class="helmet">PLAYER<br>PHOTO</div>
+      </div>
+      <div class="player-number-bg">76</div>
+      <div class="player-info">
+        <div class="position">OL</div>
+        <div class="name-jp">氏名</div>
+        <div class="name-en">PLAYER NAME</div>
+      </div>
+    </div>
+    <div class="player-card" data-reveal>
+      <div class="player-photo-placeholder">
+        <div class="helmet">PLAYER<br>PHOTO</div>
+      </div>
+      <div class="player-number-bg">54</div>
+      <div class="player-info">
+        <div class="position">LB</div>
+        <div class="name-jp">氏名</div>
+        <div class="name-en">PLAYER NAME</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ FEATURES ================ -->
+<section class="section" id="fan">
+  <div class="section-head">
+    <div class="section-head-left">
+      <div class="kicker">Get Involved</div>
+      <h2>JOIN THE<br><span>{{TEAM_SHORT}} NATION</span></h2>
+    </div>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card" data-reveal>
+      <div class="num">01</div>
+      <h3>Tickets</h3>
+      <p>シーズンチケット・個別試合チケットの購入はこちら。スタジアムで圧倒的な迫力を体感せよ。</p>
+      <a href="#" class="arrow">BUY TICKETS →</a>
+    </div>
+    <div class="feature-card" data-reveal>
+      <div class="num">02</div>
+      <h3>Fan Club</h3>
+      <p>オフィシャルファンクラブに入会して、限定イベント・グッズ・選手との交流の機会を手に入れよう。</p>
+      <a href="#" class="arrow">JOIN NOW →</a>
+    </div>
+    <div class="feature-card" data-reveal>
+      <div class="num">03</div>
+      <h3>Shop</h3>
+      <p>公式ユニフォーム・キャップ・タオル・その他グッズは公式オンラインストアで販売中。</p>
+      <a href="#" class="arrow">VISIT SHOP →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================ SPONSORS ================ -->
+<section class="sponsors" id="contact">
+  <h3>OFFICIAL PARTNERS</h3>
+  <p>Thanks to our supporters</p>
+  <div class="sponsor-grid">
+    <div class="sponsor-cell">SPONSOR 01</div>
+    <div class="sponsor-cell">SPONSOR 02</div>
+    <div class="sponsor-cell">SPONSOR 03</div>
+    <div class="sponsor-cell">SPONSOR 04</div>
+    <div class="sponsor-cell">SPONSOR 05</div>
+    <div class="sponsor-cell">SPONSOR 06</div>
+    <div class="sponsor-cell">SPONSOR 07</div>
+    <div class="sponsor-cell">SPONSOR 08</div>
+    <div class="sponsor-cell">SPONSOR 09</div>
+    <div class="sponsor-cell">SPONSOR 10</div>
+    <div class="sponsor-cell">SPONSOR 11</div>
+    <div class="sponsor-cell">SPONSOR 12</div>
+  </div>
+</section>
+
+<!-- ================ FOOTER ================ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="team-mark">{{TEAM_SHORT}}</div>
+      <h3>{{TEAM_NAME}}</h3>
+      <p>{{TEAM_NAME_JP}} · {{LEAGUE}} · Est. {{EST_YEAR}}<br>Home: {{HOME_FIELD}}</p>
+    </div>
+    <div class="footer-col">
+      <h4>TEAM</h4>
+      <a href="#">About</a>
+      <a href="#">History</a>
+      <a href="#">Coaches</a>
+      <a href="#">Roster</a>
+    </div>
+    <div class="footer-col">
+      <h4>GAME</h4>
+      <a href="#">Schedule</a>
+      <a href="#">Results</a>
+      <a href="#">Stats</a>
+      <a href="#">Stadium</a>
+    </div>
+    <div class="footer-col">
+      <h4>SUPPORT</h4>
+      <a href="#">Tickets</a>
+      <a href="#">Fan Club</a>
+      <a href="#">Shop</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 {{TEAM_NAME}} · All Rights Reserved</span>
+    <span>Privacy · Terms · Cookies</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
