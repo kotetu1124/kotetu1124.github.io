@@ -483,71 +483,6 @@ nav.site-nav {
 }
 
 /* 他コーチ陣（カード） */
-.coach-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-.coach-card {
-  background: var(--abyss);
-  border: 1px solid rgba(237,228,208,0.1);
-  padding: 28px 24px;
-  transition: all 0.4s var(--ease-out);
-  position: relative;
-  overflow: hidden;
-}
-.coach-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 0; height: 2px;
-  background: var(--gold);
-  transition: width 0.4s;
-}
-.coach-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  background: var(--forest);
-}
-.coach-card:hover::before { width: 100%; }
-.coach-card .role {
-  font-family: var(--ff-label);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--gold);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(201,167,71,0.2);
-}
-.coach-card .name-en {
-  font-family: var(--ff-display);
-  font-size: 26px;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  color: var(--bone);
-  text-transform: uppercase;
-}
-.coach-card .name-jp {
-  margin-top: 6px;
-  font-family: var(--ff-body);
-  font-size: 13px;
-  color: rgba(237,228,208,0.75);
-  font-weight: 500;
-}
-.coach-card .specialty {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px dashed rgba(237,228,208,0.1);
-  font-family: var(--ff-mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: rgba(237,228,208,0.5);
-  text-transform: uppercase;
-  line-height: 1.6;
-}
-
 /* ================================================
    ROSTER FILTER (ポジションフィルター)
 ================================================ */
@@ -745,15 +680,16 @@ nav.site-nav {
 /* 背番号大型表示 */
 .player-number {
   position: absolute;
-  top: 12px; right: 16px;
+  bottom: 12px; right: 14px;
   font-family: var(--ff-display);
-  font-size: clamp(80px, 10vw, 140px);
+  font-size: clamp(40px, 5.5vw, 72px);
   line-height: 0.9;
   color: transparent;
-  -webkit-text-stroke: 2px rgba(201,167,71,0.5);
+  -webkit-text-stroke: 1.5px rgba(201,167,71,0.55);
   letter-spacing: -0.02em;
-  z-index: 2;
+  z-index: 3;
   transition: color 0.4s, -webkit-text-stroke-color 0.4s;
+  pointer-events: none;
 }
 .player-card:hover .player-number {
   -webkit-text-stroke-color: var(--gold);
@@ -939,6 +875,31 @@ nav.site-nav {
   border: 1px solid rgba(237,228,208,0.1);
   position: relative;
   transition: all 0.4s;
+}
+.staff-photo {
+  position: relative;
+  width: calc(100% + 40px);
+  margin: -24px -20px 16px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--moss) 0%, var(--abyss) 100%);
+}
+.staff-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.5s var(--ease-out);
+}
+.staff-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(6,16,10,0.85) 100%);
+  pointer-events: none;
+}
+.staff-card:hover .staff-photo img {
+  transform: scale(1.05);
 }
 .staff-card:hover {
   border-color: var(--gold);
@@ -1129,45 +1090,6 @@ footer.site-footer {
 }
 .footer-top-link:hover { gap: 16px; }
 
-/* VERSION SWITCH */
-.version-switch {
-  position: fixed;
-  right: 24px; bottom: 24px;
-  z-index: 600;
-  padding: 14px 22px;
-  background: var(--abyss);
-  border: 1px solid var(--gold);
-  color: var(--bone);
-  display: flex; flex-direction: column; gap: 4px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  transition: all 0.4s var(--ease-out);
-  max-width: 240px;
-}
-.version-switch:hover {
-  background: var(--forest);
-  transform: translateY(-3px);
-  box-shadow: 0 26px 70px rgba(0,0,0,0.8);
-}
-.version-switch-label {
-  font-family: var(--ff-mono);
-  font-size: 9px; letter-spacing: 0.3em;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-.version-switch-title {
-  font-family: var(--ff-display);
-  font-size: 18px; letter-spacing: 0.03em;
-  color: var(--bone); line-height: 1;
-}
-.version-switch-link {
-  font-family: var(--ff-label);
-  font-size: 10px; letter-spacing: 0.2em;
-  color: var(--gold);
-  font-weight: 700; text-transform: uppercase;
-  margin-top: 6px; padding-top: 6px;
-  border-top: 1px solid rgba(201,167,71,0.3);
-}
-
 /* SCROLL REVEAL */
 [data-reveal] {
   opacity: 0;
@@ -1182,7 +1104,6 @@ footer.site-footer {
 @media (max-width: 1024px) {
   .head-coach { grid-template-columns: 1fr; gap: 40px; }
   .head-coach-portrait { margin: 0 auto; max-width: 380px; }
-  .coach-grid { grid-template-columns: repeat(2, 1fr); }
   .staff-grid { grid-template-columns: repeat(3, 1fr); }
   .player-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1199,7 +1120,6 @@ footer.site-footer {
   .section-head { grid-template-columns: 1fr; gap: 16px; }
   .section-head .right { text-align: left; }
   .coach-section { padding: 60px 20px; }
-  .coach-grid { grid-template-columns: 1fr; gap: 16px; }
   .head-coach-body .career { grid-template-columns: 1fr; gap: 12px; }
   .roster-filter { padding: 20px; position: relative; top: auto; }
   .roster-filter-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -1211,8 +1131,6 @@ footer.site-footer {
   footer.site-footer { padding: 60px 20px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 40px; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-  .version-switch { right: 12px; bottom: 12px; padding: 10px 16px; max-width: 200px; }
-  .version-switch-title { font-size: 14px; }
 }
 @media (max-width: 480px) {
   .player-grid { grid-template-columns: 1fr; }
@@ -1230,17 +1148,17 @@ footer.site-footer {
 <nav class="site-nav">
   <div class="nav-brand">
     <div>
-      <a href="../index-new.html">BLASTERS<span class="slash">/</span></a>
+      <a href="../index.html">BLASTERS<span class="slash">/</span></a>
       <span class="nav-brand-sub">TUAT AMERICAN FOOTBALL</span>
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="news-new.html" data-num="01">News</a></li>
-    <li><a href="match-new.html" data-num="02">Match</a></li>
-    <li><a href="team-new.html" data-num="03" class="current">Team</a></li>
+    <li><a href="news.html" data-num="01">News</a></li>
+    <li><a href="match.html" data-num="02">Match</a></li>
+    <li><a href="team.html" data-num="03" class="current">Team</a></li>
     <li><a href="shop.html" data-num="04">Shop</a></li>
     <li><a href="event.html" data-num="05">Event</a></li>
-    <li><a href="new_student.html" data-num="06">Join</a></li>
+    <li><a href="contact.html" data-num="06">Contact</a></li>
   </ul>
   <div class="nav-cta">
     <span class="live-dot"></span>
@@ -1256,7 +1174,7 @@ footer.site-footer {
 
   <div class="page-hero-inner">
     <div class="page-hero-breadcrumb">
-      <a href="../index-new.html">HOME</a>
+      <a href="../index.html">HOME</a>
       <span class="sep">/</span>
       <span>TEAM</span>
     </div>
@@ -1273,9 +1191,9 @@ footer.site-footer {
         BLASTERS 2026シーズン ロースター。フィールドに立つ選手、作戦を組むコーチ、支えるスタッフ・マネージャー。一人ひとりの力が集まって、このチームは成り立っています。
       </p>
       <div class="page-hero-stats">
-        <div><strong>38</strong>Players</div>
-        <div><strong>06</strong>Coaches</div>
-        <div><strong>14</strong>Staff</div>
+        <div><strong>31</strong>Players</div>
+        <div><strong>01</strong>Head Coach</div>
+        <div><strong>12</strong>Staff</div>
       </div>
     </div>
   </div>
@@ -1286,10 +1204,10 @@ footer.site-footer {
   <div class="section-inner">
     <div class="section-head">
       <div class="num">01 / Coaching Staff</div>
-      <h2>The <em>Coaches</em></h2>
+      <h2>The <em>Coach</em></h2>
       <div class="right">
-        HEAD COACH &amp; STAFF<br>
-        6名体制
+        HEAD COACH<br>
+        鳥居 稔
       </div>
     </div>
 
@@ -1311,50 +1229,10 @@ footer.site-footer {
         <p class="bio">アメフトにはあなたのサイズと能力に適したポジションが必ずあります。BLASTERSでは筋トレと練習を頑張って1年の夏から選手として試合に出るチャンスがあります。頭脳と組織力を重視し、対戦校をデータと映像で分析して作戦を組み立てます。</p>
 
         <div class="career">
-          <div class="career-item"><strong>XX</strong>Years<br>指導歴</div>
-          <div class="career-item"><strong>2024</strong>Season<br>2部で2勝記録</div>
-          <div class="career-item"><strong>D3</strong>Target<br>2部昇格目標</div>
+          <div class="career-item"><strong>2026</strong>Season<br>3部所属</div>
+          <div class="career-item"><strong>D2</strong>Target<br>2部昇格目標</div>
+          <div class="career-item"><strong>TUAT</strong>Club<br>BLASTERS</div>
         </div>
-      </div>
-    </div>
-
-    <!-- COACHES GRID -->
-    <div class="coach-grid">
-      <div class="coach-card" data-reveal>
-        <div class="role">Offensive Coordinator</div>
-        <div class="name-en">YAMADA</div>
-        <div class="name-jp">山田 太郎</div>
-        <div class="specialty">OFFENSE · QB / WR コーチ<br>パスゲーム戦術担当</div>
-      </div>
-      <div class="coach-card" data-reveal>
-        <div class="role">Defensive Coordinator</div>
-        <div class="name-en">SATO</div>
-        <div class="name-jp">佐藤 健一</div>
-        <div class="specialty">DEFENSE · LB / DB コーチ<br>守備戦術統括</div>
-      </div>
-      <div class="coach-card" data-reveal>
-        <div class="role">Line Coach</div>
-        <div class="name-en">SUZUKI</div>
-        <div class="name-jp">鈴木 浩二</div>
-        <div class="specialty">OL / DL 担当<br>ライン戦技術指導</div>
-      </div>
-      <div class="coach-card" data-reveal>
-        <div class="role">Special Teams Coach</div>
-        <div class="name-en">TAKAHASHI</div>
-        <div class="name-jp">高橋 誠</div>
-        <div class="specialty">SPECIAL TEAMS 統括<br>キッキングゲーム担当</div>
-      </div>
-      <div class="coach-card" data-reveal>
-        <div class="role">Strength &amp; Conditioning</div>
-        <div class="name-en">KOBAYASHI</div>
-        <div class="name-jp">小林 拓</div>
-        <div class="specialty">S&amp;C · フィジカル強化<br>トレーニング計画立案</div>
-      </div>
-      <div class="coach-card" data-reveal>
-        <div class="role">Assistant Coach</div>
-        <div class="name-en">NAKAMURA</div>
-        <div class="name-jp">中村 翔</div>
-        <div class="specialty">アシスタント · ビデオ分析<br>対戦校データ担当</div>
       </div>
     </div>
   </div>
@@ -1366,10 +1244,10 @@ footer.site-footer {
     <div class="filter-group">
       <span class="filter-label">POSITION</span>
       <ul class="filter-tabs">
-        <li><button class="filter-tab active">ALL <span class="count">38</span></button></li>
-        <li><button class="filter-tab">OFFENSE <span class="count">18</span></button></li>
-        <li><button class="filter-tab">DEFENSE <span class="count">16</span></button></li>
-        <li><button class="filter-tab">SPECIAL <span class="count">04</span></button></li>
+        <li><button class="filter-tab active">ALL <span class="count">31</span></button></li>
+        <li><button class="filter-tab">OFFENSE <span class="count">24</span></button></li>
+        <li><button class="filter-tab">DEFENSE <span class="count">06</span></button></li>
+        <li><button class="filter-tab">SPECIAL <span class="count">01</span></button></li>
       </ul>
     </div>
     <div class="view-toggle">
@@ -1389,136 +1267,343 @@ footer.site-footer {
         <span class="num">POS / 01</span>
         <h3 class="title">Offense</h3>
         <span class="jp">攻撃陣</span>
-        <span class="total"><strong>18</strong>Players</span>
+        <span class="total"><strong>24</strong>Players</span>
       </div>
 
       <div class="player-grid">
 
-        <a href="#" class="player-card captain" data-reveal>
-          <span class="player-position offense">QB</span>
-          <span class="player-captain">CAPTAIN</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">12</span>
+        <a href="team/player/takagi-tamon.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/髙木多聞.jpg" alt="高木 多聞" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">56</span>
           <div class="player-info">
-            <div class="name-en">TANAKA</div>
-            <div class="name-jp">田中 翔平</div>
-            <div class="meta">
+            <div class="name-en">TAKAGI</div>
+            <div class="name-jp">高木 多聞</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>4</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>178 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>82 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 機械システム工</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">タカギ タモン</strong></span>
             </div>
           </div>
         </a>
 
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position offense">RB</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
+        <a href="team/player/ootani-tomohiro.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/大谷知広.jpg" alt="大谷 知広" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">99</span>
+          <div class="player-info">
+            <div class="name-en">OTANI</div>
+            <div class="name-jp">大谷 知広</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>4</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">オオタニ トモヒロ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/matsubara-rin.html" class="player-card" data-reveal>
+          <span class="player-position offense">RB/DB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/松原琳.jpg" alt="松原 琳" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
           <span class="player-number">22</span>
           <div class="player-info">
-            <div class="name-en">YAMAMOTO</div>
-            <div class="name-jp">山本 大輝</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>172 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>78 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">農学部 生物生産</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position offense">RB</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">24</span>
-          <div class="player-info">
-            <div class="name-en">ITO</div>
-            <div class="name-jp">伊藤 康平</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>170 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>75 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 情報工</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position offense">WR</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">80</span>
-          <div class="player-info">
-            <div class="name-en">WATANABE</div>
-            <div class="name-jp">渡辺 隼</div>
-            <div class="meta">
+            <div class="name-en">MATSUBARA</div>
+            <div class="name-jp">松原 琳</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>4</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>181 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>74 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 化学物理工</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">マツバラ リン</strong></span>
             </div>
           </div>
         </a>
 
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position offense">WR</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">83</span>
+        <a href="team/player/enyo-kengo.html" class="player-card" data-reveal>
+          <span class="player-position offense">QB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/延輿健伍.jpg" alt="延與 健伍" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">9</span>
           <div class="player-info">
-            <div class="name-en">SAITO</div>
-            <div class="name-jp">斉藤 亮</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>175 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>70 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">農学部 環境資源科学</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position offense">TE</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">88</span>
-          <div class="player-info">
-            <div class="name-en">MATSUMOTO</div>
-            <div class="name-jp">松本 健太</div>
-            <div class="meta">
+            <div class="name-en">ENYO</div>
+            <div class="name-jp">延與 健伍</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>4</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>185 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>92 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 生命工</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">エンヨ ケンゴ</strong></span>
             </div>
           </div>
         </a>
 
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position offense">OL</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
+        <a href="team/player/miyahara-souta.html" class="player-card" data-reveal>
+          <span class="player-position offense">WR/DB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/宮原颯太.jpg" alt="宮原 颯太" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">28</span>
+          <div class="player-info">
+            <div class="name-en">MIYAHARA</div>
+            <div class="name-jp">宮原 颯太</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>4</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">ミヤハラ ソウタ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/kudou-kensei.html" class="player-card" data-reveal>
+          <span class="player-position offense">RB/LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/工藤健清.jpg" alt="工藤 健清" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">43</span>
+          <div class="player-info">
+            <div class="name-en">KUDO</div>
+            <div class="name-jp">工藤 健清</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>4</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">クドウ ケンセイ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/rios-takumi.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/リオスタクミ.jpg" alt="リオス タクミ" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
           <span class="player-number">72</span>
           <div class="player-info">
-            <div class="name-en">INOUE</div>
-            <div class="name-jp">井上 拓磨</div>
-            <div class="meta">
+            <div class="name-en">RIOS</div>
+            <div class="name-jp">リオス タクミ</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>4</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>183 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>110 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 機械システム工</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">リオス タクミ</strong></span>
             </div>
           </div>
         </a>
 
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position offense">OL</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">65</span>
+        <a href="team/player/sato-yuki.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/4年/佐藤勇輝.jpg" alt="佐藤 勇輝" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">76</span>
           <div class="player-info">
-            <div class="name-en">KOBAYASHI</div>
-            <div class="name-jp">小林 大介</div>
-            <div class="meta">
+            <div class="name-en">SATO</div>
+            <div class="name-jp">佐藤 勇輝</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>4</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">サトウ ユウキ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/yokoyama-reo.html" class="player-card" data-reveal>
+          <span class="player-position offense">WR/DB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/横山黎於.jpg" alt="横山 黎於" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">33</span>
+          <div class="player-info">
+            <div class="name-en">YOKOYAMA</div>
+            <div class="name-jp">横山 黎於</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>3</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>180 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>105 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">農学部 応用生物科学</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">ヨコヤマ レオ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/kagami-hiroaki.html" class="player-card" data-reveal>
+          <span class="player-position offense">RB/LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/鏡味宏朗.jpg" alt="鏡味 宏朗" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">5</span>
+          <div class="player-info">
+            <div class="name-en">KAGAMI</div>
+            <div class="name-jp">鏡味 宏朗</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">カガミ ヒロアキ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/yamaguchi-hirosato.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/山口大智.jpg" alt="山口 大智" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">79</span>
+          <div class="player-info">
+            <div class="name-en">YAMAGUCHI</div>
+            <div class="name-jp">山口 大智</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">ヤマグチ ヒロサト</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/kawasaki-rintarou.html" class="player-card" data-reveal>
+          <span class="player-position offense">QB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/川﨑凜汰朗.jpg" alt="川﨑 凜汰朗" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">8</span>
+          <div class="player-info">
+            <div class="name-en">KAWASAKI</div>
+            <div class="name-jp">川﨑 凜汰朗</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">カワサキ リンタロウ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/oooka-syuto.html" class="player-card" data-reveal>
+          <span class="player-position offense">RB/LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/大岡柊斗.jpg" alt="大岡 柊斗" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">48</span>
+          <div class="player-info">
+            <div class="name-en">OOOKA</div>
+            <div class="name-jp">大岡 柊斗</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">オオオカ シュウト</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/seno-kai.html" class="player-card" data-reveal>
+          <span class="player-position offense">WR/DB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/妹尾海.jpg" alt="妹尾 海" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">14</span>
+          <div class="player-info">
+            <div class="name-en">SENO</div>
+            <div class="name-jp">妹尾 海</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">セノウ カイ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/tanaka-ryota.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/田中諒汰.jpg" alt="田中 諒汰" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">77</span>
+          <div class="player-info">
+            <div class="name-en">TANAKA</div>
+            <div class="name-jp">田中 諒汰</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">タナカ リョウタ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/tanaka-takuma.html" class="player-card" data-reveal>
+          <span class="player-position offense">RB/LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/田中琢真.jpg" alt="田中 琢真" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">24</span>
+          <div class="player-info">
+            <div class="name-en">TANAKA</div>
+            <div class="name-jp">田中 琢真</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">タナカ タクマ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/kanamori-noa.html" class="player-card" data-reveal>
+          <span class="player-position offense">QB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/金森希亜.jpg" alt="金森 希亜" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">7</span>
+          <div class="player-info">
+            <div class="name-en">KANAMORI</div>
+            <div class="name-jp">金森 希亜</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">カナモリ ノア</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/tomonaga-tsuyoshi.html" class="player-card" data-reveal>
+          <span class="player-position offense">WR/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/1年/友永剛.jpg" alt="友永 剛" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">6</span>
+          <div class="player-info">
+            <div class="name-en">TOYONAGA</div>
+            <div class="name-jp">友永 剛</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>1</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">トヨナガ ツヨシ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/yoshimura-taiga.html" class="player-card" data-reveal>
+          <span class="player-position offense">WR/DB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/1年/吉村大雅.jpg" alt="吉村 大雅" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">18</span>
+          <div class="player-info">
+            <div class="name-en">YOSHIMURA</div>
+            <div class="name-jp">吉村 大雅</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>1</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">ヨシムラ タイガ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/ogawa-masahiro.html" class="player-card" data-reveal>
+          <span class="player-position offense">RB/DB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/1年/小川昌広.jpg" alt="小川 昌広" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">4</span>
+          <div class="player-info">
+            <div class="name-en">OGAWA</div>
+            <div class="name-jp">小川 昌広</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>1</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">オガワ マサヒロ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/aramaki-souta.html" class="player-card" data-reveal>
+          <span class="player-position offense">WR/LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/1年/荒牧蒼太.jpg" alt="荒牧 蒼太" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">42</span>
+          <div class="player-info">
+            <div class="name-en">ARAMAKI</div>
+            <div class="name-jp">荒牧 蒼太</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>1</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">アラマキ ソウタ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/monma-genki.html" class="player-card" data-reveal>
+          <span class="player-position offense">WR/LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/1年/門間元気.jpg" alt="門間 元気" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">13</span>
+          <div class="player-info">
+            <div class="name-en">MONMA</div>
+            <div class="name-jp">門間 元気</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>1</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">モンマ ゲンキ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/aoshima-teppei.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/1年/青嶋哲平.jpg" alt="青嶋 哲平" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">54</span>
+          <div class="player-info">
+            <div class="name-en">AOSHIMA</div>
+            <div class="name-jp">青嶋 哲平</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>1</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">アオシマ テッペイ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/kuroda-hayato.html" class="player-card" data-reveal>
+          <span class="player-position offense">OL/DL</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/1年/黒田隼.jpg" alt="黒田 隼" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">73</span>
+          <div class="player-info">
+            <div class="name-en">KURODA</div>
+            <div class="name-jp">黒田 隼</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>1</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">クロダ ハヤト</strong></span>
             </div>
           </div>
         </a>
@@ -1531,103 +1616,90 @@ footer.site-footer {
         <span class="num">POS / 02</span>
         <h3 class="title">Defense</h3>
         <span class="jp">守備陣</span>
-        <span class="total"><strong>16</strong>Players</span>
+        <span class="total"><strong>06</strong>Players</span>
       </div>
 
       <div class="player-grid">
-        <a href="#" class="player-card captain" data-reveal>
-          <span class="player-position defense">LB</span>
-          <span class="player-captain">CAPTAIN</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">55</span>
+        <a href="team/player/ida-soichiro.html" class="player-card" data-reveal>
+          <span class="player-position defense">LB/TE</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/3年/井田宗一朗.jpg" alt="井田 宗一朗" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">8</span>
           <div class="player-info">
-            <div class="name-en">KATO</div>
-            <div class="name-jp">加藤 翔太</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>4</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>178 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>88 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 知能情報システム工</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position defense">DL</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">90</span>
-          <div class="player-info">
-            <div class="name-en">YOSHIDA</div>
-            <div class="name-jp">吉田 悠真</div>
-            <div class="meta">
+            <div class="name-en">IDA</div>
+            <div class="name-jp">井田 宗一朗</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>3</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>182 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>100 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 機械システム工</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">イダ ソウイチロウ</strong></span>
             </div>
           </div>
         </a>
 
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position defense">DL</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">94</span>
-          <div class="player-info">
-            <div class="name-en">YAMASHITA</div>
-            <div class="name-jp">山下 雄大</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>180 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>95 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">農学部 地域生態システム</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
+        <a href="team/player/sato-haruka.html" class="player-card" data-reveal>
           <span class="player-position defense">LB</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">52</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/佐藤遥風.jpg" alt="佐藤 遥風" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">2</span>
           <div class="player-info">
-            <div class="name-en">SASAKI</div>
-            <div class="name-jp">佐々木 亮</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>176 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>82 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 応用化学</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position defense">DB</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">33</span>
-          <div class="player-info">
-            <div class="name-en">MORI</div>
-            <div class="name-jp">森 拓海</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>4</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>174 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>72 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 情報工</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position defense">DB</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">36</span>
-          <div class="player-info">
-            <div class="name-en">HAYASHI</div>
-            <div class="name-jp">林 海斗</div>
-            <div class="meta">
+            <div class="name-en">SATO</div>
+            <div class="name-jp">佐藤 遥風</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>2</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>172 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>70 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">農学部 生物生産</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">サトウ ハルカ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/miyazoe-tatsuya.html" class="player-card" data-reveal>
+          <span class="player-position defense">LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/宮副達哉.jpg" alt="宮副 達哉" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">2</span>
+          <div class="player-info">
+            <div class="name-en">MIYAZOE</div>
+            <div class="name-jp">宮副 達哉</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">ミヤゾエ タツヤ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/higuchi-shota.html" class="player-card" data-reveal>
+          <span class="player-position defense">LB</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/樋口翔太.jpg" alt="樋口 翔太" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">2</span>
+          <div class="player-info">
+            <div class="name-en">HIGUCHI</div>
+            <div class="name-jp">樋口 翔太</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">ヒグチ ショウタ</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/ishii-yuku.html" class="player-card" data-reveal>
+          <span class="player-position defense">DB/WR/P</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/石井優空.jpg" alt="石井 優空" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">11</span>
+          <div class="player-info">
+            <div class="name-en">ISHII</div>
+            <div class="name-jp">石井 優空</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">イシイ ユウク</strong></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="team/player/nagae-tomoki.html" class="player-card" data-reveal>
+          <span class="player-position defense">DB/WR</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/長江知樹.jpg" alt="長江 知樹" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">25</span>
+          <div class="player-info">
+            <div class="name-en">NAGAE</div>
+            <div class="name-jp">長江 知樹</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
+              <span><span class="meta-label">YEAR</span><strong>2</strong></span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">ナガエ トモキ</strong></span>
             </div>
           </div>
         </a>
@@ -1640,70 +1712,20 @@ footer.site-footer {
         <span class="num">POS / 03</span>
         <h3 class="title">Special Teams</h3>
         <span class="jp">スペシャルチーム</span>
-        <span class="total"><strong>04</strong>Players</span>
+        <span class="total"><strong>01</strong>Players</span>
       </div>
 
       <div class="player-grid">
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position special">K</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">5</span>
+        <a href="team/player/orito-kousuke.html" class="player-card" data-reveal>
+          <span class="player-position special">LINE/SN</span>
+          <div class="player-photo"><img src="../image/選手名鑑用写真/2年/織戸孝輔.jpg" alt="織戸 孝輔" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center top;transform:scale(0.72);transform-origin:center top;" onerror="this.parentElement.innerHTML='<span class=\'player-photo-ghost\'>PHOTO</span>'"></div>
+          <span class="player-number">55</span>
           <div class="player-info">
-            <div class="name-en">SHIMIZU</div>
-            <div class="name-jp">清水 隆介</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>176 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>72 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 化学物理工</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position special">P</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">18</span>
-          <div class="player-info">
-            <div class="name-en">OKADA</div>
-            <div class="name-jp">岡田 諒</div>
-            <div class="meta">
+            <div class="name-en">ORITO</div>
+            <div class="name-jp">織戸 孝輔</div>
+            <div class="meta" style="grid-template-columns: auto 1fr;">
               <span><span class="meta-label">YEAR</span><strong>2</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>178 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>74 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">農学部 共同獣医</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position special">LS</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">47</span>
-          <div class="player-info">
-            <div class="name-en">FUJITA</div>
-            <div class="name-jp">藤田 直樹</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>4</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>180 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>90 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">工学部 機械システム工</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="player-card" data-reveal>
-          <span class="player-position special">KR</span>
-          <div class="player-photo"><span class="player-photo-ghost">PHOTO</span></div>
-          <span class="player-number">21</span>
-          <div class="player-info">
-            <div class="name-en">ISHII</div>
-            <div class="name-jp">石井 海斗</div>
-            <div class="meta">
-              <span><span class="meta-label">YEAR</span><strong>3</strong></span>
-              <span><span class="meta-label">HEIGHT</span><strong>170 <span style="font-size:8px;opacity:0.6;">cm</span></strong></span>
-              <span><span class="meta-label">WEIGHT</span><strong>68 <span style="font-size:8px;opacity:0.6;">kg</span></strong></span>
-              <span class="dept">農学部 応用生物科学</span>
+              <span><span class="meta-label">READ</span><strong style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.05em;">オリト コウスケ</strong></span>
             </div>
           </div>
         </a>
@@ -1721,80 +1743,94 @@ footer.site-footer {
       <h2>Staff &amp; <em>Managers</em></h2>
       <div class="right">
         BEHIND THE SCENES<br>
-        14名体制
+        12名体制
       </div>
     </div>
 
     <div class="staff-grid">
       <div class="staff-card" data-reveal>
-        <span class="role-badge">Chief Manager</span>
-        <div class="name-jp">伊藤 美咲</div>
-        <div class="name-en">ITO MISAKI</div>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/MS（MSリーダー）　4年　藤澤璃優.jpg" alt="藤澤 璃優" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">MS · Leader</span>
+        <div class="name-jp">藤澤 璃優</div>
+        <div class="name-en">FUJISAWA RIYU</div>
         <div class="year">YEAR · 4</div>
-        <div class="dept">農学部 応用生物科学</div>
       </div>
       <div class="staff-card" data-reveal>
-        <span class="role-badge">Manager</span>
-        <div class="name-jp">鈴木 優希</div>
-        <div class="name-en">SUZUKI YUKI</div>
-        <div class="year">YEAR · 3</div>
-        <div class="dept">工学部 生命工</div>
-      </div>
-      <div class="staff-card" data-reveal>
-        <span class="role-badge">Manager</span>
-        <div class="name-jp">田中 愛</div>
-        <div class="name-en">TANAKA AI</div>
-        <div class="year">YEAR · 3</div>
-        <div class="dept">農学部 生物生産</div>
-      </div>
-      <div class="staff-card" data-reveal>
-        <span class="role-badge">Trainer</span>
-        <div class="name-jp">佐藤 陽平</div>
-        <div class="name-en">SATO YOHEI</div>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/TS（TSリーダー）　4年　野口遥.jpg" alt="野口 遥" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">TS · Leader</span>
+        <div class="name-jp">野口 遥</div>
+        <div class="name-en">NOGUCHI HARUKA</div>
         <div class="year">YEAR · 4</div>
-        <div class="dept">工学部 知能情報システム工</div>
       </div>
       <div class="staff-card" data-reveal>
-        <span class="role-badge">Trainer</span>
-        <div class="name-jp">渡辺 涼</div>
-        <div class="name-en">WATANABE RYO</div>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/TS（スタッフリーダー）　4年　寺町彩香音.jpg" alt="寺町 彩香音" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">TS · Staff Leader</span>
+        <div class="name-jp">寺町 彩香音</div>
+        <div class="name-en">TERAMACHI AKANE</div>
+        <div class="year">YEAR · 4</div>
+      </div>
+      <div class="staff-card" data-reveal>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/AS（ASリーダー）　4年　今井貫太.jpg" alt="今井 貫太" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">AS · Leader</span>
+        <div class="name-jp">今井 貫太</div>
+        <div class="name-en">IMAI KANTA</div>
+        <div class="year">YEAR · 4</div>
+      </div>
+      <div class="staff-card" data-reveal>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/MS（会計）　3年　稲村咲良.jpg" alt="稲村 咲良" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">MS · 会計</span>
+        <div class="name-jp">稲村 咲良</div>
+        <div class="name-en">INAMURA SARA</div>
+        <div class="year">YEAR · 3</div>
+      </div>
+      <div class="staff-card" data-reveal>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/TS（学連執行部）　3年　小井土真洸.jpg" alt="小井土 真洸" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">TS · 学連執行部</span>
+        <div class="name-jp">小井土 真洸</div>
+        <div class="name-en">KOIDO MAHIRO</div>
+        <div class="year">YEAR · 3</div>
+      </div>
+      <div class="staff-card" data-reveal>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/MS（学生委員）　3年　酒井日菜.jpg" alt="酒井 日菜" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">MS · 学生委員</span>
+        <div class="name-jp">酒井 日菜</div>
+        <div class="name-en">SAKAI HINA</div>
+        <div class="year">YEAR · 3</div>
+      </div>
+      <div class="staff-card" data-reveal>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/TS　3年　松本波瑚.jpg" alt="松本 波瑚" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">TS</span>
+        <div class="name-jp">松本 波瑚</div>
+        <div class="name-en">MATSUMOTO HAKO</div>
+        <div class="year">YEAR · 3</div>
+      </div>
+      <div class="staff-card" data-reveal>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/AS　2年　山口華穂.jpg" alt="山口 華穂" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">AS</span>
+        <div class="name-jp">山口 華穂</div>
+        <div class="name-en">YAMAGUCHI KAHO</div>
         <div class="year">YEAR · 2</div>
-        <div class="dept">農学部 共同獣医</div>
       </div>
       <div class="staff-card" data-reveal>
-        <span class="role-badge">Analyst</span>
-        <div class="name-jp">山田 直人</div>
-        <div class="name-en">YAMADA NAOTO</div>
-        <div class="year">YEAR · 3</div>
-        <div class="dept">工学部 情報工</div>
-      </div>
-      <div class="staff-card" data-reveal>
-        <span class="role-badge">Analyst</span>
-        <div class="name-jp">中島 翔</div>
-        <div class="name-en">NAKAJIMA SHO</div>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/MS　2年　寺東明莉.jpg" alt="寺東 明莉" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">MS</span>
+        <div class="name-jp">寺東 明莉</div>
+        <div class="name-en">TERAHIGASHI AKARI</div>
         <div class="year">YEAR · 2</div>
-        <div class="dept">工学部 機械システム工</div>
       </div>
       <div class="staff-card" data-reveal>
-        <span class="role-badge">Videographer</span>
-        <div class="name-jp">小川 雄斗</div>
-        <div class="name-en">OGAWA YUTO</div>
-        <div class="year">YEAR · 3</div>
-        <div class="dept">農学部 環境資源科学</div>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/MS（記録委員）　2年　髙橋真帆.jpg" alt="髙橋 真帆" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">MS · 記録委員</span>
+        <div class="name-jp">髙橋 真帆</div>
+        <div class="name-en">TAKAHASHI MAHO</div>
+        <div class="year">YEAR · 2</div>
       </div>
       <div class="staff-card" data-reveal>
-        <span class="role-badge">Equipment</span>
-        <div class="name-jp">木村 悠</div>
-        <div class="name-en">KIMURA YU</div>
-        <div class="year">YEAR · 4</div>
-        <div class="dept">工学部 化学物理工</div>
-      </div>
-      <div class="staff-card" data-reveal>
-        <span class="role-badge">Student Coach</span>
-        <div class="name-jp">岡本 健</div>
-        <div class="name-en">OKAMOTO KEN</div>
-        <div class="year">YEAR · 4</div>
-        <div class="dept">農学部 地域生態システム</div>
+        <div class="staff-photo"><img src="../image/選手名鑑用写真/スタッフ/TS　1年　阪口智.jpg" alt="阪口 智" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <span class="role-badge">TS</span>
+        <div class="name-jp">阪口 智</div>
+        <div class="name-en">SAKAGUCHI TOMO</div>
+        <div class="year">YEAR · 1</div>
       </div>
     </div>
   </div>
@@ -1821,9 +1857,9 @@ footer.site-footer {
 
     <div class="footer-col">
       <h4>Club</h4>
-      <a href="news-new.html">ニュース</a>
-      <a href="match-new.html">試合状況</a>
-      <a href="team-new.html">チーム</a>
+      <a href="news.html">ニュース</a>
+      <a href="match.html">試合状況</a>
+      <a href="team.html">チーム</a>
       <a href="event.html">イベント</a>
     </div>
 
@@ -1851,13 +1887,6 @@ footer.site-footer {
   </div>
 </footer>
 
-<!-- ==================== VERSION SWITCH ==================== -->
-<a href="team/player/team.html" class="version-switch" title="元のバージョンを表示">
-  <span class="version-switch-label">Current</span>
-  <span class="version-switch-title">TEAM v2</span>
-  <span class="version-switch-link">元のバージョンを見る →</span>
-</a>
-
 <script>
   // Cursor
   const dot = document.querySelector('.cursor-dot');
@@ -1873,7 +1902,7 @@ footer.site-footer {
     requestAnimationFrame(animateRing);
   }
   animateRing();
-  document.querySelectorAll('a, button, .player-card, .coach-card, .staff-card, .filter-tab').forEach(el => {
+  document.querySelectorAll('a, button, .player-card, .staff-card, .filter-tab').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
