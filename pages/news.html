@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -863,6 +863,9 @@ footer.site-footer {
   color: var(--gold);
   transform: translateX(4px);
 }
+.footer-col a[hidden] {
+  display: none !important;
+}
 .footer-access p {
   font-size: 13px; line-height: 1.7;
   color: rgba(237,228,208,0.75);
@@ -1018,8 +1021,8 @@ footer.site-footer {
   <ul class="nav-links">
     <li><a href="news.html" data-num="01" class="current">News</a></li>
     <li><a href="match.html" data-num="02">Match</a></li>
-    <li><a href="team.html" data-num="03">Team</a></li>
-    <li><a href="shop.html" data-num="04">Shop</a></li>
+    <li hidden><a href="team.html" data-num="03">Team</a></li>
+    <li hidden><a href="shop.html" data-num="04">Shop</a></li>
     <li><a href="event.html" data-num="05">Event</a></li>
     <li><a href="contact.html" data-num="06">Contact</a></li>
   </ul>
@@ -1329,15 +1332,14 @@ footer.site-footer {
       <h4>Club</h4>
       <a href="news.html">ニュース</a>
       <a href="match.html">試合状況</a>
-      <a href="team.html">チーム</a>
+      <a hidden href="team.html">チーム</a>
       <a href="event.html">イベント</a>
     </div>
 
     <div class="footer-col">
       <h4>Get Involved</h4>
       <a href="new_student.html">新入生の方へ</a>
-      <a href="shop.html">グッズ</a>
-      <a href="https://example.com/donate?club=blasters-temp-id" target="_blank" rel="noopener noreferrer">ご寄付のお願い</a>
+      <a hidden href="shop.html">グッズ</a>
       <a href="contact.html">contact</a>
       <a href="faq.html">よくある質問</a>
     </div>

@@ -305,7 +305,7 @@ section.chapter {
 
 
 /* ================================================
-   DIRECT CONTACTS (SNS・メール・住所)
+   DIRECT CONTACTS（SNS・住所）
 ================================================ */
 .direct-section {
   background: var(--forest); position: relative;
@@ -319,7 +319,8 @@ section.chapter {
 }
 
 .direct-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  display: grid; grid-template-columns: 1fr; gap: 24px;
+  max-width: 720px;
 }
 .direct-card {
   padding: 36px 32px;
@@ -398,38 +399,6 @@ section.chapter {
   transition: transform 0.3s;
 }
 .direct-sns-link:hover .arrow { transform: translateX(4px); }
-
-/* Email */
-.direct-email {
-  display: block;
-  padding: 16px 20px;
-  background: rgba(201,167,71,0.06);
-  border: 1px solid var(--gold);
-  font-family: var(--ff-mono); font-size: 14px;
-  color: var(--gold); letter-spacing: 0.05em;
-  word-break: break-all;
-  transition: all 0.3s;
-  margin-bottom: 16px;
-}
-.direct-email:hover {
-  background: var(--gold); color: var(--abyss);
-}
-
-.direct-hours {
-  padding: 14px 16px;
-  background: rgba(0,0,0,0.25);
-  border-left: 2px solid var(--gold);
-  font-family: var(--ff-mono); font-size: 11px;
-  letter-spacing: 0.1em; color: rgba(237,228,208,0.75);
-  line-height: 1.8;
-}
-.direct-hours strong {
-  display: block; color: var(--gold);
-  font-family: var(--ff-label); font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase; margin-bottom: 4px;
-  font-weight: 700;
-}
 
 /* ================================================
    FAQ
@@ -702,6 +671,7 @@ footer.site-footer {
   color: rgba(237,228,208,0.8); transition: all 0.3s;
 }
 .footer-col a:hover { color: var(--gold); transform: translateX(4px); }
+.footer-col a[hidden] { display: none !important; }
 .footer-access p { font-size: 13px; line-height: 1.7; color: rgba(237,228,208,0.75); margin-bottom: 12px; }
 .footer-access .station {
   display: block; font-family: var(--ff-mono);
@@ -808,8 +778,8 @@ footer.site-footer {
   <ul class="nav-links">
     <li><a href="news.html" data-num="01">News</a></li>
     <li><a href="match.html" data-num="02">Match</a></li>
-    <li><a href="team.html" data-num="03">Team</a></li>
-    <li><a href="shop.html" data-num="04">Shop</a></li>
+    <li hidden><a href="team.html" data-num="03">Team</a></li>
+    <li hidden><a href="shop.html" data-num="04">Shop</a></li>
     <li><a href="event.html" data-num="05">Event</a></li>
     <li><a href="contact.html" data-num="06" class="current">Contact</a></li>
   </ul>
@@ -872,7 +842,7 @@ footer.site-footer {
         <h3>Students</h3>
         <div class="jp">新入生・学生の方</div>
         <p>入部希望・練習見学・体験参加・説明会など、アメフトを始めたい学生の皆様からのcontact。初心者大歓迎。</p>
-        <span class="arrow">SNS・Emailでご連絡 <i class="fa fa-arrow-right"></i></span>
+        <span class="arrow">SNSでご連絡 <i class="fa fa-arrow-right"></i></span>
       </a>
 
       <a href="#direct-channels" class="inquiry-card" data-reveal>
@@ -880,7 +850,7 @@ footer.site-footer {
         <div class="num">TYPE / 02</div>
         <h3>OB / OG</h3>
         <div class="jp">OB・OG・関係者の方</div>
-        <p>OB会へのご連絡、現役支援、寄付のご相談、チーム運営に関するご連絡を受け付けています。</p>
+        <p>OB会へのご連絡、現役支援、チーム運営に関するご連絡を受け付けています。</p>
         <span class="arrow">OB・OG専用連絡 <i class="fa fa-arrow-right"></i></span>
       </a>
 
@@ -951,22 +921,6 @@ footer.site-footer {
         </div>
       </div>
 
-      <!-- Email -->
-      <div class="direct-card" data-reveal>
-        <div class="label">Channel · 02</div>
-        <h3>Email</h3>
-        <div class="jp">メールでのcontact</div>
-        <p>メールでもcontactいただけます。下記アドレス宛にご連絡ください。</p>
-        <a href="mailto:blasters.contact@example.com" class="direct-email">
-          blasters.contact@example.com
-        </a>
-        <div class="direct-hours">
-          <strong>Response Hours / 対応時間</strong>
-          平日：48時間以内にご返信<br>
-          土日祝日：翌営業日以降
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1004,7 +958,7 @@ footer.site-footer {
           <span class="faq-toggle"></span>
         </summary>
         <div class="faq-body">
-          <p>小金井キャンパス（工学部）のグラウンドで、週3〜4回の練習を行っています。詳しい曜日・時間は、ページ下部の「Channel 03 / Mail」またはSNSのDMでcontactください。</p>
+          <p>小金井キャンパス（工学部）のグラウンドで、週3〜4回の練習を行っています。詳しい曜日・時間は、SNSのDMでお問い合わせください。</p>
           <p>見学・体験参加は随時受け付けています。事前にSNSで一言ご連絡いただけるとスムーズです。</p>
         </div>
       </details>
@@ -1040,18 +994,8 @@ footer.site-footer {
         </summary>
         <div class="faq-body">
           <p>ホームゲーム（東京農工大学グラウンドでの試合）は、原則として観戦無料・予約不要です。アウェイゲームの会場によってはチケットが必要な場合もあります。</p>
-          <p>最新の試合日程は<a href="match.html">試合状況ページ</a>、チケット情報は<a href="shop.html">ショップページ</a>をご確認ください。</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-summary">
-          <span class="faq-q-num">Q.06</span>
-          <span class="faq-q-text">OB・OGです。チームの支援・寄付をしたいのですが。</span>
-          <span class="faq-toggle"></span>
-        </summary>
-        <div class="faq-body">
-          <p>OB・OGの皆様からのご支援は、選手たちの練習環境の改善、質の向上、そして試合に役立てさせていただいております。寄付のお願いについては<a href="https://example.com/donate?club=blasters-temp-id" target="_blank" rel="noopener noreferrer">寄付ページ</a>をご確認いただくか、SNSのDM・メールにて「OB・OG・関係者からのご連絡」としてご連絡ください。</p>
+          <p>最新の試合日程は<a href="match.html">試合状況ページ</a>をご確認ください。アウェイなど会場によってはチケットが必要な場合があります。</p>
+          <!-- 旧案内（shop.html 非表示時）: チケット情報は<a href="shop.html">ショップページ</a>をご確認ください。 -->
         </div>
       </details>
 
@@ -1060,7 +1004,7 @@ footer.site-footer {
     <div class="faq-footer" data-reveal>
       <div class="faq-footer-text">
         <h4>まだ解決しませんか？</h4>
-        <p>上記のFAQで解決しない場合は、SNSのDMまたはメールでお気軽にご連絡ください。</p>
+        <p>上記のFAQで解決しない場合は、SNSのDMでお気軽にご連絡ください。</p>
       </div>
       <a href="#direct-channels" class="btn btn-primary-gold">
         <span>連絡手段を見る</span>
@@ -1143,14 +1087,14 @@ footer.site-footer {
       <h4>Club</h4>
       <a href="news.html">ニュース</a>
       <a href="match.html">試合状況</a>
-      <a href="team.html">チーム</a>
+      <a hidden href="team.html">チーム</a>
       <a href="event.html">イベント</a>
     </div>
 
     <div class="footer-col">
       <h4>Get Involved</h4>
       <a href="new_student.html">新入生の方へ</a>
-      <a href="shop.html">グッズ</a>
+      <a hidden href="shop.html">グッズ</a>
       <a href="contact.html">Contact</a>
     </div>
 

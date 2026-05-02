@@ -1841,6 +1841,10 @@ footer.site-footer {
   color: var(--new-gold-bright);
 }
 
+.footer-col a[hidden] {
+  display: none !important;
+}
+
 .footer-access .station {
   display: block;
   color: var(--new-gold-bright);
