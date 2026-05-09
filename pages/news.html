@@ -522,6 +522,167 @@ nav.site-nav {
 .featured-body .more:hover { gap: 20px; }
 
 /* ================================================
+   GREETING SECTION (主将・マネージャー就任挨拶)
+================================================ */
+.greeting-section {
+  margin: 0 0 80px;
+  padding: 56px 0 64px;
+  border-bottom: 1px solid rgba(237,228,208,0.15);
+}
+.greeting-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.greeting-head .line {
+  width: 36px; height: 1px; background: var(--gold);
+}
+.greeting-head .label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.greeting-title {
+  font-family: var(--ff-serif-jp);
+  font-weight: 900;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.35;
+  color: var(--bone);
+  margin-bottom: 14px;
+  letter-spacing: 0.01em;
+}
+.greeting-lead {
+  font-family: var(--ff-serif-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: rgba(237,228,208,0.78);
+  max-width: 820px;
+  margin-bottom: 56px;
+}
+
+.greeting-card {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 48px;
+  align-items: start;
+  padding: 36px 0;
+  border-top: 1px dashed rgba(201,167,71,0.25);
+}
+.greeting-card:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.greeting-card.reverse {
+  grid-template-columns: 1fr 320px;
+}
+.greeting-card.reverse .greeting-photo {
+  order: 2;
+}
+.greeting-card.reverse .greeting-body {
+  order: 1;
+}
+
+.greeting-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid rgba(201,167,71,0.25);
+  background: linear-gradient(135deg, var(--forest), var(--abyss));
+}
+.greeting-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.02);
+  transition: transform 0.8s var(--ease-out);
+}
+.greeting-card:hover .greeting-photo img {
+  transform: scale(1.04);
+}
+.greeting-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(6,16,10,0.55) 100%);
+  pointer-events: none;
+}
+
+.greeting-role {
+  display: inline-block;
+  padding: 5px 14px;
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--abyss);
+  background: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.greeting-role-jp {
+  font-family: var(--ff-serif-jp);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.greeting-name {
+  font-family: var(--ff-serif-jp);
+  font-weight: 900;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.2;
+  color: var(--bone);
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+.greeting-affiliation {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(237,228,208,0.55);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(237,228,208,0.12);
+}
+.greeting-text {
+  font-family: var(--ff-serif-jp);
+  font-size: 14.5px;
+  line-height: 2.0;
+  color: rgba(237,228,208,0.88);
+}
+.greeting-text p {
+  margin-bottom: 1em;
+}
+.greeting-text p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .greeting-card,
+  .greeting-card.reverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .greeting-card.reverse .greeting-photo { order: 0; }
+  .greeting-card.reverse .greeting-body { order: 0; }
+  .greeting-photo {
+    max-width: 380px;
+    aspect-ratio: 4 / 5;
+  }
+}
+@media (max-width: 768px) {
+  .greeting-section { padding: 32px 0 40px; margin-bottom: 48px; }
+  .greeting-lead { margin-bottom: 36px; font-size: 14px; }
+  .greeting-card { padding: 28px 0; }
+  .greeting-text { font-size: 14px; line-height: 1.95; }
+}
+
+/* ================================================
    NEWS LIST (記事一覧)
 ================================================ */
 .news-list { list-style: none; }
@@ -1058,8 +1219,8 @@ footer.site-footer {
         BLASTERSの最新情報をお届けします。試合結果、お知らせ、イベント情報、メディア掲載情報など、チームの動きをこのページで確認できます。公式SNSもあわせてチェックしてください。
       </p>
       <div class="page-hero-stats">
-        <div><strong>47</strong>Total Articles</div>
-        <div><strong>04</strong>Categories</div>
+        <div><strong>02</strong>Total Articles</div>
+        <div><strong>02</strong>Categories</div>
         <div><strong>LIVE</strong>Updated Daily</div>
       </div>
     </div>
@@ -1072,11 +1233,11 @@ footer.site-footer {
     <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
       <span class="filter-label">FILTER BY</span>
       <ul class="filter-tabs">
-        <li><a href="#" class="filter-tab active">ALL <span class="count">47</span></a></li>
-        <li><a href="#" class="filter-tab">NOTICE <span class="count">18</span></a></li>
-        <li><a href="#" class="filter-tab">MATCH <span class="count">12</span></a></li>
-        <li><a href="#" class="filter-tab">EVENT <span class="count">09</span></a></li>
-        <li><a href="#" class="filter-tab">MEDIA <span class="count">08</span></a></li>
+        <li><a href="#" class="filter-tab active">ALL</a></li>
+        <li><a href="#" class="filter-tab">NOTICE</a></li>
+        <li><a href="#" class="filter-tab">MATCH</a></li>
+        <li><a href="#" class="filter-tab">EVENT</a></li>
+        <li><a href="#" class="filter-tab">MEDIA</a></li>
       </ul>
     </div>
     <div class="filter-search">
@@ -1097,18 +1258,73 @@ footer.site-footer {
         <!-- FEATURED ARTICLE -->
         <article class="featured" data-reveal>
           <div class="featured-img">
-            <div class="featured-img-placeholder">PHOTO</div>
+            <img src="../image/選手名鑑用写真/3年/川﨑凜汰朗.jpg" alt="主将 川﨑 凛汰朗" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
           </div>
           <div class="featured-body">
             <div class="meta">
-              <span class="date">2026.04.18</span>
+              <span class="date">2026.04.12</span>
               <span class="category">NOTICE</span>
             </div>
-            <h2><a href="#">【重要】2026シーズン開幕戦のお知らせ — 関東3部リーグ、再始動。</a></h2>
-            <p>BLASTERSは2026シーズン、関東学生アメリカンフットボール連盟3部リーグで再出発を切ります。開幕戦は5月某日、東京農工大学グラウンドにて開催予定。詳細・チケット情報は追って公式サイトにて発表します。</p>
-            <a href="#" class="more">続きを読む <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5H19M19 5L14 1M19 5L14 9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+            <h2><a href="#greeting">2026シーズン 主将・マネージャー就任挨拶 — 新体制、ここからリスタート。</a></h2>
+            <p>2026シーズンを迎えるにあたり、新主将・川﨑 凛汰朗（工学部応用化学科 / 3年）と、新スタッフリーダー・酒井 日菜（工学部生命工学科 / 3年）が就任しました。新入生の皆さん、そしてBLASTERSを応援してくださる全ての方へ、二人からのメッセージをお届けします。</p>
+            <a href="#greeting" class="more">就任挨拶を読む <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5H19M19 5L14 1M19 5L14 9" stroke="currentColor" stroke-width="1.5"/></svg></a>
           </div>
         </article>
+
+        <!-- ==================== GREETING SECTION ==================== -->
+        <section class="greeting-section" id="greeting" data-reveal>
+          <div class="greeting-head">
+            <span class="line"></span>
+            <span class="label">Message · 2026 Season</span>
+          </div>
+          <h2 class="greeting-title">主将・マネージャー就任挨拶</h2>
+          <p class="greeting-lead">
+            2026シーズンを迎えるにあたり、BLASTERSの新たな主将・スタッフリーダーが就任しました。新入生の皆さん、そして部を支えてくださる全ての方へ、二人からのメッセージをお届けします。
+          </p>
+
+          <!-- 主将 川﨑 凛汰朗 -->
+          <article class="greeting-card">
+            <div class="greeting-photo">
+              <img src="../image/選手名鑑用写真/3年/川﨑凜汰朗.jpg" alt="主将 川﨑 凛汰朗">
+            </div>
+            <div class="greeting-body">
+              <span class="greeting-role">Captain</span>
+              <div class="greeting-role-jp">主将</div>
+              <h3 class="greeting-name">川﨑 凛汰朗</h3>
+              <div class="greeting-affiliation">Faculty of Engineering · Applied Chemistry / 3rd Year</div>
+              <div class="greeting-text">
+                <p>新入生の皆さん、ご入学おめでとうございます。</p>
+                <p>アメリカンフットボール部 BLASTERSの主将を務めます、工学部応用化学科の川﨑凛汰朗です。受験を乗り越え、この大学に入学した皆さんの努力を、心から称えます。</p>
+                <p>大学生活は、自分の価値観や人間関係、そして人生そのものを大きく広げてくれる貴重な時間です。学業はもちろん、部活動やサークル、アルバイトなど、さまざまな選択肢の中で「何に本気で向き合うか」を決められるのが大学生活の魅力だと思います。</p>
+                <p>私がこの部活に入った理由は、正直なところ「勧誘されたから、少しやってみようかな」という軽い気持ちでした。運動経験もテニスしかなく、アメフトは未経験でした。しかし、実際に入部してみると、大学で行うチームスポーツの楽しさに強く惹かれていきました。時には厳しい練習を共に乗り越える同期の仲間、普段は面白いのに試合では頼れる憧れの先輩、年齢や立場に関係なく意見を交わすミーティング、同期と行く練習後の食事や、試合後の打ち上げ——挙げればきりがありませんが、そのすべてがかけがえのない経験でした。</p>
+                <p>「試合に勝つ」という明確な目標を持ちながら過ごす4年間は、とても楽しく、刺激に満ちています。アメフト部で過ごした時間は、間違いなく私の人生を大きく変えてくれました。</p>
+                <p>大学アメフトは殆どの人が未経験から始めます。少しでも興味があれば、ぜひ一度、新歓イベントや練習に足を運んでみてください！</p>
+                <p>新入生の皆さんと一緒に目標に向かって努力し、成長していける日を、心から楽しみにしています！</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- スタッフリーダー 酒井 日菜 -->
+          <article class="greeting-card reverse">
+            <div class="greeting-photo">
+              <img src="../image/選手名鑑用写真/スタッフ/MS（学生委員）　3年　酒井日菜.jpg" alt="スタッフリーダー 酒井 日菜">
+            </div>
+            <div class="greeting-body">
+              <span class="greeting-role">Staff Leader</span>
+              <div class="greeting-role-jp">スタッフリーダー</div>
+              <h3 class="greeting-name">酒井 日菜</h3>
+              <div class="greeting-affiliation">Faculty of Engineering · Biotechnology and Life Science / 3rd Year</div>
+              <div class="greeting-text">
+                <p>新入生の皆さん、ご入学おめでとうございます！</p>
+                <p>東京農工大学アメリカンフットボール部 BLASTERS スタッフリーダーの酒井日菜（工学部生命工学科）です。</p>
+                <p>大学生活が始まり、新たな環境への期待で胸を膨らませていることと思います。その中でも、新たなことに挑戦してみたいと思っている人は少なくないのではないでしょうか。</p>
+                <p>私たちBLASTERSという組織には、「スタッフ」という役割があります。スタッフの中には、「試合や練習の運営やサポート・お金の管理・広報活動」を担う人、「選手の体づくり・怪我のケア」に関わる人、「練習のサポート・対戦相手の分析」を行う人がいます。もちろん、スタッフなのでフィールドに立つことはありません。しかし、あらゆる角度からプレイヤーを支え、試合中はサイドラインでチームの一員として、一緒に闘うことができます。さまざまな仕事があるからこそ、自分の得意を活かせる居場所があると思います。</p>
+                <p>長いようであっという間の大学4年間、何かにひたむきに打ち込むということは、今しか経験できないのかもしれません。この4年間を私たちと一緒に笑い合い、助け合い、共に闘う4年間にしませんか？</p>
+                <p>スタッフはもちろん、BLASTERS一同、新入生の皆さんにお会いできるのを楽しみにしています！</p>
+              </div>
+            </div>
+          </article>
+        </section>
 
         <!-- NEWS LIST -->
         <ul class="news-list">
@@ -1120,7 +1336,7 @@ footer.site-footer {
             </div>
             <span class="news-item-category notice">NOTICE</span>
             <div class="news-item-title">
-              <a href="#">2026シーズン 新体制発表 — コーチ陣・キャプテン就任のお知らせ</a>
+              <a href="#greeting">2026シーズン 主将・マネージャー就任挨拶</a>
             </div>
             <div class="news-item-arrow">
               <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -1134,119 +1350,7 @@ footer.site-footer {
             </div>
             <span class="news-item-category event">EVENT</span>
             <div class="news-item-title">
-              <a href="#">新歓試合開催決定 — 4月29日(祝) 小金井キャンパスにて</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">03.30</span>
-            </div>
-            <span class="news-item-category match">MATCH</span>
-            <div class="news-item-title">
-              <a href="#">春季オープン戦 第2節 — 対 帝京大学戦 試合結果レポート</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">03.22</span>
-            </div>
-            <span class="news-item-category media">MEDIA</span>
-            <div class="news-item-title">
-              <a href="#">東京農工大学公式広報誌『ハッケンコウケン』にBLASTERSが掲載されました</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">03.15</span>
-            </div>
-            <span class="news-item-category notice">NOTICE</span>
-            <div class="news-item-title">
-              <a href="#">春季合宿（山梨県・河口湖）の実施報告 — 3日間の総括</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">03.08</span>
-            </div>
-            <span class="news-item-category match">MATCH</span>
-            <div class="news-item-title">
-              <a href="#">春季オープン戦 第1節 — 対 成蹊大学戦 試合結果レポート</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">02.28</span>
-            </div>
-            <span class="news-item-category event">EVENT</span>
-            <div class="news-item-title">
-              <a href="#">2026年度オフィシャルファンクラブ 入会受付開始のお知らせ</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">02.20</span>
-            </div>
-            <span class="news-item-category notice">NOTICE</span>
-            <div class="news-item-title">
-              <a href="#">新入部員の紹介ページを公開しました — 2026年度 新1年生メンバー</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">02.14</span>
-            </div>
-            <span class="news-item-category media">MEDIA</span>
-            <div class="news-item-title">
-              <a href="#">YouTube公式チャンネル 新シリーズ「BLASTERS INSIDE」配信開始</a>
-            </div>
-            <div class="news-item-arrow">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </li>
-
-          <li class="news-item" data-reveal>
-            <div class="news-item-date">
-              <span class="year">2026</span>
-              <span class="md">02.05</span>
-            </div>
-            <span class="news-item-category notice">NOTICE</span>
-            <div class="news-item-title">
-              <a href="#">2026年度 新歓イベントスケジュール公開 — 4月〜5月の説明会・練習見学</a>
+              <a href="event.html#shinkan-match">新歓試合開催決定 — 4月25日(土) 小金井キャンパスにて</a>
             </div>
             <div class="news-item-arrow">
               <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -1255,44 +1359,11 @@ footer.site-footer {
 
         </ul>
 
-        <!-- PAGINATION -->
-        <nav class="pagination">
-          <span class="page-info">PAGE 01 / 05</span>
-          <a href="#" class="page-link nav-prev"><span>← PREV</span></a>
-          <a href="#" class="page-link active">1</a>
-          <a href="#" class="page-link">2</a>
-          <a href="#" class="page-link">3</a>
-          <a href="#" class="page-link">4</a>
-          <span class="page-ellipsis">···</span>
-          <a href="#" class="page-link">10</a>
-          <a href="#" class="page-link nav-next"><span>NEXT →</span></a>
-        </nav>
-
       </div>
 
       <!-- SIDEBAR -->
       <aside class="sidebar">
         <div class="sidebar-sticky">
-
-          <div class="widget">
-            <h3 class="widget-title">Category</h3>
-            <ul class="category-list">
-              <li><a href="#">お知らせ<span class="count">18</span></a></li>
-              <li><a href="#">試合結果<span class="count">12</span></a></li>
-              <li><a href="#">イベント<span class="count">09</span></a></li>
-              <li><a href="#">メディア<span class="count">08</span></a></li>
-            </ul>
-          </div>
-
-          <div class="widget">
-            <h3 class="widget-title">Archive</h3>
-            <ul class="archive-list">
-              <li><a href="#">2026<span class="count">10</span></a></li>
-              <li><a href="#">2025<span class="count">18</span></a></li>
-              <li><a href="#">2024<span class="count">12</span></a></li>
-              <li><a href="#">2023<span class="count">07</span></a></li>
-            </ul>
-          </div>
 
           <div class="widget">
             <h3 class="widget-title">Follow Us</h3>
