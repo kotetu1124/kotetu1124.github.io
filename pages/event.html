@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -648,7 +648,7 @@ footer.site-footer {
 }
 .footer-grid {
   max-width: 1400px; margin: 0 auto 80px;
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
   gap: 60px; position: relative; z-index: 2;
 }
 .footer-brand { max-width: 400px; }
@@ -801,7 +801,8 @@ footer.site-footer {
     <li hidden><a href="team.html" data-num="03">Team</a></li>
     <li hidden><a href="shop.html" data-num="04">Shop</a></li>
     <li><a href="event.html" data-num="05" class="current">Event</a></li>
-    <li><a href="contact.html" data-num="06">Contact</a></li>
+    <li><a href="FanGuide.html" data-num="06">Fan Guide</a></li>
+    <li><a href="contact.html" data-num="07">Contact</a></li>
   </ul>
   <div class="nav-cta">
     <span class="live-dot"></span>
@@ -870,13 +871,6 @@ footer.site-footer {
           <div>DATE<strong>4/25（土）</strong></div>
           <div>TIME<strong>13:00 KICKOFF</strong></div>
           <div>VENUE<strong>小金井キャンパス グラウンド</strong></div>
-        </div>
-
-        <div class="upcoming-actions">
-          <a href="new_student.html" class="btn btn-ghost">
-            <span>新入生の方へ</span>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2"/></svg>
-          </a>
         </div>
       </article>
 
@@ -1019,7 +1013,7 @@ footer.site-footer {
 </section>
 
 <!-- POSTERS (新入生向け) -->
-<section class="chapter chapter-posters">
+<section id="for-new-students" class="chapter chapter-posters">
   <div class="section-inner">
     <div class="section-head">
       <div class="num">03 / Welcome Events</div>
@@ -1130,18 +1124,13 @@ footer.site-footer {
     </div>
 
     <div class="footer-col">
-      <h4>Club</h4>
+      <h4>Menu</h4>
       <a href="news.html">ニュース</a>
       <a href="match.html">試合状況</a>
-      <a hidden href="team.html">チーム</a>
       <a href="event.html">イベント</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Get Involved</h4>
-      <a href="new_student.html">新入生の方へ</a>
-      <a hidden href="shop.html">グッズ</a>
-      <a href="contact.html">contact</a>
+      <a href="FanGuide.html">観戦ガイド</a>
+      <a href="event.html#for-new-students">新入生の方へ</a>
+      <a href="contact.html">Contact</a>
       <a href="faq.html">よくある質問</a>
     </div>
 
