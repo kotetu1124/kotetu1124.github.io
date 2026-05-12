@@ -525,6 +525,63 @@ nav.site-nav {
   background: rgba(255,255,255,0.01);
 }
 
+/* RESULT INDICATORS + SUMMARY + SUB-STAGE */
+.result-row .venue.win  { color: var(--gold); font-weight: 700; letter-spacing: 0.15em; }
+.result-row .venue.loss { color: var(--blood); font-weight: 700; letter-spacing: 0.15em; }
+.result-row .venue.draw { color: var(--ash); font-weight: 700; letter-spacing: 0.15em; }
+
+.results-substage {
+  margin: 28px 0 12px;
+  display: flex; align-items: center; gap: 14px;
+}
+.results-substage .label {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: rgba(237,228,208,0.7);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.results-substage .label::before { content: '› '; color: var(--gold); }
+.results-substage .line { flex: 1; height: 1px; background: rgba(201,167,71,0.12); }
+
+.result-summary {
+  margin-top: 14px;
+  margin-bottom: 6px;
+  padding: 14px 22px;
+  background: rgba(201,167,71,0.05);
+  border: 1px solid rgba(201,167,71,0.18);
+  border-left: 3px solid var(--gold);
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.result-summary .rs-item {
+  display: flex; align-items: baseline; gap: 10px;
+}
+.result-summary .rs-label {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: rgba(237,228,208,0.55);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.result-summary .rs-value {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  color: var(--gold-bright);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.result-summary .rs-note {
+  font-family: var(--ff-serif-jp);
+  font-size: 12px;
+  color: rgba(237,228,208,0.7);
+  margin-left: auto;
+}
+
 /* SCROLL REVEAL */
 [data-reveal] { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
 [data-reveal].in { opacity: 1; transform: translateY(0); }
@@ -804,7 +861,20 @@ footer.site-footer {
               <span class="label">Match Results</span>
               <span class="line"></span>
             </div>
-            <div class="result-empty">2026 シーズン試合結果は順次更新</div>
+
+            <div class="results-substage">
+              <span class="label">新歓試合</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">4/25 (土)</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">21 <span class="vs">–</span> 25</span>
+              <span class="team away">亜細亜大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+
+            <div class="result-empty" style="margin-top:18px">2026 公式戦は順次更新</div>
           </div>
         </div>
       </div>
@@ -856,7 +926,76 @@ footer.site-footer {
               <span class="label">Match Results</span>
               <span class="line"></span>
             </div>
-            <div class="result-empty">2025 試合結果データを準備中</div>
+
+            <div class="results-substage">
+              <span class="label">1次リーグ（第2グループ）</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">1次LG</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">0 <span class="vs">–</span> 41</span>
+              <span class="team away">一橋大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">1次LG</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">0 <span class="vs">–</span> 17</span>
+              <span class="team away">筑波大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">1次LG</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">0 <span class="vs">–</span> 37</span>
+              <span class="team away">上智大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-label">Record</span><span class="rs-value">0–3</span></div>
+              <div class="rs-item"><span class="rs-label">Points</span><span class="rs-value">0</span></div>
+              <div class="rs-item"><span class="rs-label">Rank</span><span class="rs-value">4位</span></div>
+            </div>
+
+            <div class="results-substage">
+              <span class="label">2次チャレンジリーグ</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">2次CL</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">0 <span class="vs">–</span> 35</span>
+              <span class="team away">芝浦工業大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">2次CL</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">7 <span class="vs">–</span> 26</span>
+              <span class="team away">工学院大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-label">Record</span><span class="rs-value">0–3</span></div>
+              <div class="rs-item"><span class="rs-label">Points</span><span class="rs-value">0</span></div>
+              <div class="rs-item"><span class="rs-label">Rank</span><span class="rs-value">9位</span></div>
+            </div>
+
+            <div class="results-substage">
+              <span class="label">入れ替え戦</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">12/28 (日)</span>
+              <span class="team home own">東京農工大学 (2部B 9位)</span>
+              <span class="score">0 <span class="vs">–</span> 57</span>
+              <span class="team away">成城大学 (3部A 1位)</span>
+              <span class="venue loss">● 3部降格</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-note">会場：アミノバイタルフィールド / 結果：成城大学が2部昇格、東京農工大学は3部降格</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -907,7 +1046,80 @@ footer.site-footer {
               <span class="label">Match Results</span>
               <span class="line"></span>
             </div>
-            <div class="result-empty">2024 試合結果データを準備中</div>
+
+            <div class="results-substage">
+              <span class="label">2部Bブロック リーグ戦</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">0 <span class="vs">–</span> 56</span>
+              <span class="team away">明治学院大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">7 <span class="vs">–</span> 21</span>
+              <span class="team away">横浜国立大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">0 <span class="vs">–</span> 16</span>
+              <span class="team away">上智大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">23</span> <span class="vs">–</span> 22</span>
+              <span class="team away">関東学院大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">0 <span class="vs">–</span> 19</span>
+              <span class="team away">防衛大学校</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">17</span> <span class="vs">–</span> 10</span>
+              <span class="team away">成城大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">23 <span class="vs">–</span> 42</span>
+              <span class="team away">東京科学大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-label">Record</span><span class="rs-value">2–5</span></div>
+              <div class="rs-item"><span class="rs-label">Points</span><span class="rs-value">6</span></div>
+              <div class="rs-item"><span class="rs-label">Rank</span><span class="rs-value">7位</span></div>
+            </div>
+
+            <div class="results-substage">
+              <span class="label">入れ替え戦</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">12/21 (土)</span>
+              <span class="team home own">東京農工大学 (2部B 7位)</span>
+              <span class="score"><span class="win">14</span> <span class="vs">–</span> 0</span>
+              <span class="team away">東京理科大学 (3部D 2位)</span>
+              <span class="venue win">○ 2部残留</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-note">会場：アミノバイタルフィールド / 結果：東京農工大学は2部残留</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -977,7 +1189,66 @@ footer.site-footer {
               <span class="label">Match Results</span>
               <span class="line"></span>
             </div>
-            <div class="result-empty">2023 試合結果データを準備中</div>
+
+            <div class="results-substage">
+              <span class="label">3部Aブロック リーグ戦</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">13</span> <span class="vs">–</span> 12</span>
+              <span class="team away">電気通信大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">7</span> <span class="vs">–</span> 6</span>
+              <span class="team away">東京国際大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">41</span> <span class="vs">–</span> 7</span>
+              <span class="team away">高千穂大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">14 <span class="vs">–</span> 14</span>
+              <span class="team away">東京都立大学</span>
+              <span class="venue draw">△ DRAW</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">48</span> <span class="vs">–</span> 0</span>
+              <span class="team away">駿河台大学・明星大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-label">Record</span><span class="rs-value">4–0–1</span></div>
+              <div class="rs-item"><span class="rs-label">Points</span><span class="rs-value">13</span></div>
+              <div class="rs-item"><span class="rs-label">Rank</span><span class="rs-value">1位</span></div>
+            </div>
+
+            <div class="results-substage">
+              <span class="label">入れ替え戦</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">12/2 (土)</span>
+              <span class="team home own">東京農工大学 (3部A 1位)</span>
+              <span class="score"><span class="win">28</span> <span class="vs">–</span> 21</span>
+              <span class="team away">千葉大学 (2部A 7位)</span>
+              <span class="venue win">○ 2部昇格</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-note">会場：アミノバイタルフィールド / 結果：東京農工大学は2部昇格</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1028,7 +1299,44 @@ footer.site-footer {
               <span class="label">Match Results</span>
               <span class="line"></span>
             </div>
-            <div class="result-empty">2022 試合結果データを準備中</div>
+
+            <div class="results-substage">
+              <span class="label">3部Bブロック リーグ戦</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">9 <span class="vs">–</span> 9</span>
+              <span class="team away">国際基督教大学</span>
+              <span class="venue draw">△ DRAW</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">7 <span class="vs">–</span> 24</span>
+              <span class="team away">流通経済大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">6</span> <span class="vs">–</span> 3</span>
+              <span class="team away">高千穂大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">14</span> <span class="vs">–</span> 0</span>
+              <span class="team away">千葉商科大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-label">Record</span><span class="rs-value">2–1–1</span></div>
+              <div class="rs-item"><span class="rs-label">Points</span><span class="rs-value">7</span></div>
+              <div class="rs-item"><span class="rs-label">Rank</span><span class="rs-value">3位</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1097,7 +1405,37 @@ footer.site-footer {
               <span class="label">Match Results</span>
               <span class="line"></span>
             </div>
-            <div class="result-empty">2021 試合結果データを準備中</div>
+
+            <div class="results-substage">
+              <span class="label">3部Aブロック リーグ戦</span>
+              <span class="line"></span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">33</span> <span class="vs">–</span> 23</span>
+              <span class="team away">大東文化大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score"><span class="win">21</span> <span class="vs">–</span> 7</span>
+              <span class="team away">流通経済大学</span>
+              <span class="venue win">○ WIN</span>
+            </div>
+            <div class="result-row">
+              <span class="date">League</span>
+              <span class="team home own">東京農工大学</span>
+              <span class="score">7 <span class="vs">–</span> 35</span>
+              <span class="team away">芝浦工業大学</span>
+              <span class="venue loss">● LOSS</span>
+            </div>
+            <div class="result-summary">
+              <div class="rs-item"><span class="rs-label">Record</span><span class="rs-value">2–1</span></div>
+              <div class="rs-item"><span class="rs-label">Points</span><span class="rs-value">6</span></div>
+              <div class="rs-item"><span class="rs-label">Rank</span><span class="rs-value">2位</span></div>
+            </div>
           </div>
         </div>
       </div>
