@@ -739,6 +739,34 @@ section.chapter {
   padding-top: 14px;
   border-top: 1px dashed rgba(237,228,208,0.2);
 }
+.match-coming-soon {
+  font-family: var(--ff-display);
+  font-size: clamp(42px, 6vw, 88px);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  margin: 0;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.team-name.outline.is-undecided {
+  box-sizing: border-box;
+  min-height: clamp(40px, 5vw, 72px);
+  max-width: min(280px, 100%);
+  margin-left: auto;
+  border: 2px solid rgba(237,228,208,0.22);
+  border-radius: 3px;
+  background: rgba(255,255,255,0.02);
+  color: transparent;
+  -webkit-text-stroke: 0;
+}
+.team-sub.is-blank {
+  min-height: 1em;
+  margin-top: 12px;
+  visibility: hidden;
+}
 
 .match-tools {
   display: grid;
@@ -1436,6 +1464,7 @@ footer.site-footer {
   .chapter-meta { text-align: left; }
   .matchup { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px; }
   .team-block.home, .team-block.away { text-align: center; }
+  .team-name.outline.is-undecided { margin-left: auto; margin-right: auto; }
   .matchup-center { padding: 24px 0; border-left: none; border-right: none; border-top: 1px dashed rgba(201,167,71,0.25); border-bottom: 1px dashed rgba(201,167,71,0.25); }
   .match-tools { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; }
@@ -1607,16 +1636,13 @@ footer.site-footer {
       </div>
 
       <div class="matchup-center">
-        <div class="vs-symbol">VS</div>
-        <div class="match-date">202X.11.16</div>
-        <div class="match-time">SUN · KICK OFF 13:00</div>
-        <div class="match-venue">東京農工大学グラウンド</div>
+        <p class="match-coming-soon" lang="en">coming soon</p>
       </div>
 
       <div class="team-block away">
         <span class="team-tag">AWAY</span>
-        <div class="team-name outline">GRX</div>
-        <div class="team-sub">対戦相手</div>
+        <div class="team-name outline is-undecided" aria-label="対戦未定"></div>
+        <div class="team-sub is-blank" aria-hidden="true"></div>
         <div class="team-record">W <span>—</span> L <span>—</span> T <span>—</span></div>
       </div>
     </div>
@@ -1624,8 +1650,8 @@ footer.site-footer {
     <div class="match-tools">
       <div class="tool-card" data-reveal>
         <div class="label">Last Result · 最新結果</div>
-        <div class="main">BLASTERS <span class="score">0 — 37</span> GAF</div>
-        <div class="detail">2024.05.10 · SPRING MATCH</div>
+        <div class="main">BLASTERS <span class="score">0 — 14</span> 亜細亜大学</div>
+        <div class="detail">2026.04.25 · 練習試合</div>
         <a href="pages/match.html" class="link">全試合結果を見る <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5H19M19 5L14 1M19 5L14 9" stroke="currentColor" stroke-width="1.5"/></svg></a>
       </div>
       <div class="tool-card" data-reveal>
@@ -1717,8 +1743,8 @@ footer.site-footer {
   <div class="cta-label">2026 SEASON · NOW LIVE</div>
   <h2 class="cta-title">Be Part Of<br><em>Something Big</em>.</h2>
   <p class="cta-sub">スタジアムで、グラウンドで、画面越しで。<br>あらゆるカタチで、BLASTERSと共に。</p>
-  <a href="pages/match.html" class="cta-btn">
-    <span>NEXT MATCH</span>
+  <a href="pages/match.html" class="cta-btn" aria-label="試合状況・日程（次戦は未定・coming soon）">
+    <span lang="en">coming soon</span>
     <svg viewBox="0 0 28 14" fill="none"><path d="M0 7H26M26 7L20 1M26 7L20 13" stroke="currentColor" stroke-width="2"/></svg>
   </a>
 </section>

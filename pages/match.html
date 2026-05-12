@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Match — BLASTERS | 東京農工大学アメリカンフットボール部</title>
-<meta name="description" content="BLASTERS 試合日程・結果・シーズン成績。関東学生アメリカンフットボール連盟3部リーグ 2026シーズン。">
+<meta name="description" content="BLASTERS 試合日程・結果。関東学生アメリカンフットボール連盟3部リーグ 2026シーズン。">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -271,113 +271,6 @@ nav.site-nav {
 }
 
 /* ================================================
-   SEASON RECORD BAR (シーズン成績サマリー)
-================================================ */
-.season-bar {
-  background: var(--ink);
-  border-top: 1px solid rgba(201,167,71,0.15);
-  border-bottom: 1px solid rgba(201,167,71,0.15);
-  padding: 32px 48px;
-  position: relative;
-  overflow: hidden;
-}
-.season-bar::before {
-  content: 'SEASON 2026';
-  position: absolute;
-  top: 50%; right: 40px;
-  transform: translateY(-50%);
-  font-family: var(--ff-display);
-  font-size: clamp(80px, 10vw, 140px);
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(201,167,71,0.06);
-  letter-spacing: -0.02em;
-  line-height: 0.9;
-  pointer-events: none;
-  white-space: nowrap;
-}
-.season-inner {
-  max-width: 1400px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 48px;
-  align-items: center;
-  position: relative; z-index: 2;
-}
-.season-label {
-  display: flex; flex-direction: column; gap: 6px;
-}
-.season-label .year {
-  font-family: var(--ff-display);
-  font-size: 44px;
-  line-height: 1;
-  color: var(--gold);
-  letter-spacing: 0.02em;
-}
-.season-label .tag {
-  font-family: var(--ff-mono);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: rgba(237,228,208,0.55);
-  text-transform: uppercase;
-}
-.season-record {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-.record-cell {
-  text-align: center;
-  position: relative;
-}
-.record-cell:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: -20px; top: 50%;
-  transform: translateY(-50%);
-  width: 1px; height: 70%;
-  background: rgba(237,228,208,0.15);
-}
-.record-cell .num {
-  font-family: var(--ff-display);
-  font-size: clamp(36px, 4.5vw, 56px);
-  line-height: 1;
-  color: var(--bone);
-  letter-spacing: 0.02em;
-}
-.record-cell.win .num { color: var(--gold); }
-.record-cell.loss .num { color: var(--blood); }
-.record-cell .label {
-  margin-top: 6px;
-  font-family: var(--ff-label);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: rgba(237,228,208,0.6);
-  text-transform: uppercase;
-  font-weight: 600;
-}
-.season-status {
-  font-family: var(--ff-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--gold);
-  text-transform: uppercase;
-  text-align: right;
-  line-height: 1.6;
-}
-.season-status .progress {
-  margin-top: 8px;
-  display: flex;
-  gap: 4px;
-  justify-content: flex-end;
-}
-.season-status .progress .dot {
-  width: 16px; height: 4px;
-  background: rgba(237,228,208,0.15);
-}
-.season-status .progress .dot.done { background: var(--gold); }
-.season-status .progress .dot.current { background: var(--gold-bright); box-shadow: 0 0 10px var(--gold-bright); }
-
-/* ================================================
    NEXT GAME (ハイライト表示)
 ================================================ */
 .next-section {
@@ -544,35 +437,33 @@ nav.site-nav {
   letter-spacing: 0.15em;
   color: rgba(237,228,208,0.6);
 }
-
-.countdown {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(201,167,71,0.2);
-  border: 1px solid rgba(201,167,71,0.2);
-}
-.countdown-cell {
-  background: var(--ink);
-  padding: 24px;
-  text-align: center;
-}
-.countdown-cell .num {
+.next-coming-soon {
   font-family: var(--ff-display);
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1;
-  color: var(--gold);
-  letter-spacing: 0.02em;
+  font-size: clamp(38px, 5.5vw, 80px);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  margin: 0;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.countdown-cell .unit {
-  margin-top: 6px;
-  font-family: var(--ff-label);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: rgba(237,228,208,0.55);
-  text-transform: uppercase;
-  font-weight: 600;
+.next-team .name.outline.is-undecided {
+  box-sizing: border-box;
+  min-height: clamp(36px, 4.5vw, 60px);
+  max-width: min(280px, 100%);
+  margin-left: auto;
+  border: 2px solid rgba(237,228,208,0.22);
+  border-radius: 3px;
+  background: rgba(255,255,255,0.02);
+  color: transparent;
+  -webkit-text-stroke: 0;
+}
+.next-team .sub.is-blank {
+  min-height: 1em;
+  margin-top: 10px;
+  visibility: hidden;
 }
 
 /* ================================================
@@ -873,101 +764,6 @@ nav.site-nav {
 .season-group-header .total-record .l strong { color: var(--blood); }
 
 /* ================================================
-   STATS BLOCK (シーズンスタッツ)
-================================================ */
-.stats-section {
-  padding: 100px 48px;
-  background: var(--ink);
-  position: relative;
-  overflow: hidden;
-  border-top: 1px solid rgba(201,167,71,0.1);
-}
-.stats-section::before {
-  content: 'STATS';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--ff-display);
-  font-size: clamp(200px, 32vw, 500px);
-  line-height: 1;
-  color: rgba(201,167,71,0.025);
-  letter-spacing: -0.05em;
-  pointer-events: none;
-  white-space: nowrap;
-}
-.stats-inner {
-  max-width: 1400px; margin: 0 auto;
-  position: relative; z-index: 2;
-}
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(201,167,71,0.15);
-  border: 1px solid rgba(201,167,71,0.15);
-}
-.stat-cell {
-  background: var(--abyss);
-  padding: 48px 32px;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.4s;
-}
-.stat-cell:hover { background: var(--forest); }
-.stat-cell::after {
-  content: attr(data-ghost);
-  position: absolute;
-  right: -10px; bottom: -30px;
-  font-family: var(--ff-display);
-  font-size: 160px;
-  line-height: 0.8;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(201,167,71,0.06);
-  letter-spacing: -0.05em;
-  pointer-events: none;
-  transition: -webkit-text-stroke-color 0.4s;
-}
-.stat-cell:hover::after { -webkit-text-stroke-color: rgba(201,167,71,0.2); }
-.stat-cell .icon {
-  font-family: var(--ff-mono);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--gold);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-transform: uppercase;
-}
-.stat-cell .icon::before {
-  content: ''; width: 16px; height: 1px; background: var(--gold);
-}
-.stat-cell .big {
-  font-family: var(--ff-display);
-  font-size: clamp(52px, 7vw, 88px);
-  line-height: 1;
-  color: var(--bone);
-  letter-spacing: -0.01em;
-  position: relative; z-index: 2;
-}
-.stat-cell .big .unit {
-  font-size: 0.35em;
-  color: var(--gold);
-  margin-left: 6px;
-}
-.stat-cell .label {
-  margin-top: 16px;
-  font-family: var(--ff-label);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: rgba(237,228,208,0.55);
-  text-transform: uppercase;
-  font-weight: 600;
-  line-height: 1.5;
-  position: relative; z-index: 2;
-}
-
-/* ================================================
    FOOTER (共通)
 ================================================ */
 footer.site-footer {
@@ -1147,10 +943,7 @@ footer.site-footer {
     border-top: 1px dashed rgba(201,167,71,0.3);
     border-bottom: 1px dashed rgba(201,167,71,0.3);
   }
-  .season-inner { grid-template-columns: 1fr; gap: 24px; text-align: center; }
-  .season-status { text-align: center; }
-  .season-status .progress { justify-content: center; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .next-team .name.outline.is-undecided { margin-left: auto; margin-right: auto; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .match-card {
     grid-template-columns: 80px 1fr auto 1fr;
@@ -1167,13 +960,9 @@ footer.site-footer {
   .nav-cta { font-size: 10px; gap: 8px; }
   .page-hero { padding: 140px 20px 60px; }
   .page-hero-sub { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .season-bar { padding: 24px 20px; }
-  .season-record { flex-wrap: wrap; gap: 24px; justify-content: center; }
-  .record-cell:not(:last-child)::after { display: none; }
   .next-section { padding: 60px 20px; }
   .section-head { grid-template-columns: 1fr; gap: 16px; }
   .section-head .right { text-align: left; }
-  .countdown { grid-template-columns: repeat(2, 1fr); }
   .match-controls { padding: 20px; position: relative; top: auto; }
   .match-controls-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
   .match-filters { width: 100%; }
@@ -1190,8 +979,6 @@ footer.site-footer {
   .match-meta-col { text-align: center; }
   .season-group-header { flex-wrap: wrap; }
   .season-group-header .total-record { margin-left: 0; width: 100%; margin-top: 12px; }
-  .stats-section { padding: 60px 20px; }
-  .stats-grid { grid-template-columns: 1fr; }
   footer.site-footer { padding: 60px 20px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 40px; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
@@ -1252,37 +1039,11 @@ footer.site-footer {
 
     <div class="page-hero-sub">
       <p>
-        2026シーズンの試合日程・結果・シーズン成績をまとめています。関東学生アメリカンフットボール連盟3部リーグでの戦いを、すべてここに記録します。
+        2026シーズンの試合日程・結果をまとめています。関東学生アメリカンフットボール連盟3部リーグでの戦いを、すべてここに記録します。
       </p>
     </div>
   </div>
 </section>
-
-<!-- ==================== SEASON RECORD BAR ==================== -->
-<div class="season-bar">
-  <div class="season-inner">
-    <div class="season-label">
-      <span class="year">2025</span>
-      <span class="tag">SEASON · 春季オープン戦</span>
-    </div>
-    <div class="season-record">
-      <div class="record-cell win"><div class="num">1</div><div class="label">Win</div></div>
-      <div class="record-cell loss"><div class="num">0</div><div class="label">Loss</div></div>
-      <div class="record-cell"><div class="num">0</div><div class="label">Draw</div></div>
-      <div class="record-cell"><div class="num">1<span style="font-size:0.5em;color:var(--gold);opacity:0.7;">/3</span></div><div class="label">Played</div></div>
-      <div class="record-cell"><div class="num">1.000</div><div class="label">PCT</div></div>
-    </div>
-    <div class="season-status">
-      SEASON PROGRESS<br>
-      Week 01 / 03
-      <div class="progress">
-        <span class="dot done"></span>
-        <span class="dot current"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ==================== NEXT GAME ==================== -->
 <section class="next-section">
@@ -1291,13 +1052,13 @@ footer.site-footer {
       <div class="num">01 / Upcoming</div>
       <h2>Next <em>Battle</em></h2>
       <div class="right">
-        WEEK 02 · HOME GAME<br>
-        春季オープン戦 第2節
+        UPCOMING FIXTURE<br>
+        次戦未定 · coming soon
       </div>
     </div>
 
     <div class="next-card" data-reveal>
-      <div class="next-badge">NEXT GAME</div>
+      <div class="next-badge">coming soon</div>
       <span class="next-corner tl"></span>
       <span class="next-corner tr"></span>
       <span class="next-corner bl"></span>
@@ -1310,24 +1071,14 @@ footer.site-footer {
       </div>
 
       <div class="next-center">
-        <div class="vs">VS</div>
-        <div class="date">2025.05.18</div>
-        <div class="time">SUN · KICK OFF 13:00</div>
-        <div class="venue">東京農工大学グラウンド</div>
+        <p class="next-coming-soon" lang="en">coming soon</p>
       </div>
 
       <div class="next-team away">
         <span class="tag">AWAY</span>
-        <div class="name outline">○○大学</div>
-        <div class="sub">春季オープン戦 第2節</div>
+        <div class="name outline is-undecided" aria-label="対戦未定"></div>
+        <div class="sub is-blank" aria-hidden="true"></div>
       </div>
-    </div>
-
-    <div class="countdown">
-      <div class="countdown-cell"><div class="num">12</div><div class="unit">Days</div></div>
-      <div class="countdown-cell"><div class="num">07</div><div class="unit">Hours</div></div>
-      <div class="countdown-cell"><div class="num">32</div><div class="unit">Minutes</div></div>
-      <div class="countdown-cell"><div class="num">45</div><div class="unit">Seconds</div></div>
     </div>
   </div>
 </section>
@@ -1450,43 +1201,6 @@ footer.site-footer {
   </div>
 </section>
 
-<!-- ==================== SEASON STATS ==================== -->
-<section class="stats-section">
-  <div class="stats-inner">
-    <div class="section-head">
-      <div class="num">02 / Statistics</div>
-      <h2>Season <em>Stats</em></h2>
-      <div class="right">
-        2025 SEASON<br>
-        1試合時点
-      </div>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-cell" data-ghost="21" data-reveal>
-        <div class="icon">Total Points For</div>
-        <div class="big">21</div>
-        <div class="label">獲得総得点 / 1G<br>PPG 21.0</div>
-      </div>
-      <div class="stat-cell" data-ghost="14" data-reveal>
-        <div class="icon">Total Points Against</div>
-        <div class="big">14</div>
-        <div class="label">失点総計 / 1G<br>PPG 14.0</div>
-      </div>
-      <div class="stat-cell" data-ghost="+7" data-reveal>
-        <div class="icon">Point Differential</div>
-        <div class="big">+7</div>
-        <div class="label">得失点差<br>Plus Points</div>
-      </div>
-      <div class="stat-cell" data-ghost="1000" data-reveal>
-        <div class="icon">Win Percentage</div>
-        <div class="big">1.000<span class="unit">%</span></div>
-        <div class="label">勝率<br>1W 0L on 1 Game</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== FOOTER ==================== -->
 <footer class="site-footer">
   <div class="footer-bg-word">BLASTERS</div>
@@ -1548,7 +1262,7 @@ footer.site-footer {
     requestAnimationFrame(animateRing);
   }
   animateRing();
-  document.querySelectorAll('a, button, .match-card, .match-filter, .stat-cell').forEach(el => {
+  document.querySelectorAll('a, button, .match-card, .match-filter').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
@@ -1573,24 +1287,6 @@ footer.site-footer {
     });
   });
 
-  // Countdown (サンプル動作: 次戦日時を設定)
-  const nextGameDate = new Date('2025-05-18T13:00:00+09:00');
-  const countdownCells = document.querySelectorAll('.countdown-cell .num');
-  function updateCountdown() {
-    const now = new Date();
-    const diff = nextGameDate - now;
-    if (diff <= 0 || !countdownCells.length) return;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
-    const vals = [days, hours, mins, secs];
-    countdownCells.forEach((el, i) => {
-      el.textContent = String(vals[i]).padStart(2, '0');
-    });
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 </script>
 
 </body>
