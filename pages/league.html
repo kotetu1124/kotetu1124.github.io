@@ -114,6 +114,62 @@ nav.site-nav {
 .nav-cta .live-dot { width: 8px; height: 8px; background: var(--blood); border-radius: 50%; animation: pulse 1.6s infinite; }
 @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(139,26,26,0.7); } 50% { box-shadow: 0 0 0 8px rgba(139,26,26,0); } }
 
+/* ヘッダー：実色バー＋斜線（差分ブレンド解除でデザインカンプ通りの配色） */
+body.page-league nav.site-nav {
+  mix-blend-mode: normal;
+  background-color: #0f1f16;
+  background-image:
+    linear-gradient(180deg, rgba(18, 36, 26, 0.98) 0%, rgba(10, 24, 18, 0.96) 100%),
+    repeating-linear-gradient(
+      117deg,
+      transparent 0 90px,
+      rgba(201, 167, 71, 0.05) 90px 92px
+    );
+  border-bottom: 1px solid rgba(201, 167, 71, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+body.page-league .nav-brand a { color: var(--bone); }
+body.page-league .nav-brand-sub { color: rgba(237, 228, 208, 0.65); }
+body.page-league .nav-links a {
+  color: rgba(237, 228, 208, 0.9);
+}
+body.page-league .nav-links a::before {
+  opacity: 0.9;
+  color: var(--gold);
+}
+body.page-league .nav-links a:hover {
+  color: var(--bone);
+}
+body.page-league .nav-links a.current {
+  color: var(--gold-bright);
+}
+body.page-league .nav-links a::after {
+  background: var(--gold-bright);
+}
+body.page-league .nav-cta {
+  color: rgba(237, 228, 208, 0.72);
+}
+body.page-league .nav-links {
+  gap: clamp(14px, 2.2vw, 32px);
+}
+/* 現在地（Match）：左のゴールドリング＋中央ドット */
+body.page-league .nav-links > li:has(> a.current) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body.page-league .nav-links > li:has(> a.current)::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--gold-bright);
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: radial-gradient(circle at center, var(--gold-bright) 2.5px, transparent 3px);
+  opacity: 0.95;
+}
+
 /* PAGE HERO */
 .page-hero {
   position: relative;
@@ -590,10 +646,78 @@ nav.site-nav {
 footer.site-footer {
   background: var(--abyss);
   color: var(--bone);
-  padding: 100px 48px 32px;
+  padding: 0 0 32px;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(201,167,71,0.1);
+}
+.footer-nav-band {
+  position: relative;
+  z-index: 3;
+  padding: 28px 48px;
+  border-bottom: 1px solid rgba(201,167,71,0.18);
+  background-color: var(--forest);
+  background-image: repeating-linear-gradient(
+    117deg,
+    transparent 0 90px,
+    rgba(201,167,71,0.04) 90px 92px
+  );
+}
+.footer-nav-band-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.footer-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(16px, 3vw, 36px);
+  list-style: none;
+}
+.footer-nav-links a {
+  font-family: var(--ff-label);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 8px 0;
+  color: rgba(237,228,208,0.92);
+}
+.footer-nav-links a::before {
+  content: attr(data-num);
+  font-size: 9px;
+  color: var(--gold);
+  margin-right: 6px;
+  vertical-align: super;
+  opacity: 0.85;
+}
+.footer-nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.4s var(--ease-out);
+}
+.footer-nav-links a:hover::after,
+.footer-nav-links a:focus-visible::after,
+.footer-nav-links a.current::after {
+  width: 100%;
+}
+.footer-nav-links a:hover,
+.footer-nav-links a:focus-visible {
+  color: var(--bone);
+}
+.footer-nav-links a.current {
+  color: var(--gold);
+}
+.footer-main {
+  padding: 100px 48px 0;
+  position: relative;
 }
 .footer-bg-word {
   position: absolute;
@@ -610,7 +734,7 @@ footer.site-footer {
 .footer-grid {
   max-width: 1400px; margin: 0 auto 80px;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 60px;
   position: relative; z-index: 2;
 }
@@ -659,6 +783,10 @@ footer.site-footer {
   transition: all 0.3s;
 }
 .footer-col a:hover { color: var(--gold); transform: translateX(4px); }
+.footer-col a[aria-current="page"] {
+  color: var(--gold);
+  font-weight: 700;
+}
 .footer-access p { font-size: 13px; line-height: 1.7; color: rgba(237,228,208,0.75); margin-bottom: 12px; }
 .footer-access .station {
   display: block;
@@ -671,7 +799,7 @@ footer.site-footer {
 }
 .footer-bottom {
   max-width: 1400px; margin: 0 auto;
-  padding-top: 32px;
+  padding: 32px 48px 0;
   border-top: 1px solid rgba(201,167,71,0.15);
   display: flex; justify-content: space-between; align-items: center;
   font-family: var(--ff-mono);
@@ -690,6 +818,7 @@ footer.site-footer {
 @media (max-width: 1024px) {
   .blocks-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
   .league-trigger { grid-template-columns: auto 1fr auto; gap: 20px; padding: 22px 24px; }
   .league-blocks-count { display: none; }
   .result-row { grid-template-columns: 70px 1fr auto 1fr; }
@@ -713,13 +842,17 @@ footer.site-footer {
   .result-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 16px; }
   .result-row .team.home, .result-row .team.away { text-align: center; }
   .result-row .score { padding: 6px 0; border-top: 1px dashed rgba(237,228,208,0.1); border-bottom: 1px dashed rgba(237,228,208,0.1); }
-  footer.site-footer { padding: 60px 20px 24px; }
+  footer.site-footer { padding: 0 0 24px; }
+  .footer-nav-band { padding: 22px 20px; }
+  .footer-nav-links { gap: 14px 20px; justify-content: flex-start; }
+  .footer-nav-links a { font-size: 12px; letter-spacing: 0.18em; }
+  .footer-main { padding: 60px 20px 0; }
   .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; padding-left: 20px; padding-right: 20px; }
 }
 </style>
 </head>
-<body id="top">
+<body id="top" class="page-league">
 
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
@@ -735,10 +868,9 @@ footer.site-footer {
   <ul class="nav-links">
     <li><a href="news.html" data-num="01">News</a></li>
     <li><a href="match.html" data-num="02" class="current">Match</a></li>
-    <li><a href="team.html" data-num="03">Team</a></li>
-    <li><a href="shop.html" data-num="04">Shop</a></li>
     <li><a href="event.html" data-num="05">Event</a></li>
-    <li><a href="contact.html" data-num="06">Contact</a></li>
+    <li><a href="FanGuide.html" data-num="06">Fan Guide</a></li>
+    <li><a href="contact.html" data-num="07">Contact</a></li>
   </ul>
   <div class="nav-cta">
     <span class="live-dot"></span>
@@ -1518,6 +1650,19 @@ footer.site-footer {
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="site-footer">
+  <div class="footer-nav-band">
+    <div class="footer-nav-band-inner">
+      <ul class="footer-nav-links">
+        <li><a href="news.html" data-num="01">News</a></li>
+        <li><a href="match.html" data-num="02" class="current">Match</a></li>
+        <li><a href="event.html" data-num="05">Event</a></li>
+        <li><a href="FanGuide.html" data-num="06">Fan Guide</a></li>
+        <li><a href="contact.html" data-num="07">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-main">
   <div class="footer-bg-word">BLASTERS</div>
 
   <div class="footer-grid">
@@ -1536,19 +1681,15 @@ footer.site-footer {
     </div>
 
     <div class="footer-col">
-      <h4>Club</h4>
+      <h4>Menu</h4>
       <a href="news.html">ニュース</a>
       <a href="match.html">試合状況</a>
-      <a href="team.html">チーム</a>
+      <a href="league.html" aria-current="page">リーグ表</a>
       <a href="event.html">イベント</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Get Involved</h4>
-      <a href="new_student.html">新入生の方へ</a>
-      <a href="shop.html">グッズ</a>
-      <a href="https://example.com/donate?club=blasters-temp-id" target="_blank" rel="noopener noreferrer">ご寄付のお願い</a>
-      <a href="contact.html">contact</a>
+      <a href="FanGuide.html">観戦ガイド</a>
+      <a href="event.html#for-new-students">新入生の方へ</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">よくある質問</a>
     </div>
 
     <div class="footer-col">
@@ -1558,6 +1699,8 @@ footer.site-footer {
         <p><span class="station">農学部キャンパス</span>JR南武線 府中本町駅<br>徒歩約10分</p>
       </div>
     </div>
+  </div>
+
   </div>
 
   <div class="footer-bottom">
@@ -1581,7 +1724,7 @@ footer.site-footer {
     requestAnimationFrame(animateRing);
   }
   animateRing();
-  document.querySelectorAll('a, button, .league-trigger').forEach(el => {
+  document.querySelectorAll('a, button, .league-trigger, .footer-nav-links a').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
