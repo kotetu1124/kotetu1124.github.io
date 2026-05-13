@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 新歓試合 亜細亜大学戦 — GALLERY | BLASTERS</title>
+<meta name="description" content="2026年4月25日 新歓試合 亜細亜大学戦の試合写真アルバム。BLASTERS（東京農工大学アメリカンフットボール部）。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+:root {
+  --abyss: #06100a;
+  --ink: #0a1812;
+  --forest: #12241a;
+  --moss: #1c3527;
+  --sage: #2d5043;
+  --gold: #c9a747;
+  --gold-bright: #e8c76a;
+  --gold-deep: #8a6f1f;
+  --bone: #ede4d0;
+  --ash: #8d8676;
+  --blood: #8b1a1a;
+
+  --ff-display: 'Anton', sans-serif;
+  --ff-label: 'Barlow Condensed', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+  --ff-body: 'Zen Kaku Gothic New', "Hiragino Kaku Gothic ProN", sans-serif;
+  --ff-serif-jp: 'Noto Serif JP', serif;
+
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--abyss);
+  color: var(--bone);
+  font-family: var(--ff-body);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; border: none; background: none; cursor: none; color: inherit; }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+  opacity: 0.035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.8 0 0 0 0 0.75 0 0 0 0 0.6 0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 999;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+}
+
+/* CURSOR */
+.cursor-dot {
+  position: fixed; width: 6px; height: 6px;
+  background: var(--gold-bright); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out);
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed; width: 40px; height: 40px;
+  border: 1px solid var(--gold); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s;
+}
+body.cursor-hover .cursor-dot { width: 0; height: 0; }
+body.cursor-hover .cursor-ring { width: 60px; height: 60px; border-color: var(--gold-bright); }
+@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } a, button { cursor: pointer; } }
+
+/* NAV */
+nav.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 24px 48px;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center;
+  mix-blend-mode: normal;
+  background-color: #0f1f16;
+  background-image: linear-gradient(180deg, rgba(18,36,26,0.98) 0%, rgba(10,24,18,0.96) 100%),
+    repeating-linear-gradient(117deg, transparent 0 90px, rgba(201,167,71,0.05) 90px 92px);
+  border-bottom: 1px solid rgba(201,167,71,0.22);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  color: var(--bone);
+  animation: navIn 0.8s 0.3s var(--ease-out) both;
+}
+@keyframes navIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.nav-brand { font-family: var(--ff-display); font-size: 22px; letter-spacing: 0.02em; line-height: 1; display: flex; align-items: center; gap: 12px; }
+.nav-brand .slash { color: var(--gold); }
+.nav-brand-sub { font-family: var(--ff-label); font-size: 10px; letter-spacing: 0.3em; font-weight: 600; opacity: 0.65; display: block; margin-top: 2px; }
+.nav-brand a { color: var(--bone); }
+.nav-links { display: flex; justify-content: center; gap: clamp(14px, 2.2vw, 36px); list-style: none; }
+.nav-links a { font-family: var(--ff-label); font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; position: relative; padding: 8px 0; color: rgba(237,228,208,0.9); }
+.nav-links a::before { content: attr(data-num); font-size: 9px; color: var(--gold); margin-right: 6px; vertical-align: super; opacity: 0.9; }
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: 2px; width: 0; height: 1px; background: var(--gold-bright); transition: width 0.4s var(--ease-out); }
+.nav-links a:hover::after, .nav-links a.current::after { width: 100%; }
+.nav-links a:hover { color: var(--bone); }
+.nav-links a.current { color: var(--gold-bright); }
+.nav-links > li:has(> a.current) { display: flex; align-items: center; gap: 10px; }
+.nav-links > li:has(> a.current)::before {
+  content: ''; flex: 0 0 auto; width: 20px; height: 20px;
+  border: 1px solid var(--gold-bright); border-radius: 50%;
+  background: radial-gradient(circle at center, var(--gold-bright) 2.5px, transparent 3px);
+  opacity: 0.95;
+}
+.nav-cta { display: flex; align-items: center; gap: 14px; font-family: var(--ff-label); font-size: 12px; letter-spacing: 0.2em; font-weight: 700; text-transform: uppercase; color: rgba(237,228,208,0.72); }
+.nav-cta .live-dot { width: 8px; height: 8px; background: var(--blood); border-radius: 50%; animation: pulse 1.6s infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(139,26,26,0.7); } 50% { box-shadow: 0 0 0 8px rgba(139,26,26,0); } }
+
+/* PAGE HERO */
+.page-hero { position: relative; padding: 180px 48px 60px; overflow: hidden; isolation: isolate; }
+.page-hero-mesh {
+  position: absolute; inset: -20%; z-index: 0;
+  background: radial-gradient(ellipse at 25% 40%, rgba(45,80,67,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(201,167,71,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(18,36,26,0.85) 0%, transparent 60%),
+    linear-gradient(180deg, var(--abyss) 0%, var(--ink) 100%);
+  filter: blur(40px);
+}
+.page-hero-stripes { position: absolute; inset: 0; z-index: 1; background: repeating-linear-gradient(117deg, transparent 0 90px, rgba(201,167,71,0.03) 90px 92px); }
+.page-hero-bg-word {
+  position: absolute; right: -3vw; bottom: -4vw; z-index: 3;
+  font-family: var(--ff-display); font-size: clamp(120px, 18vw, 340px);
+  line-height: 0.78; color: transparent;
+  -webkit-text-stroke: 1px rgba(201,167,71,0.08);
+  letter-spacing: -0.04em; pointer-events: none; user-select: none; white-space: nowrap;
+}
+.page-hero-inner { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; }
+.page-hero-breadcrumb {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.55); text-transform: uppercase;
+  margin-bottom: 28px; animation: fadeUp 0.8s 0.4s var(--ease-out) both;
+}
+.page-hero-breadcrumb a { color: var(--gold); transition: opacity 0.3s; }
+.page-hero-breadcrumb a:hover { opacity: 0.7; }
+.page-hero-breadcrumb .sep { color: var(--ash); opacity: 0.6; }
+.page-hero-meta { display: flex; align-items: center; gap: 16px; font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; font-weight: 500; margin-bottom: 16px; animation: fadeUp 0.8s 0.5s var(--ease-out) both; }
+.page-hero-meta .line { width: 32px; height: 1px; background: var(--gold); }
+.page-hero-title { font-family: var(--ff-serif-jp); font-size: clamp(26px, 3.8vw, 50px); font-weight: 900; line-height: 1.25; color: var(--bone); overflow: hidden; animation: fadeUp 0.9s 0.4s var(--ease-out) both; }
+.page-hero-sub { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(237,228,208,0.15); display: flex; gap: 48px; align-items: center; flex-wrap: wrap; animation: fadeUp 0.8s 0.7s var(--ease-out) both; }
+.hero-stat { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: rgba(237,228,208,0.55); text-transform: uppercase; }
+.hero-stat strong { display: block; font-family: var(--ff-label); font-size: 22px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 2px; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* PHOTO SECTION */
+.photo-section { max-width: 1400px; margin: 0 auto; padding: 60px 48px 120px; }
+
+/* BACK LINK */
+.back-link {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--ff-label); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 48px;
+  transition: gap 0.3s; cursor: none;
+}
+.back-link:hover { gap: 18px; }
+
+/* PHOTO GRID */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 6px;
+}
+.photo-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--moss);
+  cursor: none;
+}
+.photo-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s var(--ease-out);
+}
+.photo-item:hover img { transform: scale(1.05); }
+.photo-overlay {
+  position: absolute; inset: 0;
+  background: rgba(6,16,10,0.55);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.35s;
+}
+.photo-item:hover .photo-overlay { opacity: 1; }
+.photo-overlay-icon { font-size: 28px; color: var(--gold-bright); }
+
+/* EMPTY STATE */
+.photo-empty {
+  grid-column: 1 / -1;
+  padding: 100px 0;
+  text-align: center;
+}
+.photo-empty-inner {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.photo-empty-icon {
+  width: 64px; height: 64px;
+  border: 1px solid rgba(201,167,71,0.25); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: rgba(201,167,71,0.4);
+}
+.photo-empty-text {
+  font-family: var(--ff-mono); font-size: 11px;
+  letter-spacing: 0.28em; color: rgba(237,228,208,0.3);
+  text-transform: uppercase;
+}
+.photo-empty-sub {
+  font-family: var(--ff-serif-jp); font-size: 14px;
+  color: rgba(237,228,208,0.45); margin-top: -8px;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,0.93);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s;
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lightbox-img-wrap {
+  position: relative;
+  max-width: 92vw; max-height: 88vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox-img-wrap img {
+  max-width: 92vw; max-height: 88vh;
+  object-fit: contain;
+  border: 1px solid rgba(201,167,71,0.2);
+  box-shadow: 0 0 80px rgba(0,0,0,0.8);
+}
+.lightbox-close {
+  position: fixed; top: 24px; right: 32px;
+  font-family: var(--ff-label); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(237,228,208,0.7);
+  display: flex; align-items: center; gap: 10px;
+  z-index: 9001; transition: color 0.2s; cursor: none;
+}
+.lightbox-close:hover { color: var(--gold); }
+.lightbox-prev, .lightbox-next {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  z-index: 9001; width: 56px; height: 56px;
+  border: 1px solid rgba(237,228,208,0.2); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(237,228,208,0.7); cursor: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+.lightbox-prev:hover, .lightbox-next:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,167,71,0.1); }
+.lightbox-counter {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.25em;
+  color: rgba(237,228,208,0.45); text-transform: uppercase; z-index: 9001;
+}
+
+/* REVEAL */
+[data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out); }
+[data-reveal].in { opacity: 1; transform: translateY(0); }
+
+/* FOOTER */
+footer.site-footer {
+  background: var(--abyss); padding: 0 0 32px;
+  position: relative; overflow: hidden;
+  border-top: 1px solid rgba(201,167,71,0.1);
+}
+.footer-nav-band { position: relative; z-index: 3; padding: 28px 48px; border-bottom: 1px solid rgba(201,167,71,0.18); background-color: var(--forest); background-image: repeating-linear-gradient(117deg, transparent 0 90px, rgba(201,167,71,0.04) 90px 92px); }
+.footer-nav-band-inner { max-width: 1400px; margin: 0 auto; }
+.footer-nav-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(16px, 3vw, 36px); list-style: none; }
+.footer-nav-links a { font-family: var(--ff-label); font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; position: relative; padding: 8px 0; color: rgba(237,228,208,0.92); }
+.footer-nav-links a::before { content: attr(data-num); font-size: 9px; color: var(--gold); margin-right: 6px; vertical-align: super; opacity: 0.85; }
+.footer-nav-links a::after { content: ''; position: absolute; left: 0; bottom: 2px; width: 0; height: 1px; background: var(--gold); transition: width 0.4s var(--ease-out); }
+.footer-nav-links a:hover::after, .footer-nav-links a.current::after { width: 100%; }
+.footer-nav-links a:hover { color: var(--bone); }
+.footer-nav-links a.current { color: var(--gold); }
+.footer-bottom { max-width: 1400px; margin: 40px auto 0; padding: 32px 48px 0; border-top: 1px solid rgba(201,167,71,0.15); display: flex; justify-content: space-between; align-items: center; font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: rgba(237,228,208,0.4); text-transform: uppercase; }
+.footer-top-link { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); transition: gap 0.3s; }
+.footer-top-link:hover { gap: 16px; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+  nav.site-nav { padding: 16px 20px; grid-template-columns: auto auto; }
+  .nav-links { display: none; }
+  .nav-cta { font-size: 10px; gap: 8px; }
+  .page-hero { padding: 130px 20px 50px; }
+  .page-hero-sub { gap: 24px; }
+  .photo-section { padding: 40px 16px 80px; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+  .lightbox-prev { left: 8px; } .lightbox-next { right: 8px; }
+  .footer-nav-band { padding: 22px 20px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; padding-left: 20px; padding-right: 20px; }
+}
+</style>
+</head>
+<body id="top">
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-brand">
+    <div>
+      <a href="../../index.html">BLASTERS<span class="slash">/</span></a>
+      <span class="nav-brand-sub">TUAT AMERICAN FOOTBALL</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../news.html" data-num="01">News</a></li>
+    <li><a href="../match.html" data-num="02">Match</a></li>
+    <li><a href="../gallery.html" data-num="03" class="current">Gallery</a></li>
+    <li><a href="../event.html" data-num="05">Event</a></li>
+    <li><a href="../FanGuide.html" data-num="06">Fan Guide</a></li>
+    <li><a href="../contact.html" data-num="07">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <span class="live-dot"></span>
+    <span>2026 SEASON · LIVE</span>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-mesh"></div>
+  <div class="page-hero-stripes"></div>
+  <div class="page-hero-bg-word" aria-hidden="true">PHOTO</div>
+
+  <div class="page-hero-inner">
+    <div class="page-hero-breadcrumb">
+      <a href="../../index.html">HOME</a>
+      <span class="sep">/</span>
+      <a href="../gallery.html">GALLERY</a>
+      <span class="sep">/</span>
+      <span>新歓試合 亜細亜大学戦</span>
+    </div>
+    <div class="page-hero-meta">
+      <span class="line"></span>
+      2026 SEASON · MATCH PHOTOS
+    </div>
+    <h1 class="page-hero-title">2026 新歓試合 亜細亜大学戦</h1>
+    <div class="page-hero-sub">
+      <div class="hero-stat">
+        <strong>2026.4.25</strong>
+        DATE
+      </div>
+      <div class="hero-stat" id="photo-count-stat">
+        <strong id="photo-count-num">—</strong>
+        PHOTOS
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO SECTION -->
+<section class="photo-section">
+  <a href="../gallery.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 8H1M1 8L7 2M1 8L7 14" stroke="currentColor" stroke-width="1.5"/></svg>
+    ギャラリー一覧へ戻る
+  </a>
+
+  <div class="photo-grid" id="photo-grid">
+    <!--
+    ★ 写真の追加方法 ★
+    以下のコードをこのコメントの下にコピーして使用してください。
+    image フォルダ: image/gallery/2026/asia/ に写真を入れてください。
+
+    <div class="photo-item" data-reveal>
+      <img src="../../image/gallery/2026/asia/01.jpg" alt="新歓試合 亜細亜大学戦 写真1" loading="lazy">
+      <div class="photo-overlay"><i class="fa fa-expand photo-overlay-icon"></i></div>
+    </div>
+    -->
+
+    <!-- 写真準備中 -->
+    <div class="photo-empty">
+      <div class="photo-empty-inner">
+        <div class="photo-empty-icon"><i class="fa fa-camera"></i></div>
+        <div class="photo-empty-text">PHOTOS COMING SOON</div>
+        <div class="photo-empty-sub">写真を準備中です</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="写真ライトボックス">
+  <button class="lightbox-close" id="lb-close" aria-label="閉じる">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 2L18 18M18 2L2 18" stroke="currentColor" stroke-width="1.5"/></svg>
+    CLOSE
+  </button>
+  <button class="lightbox-prev" id="lb-prev" aria-label="前の写真">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="1.5"/></svg>
+  </button>
+  <div class="lightbox-img-wrap">
+    <img id="lb-img" src="" alt="">
+  </div>
+  <button class="lightbox-next" id="lb-next" aria-label="次の写真">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="1.5"/></svg>
+  </button>
+  <div class="lightbox-counter" id="lb-counter"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-nav-band">
+    <div class="footer-nav-band-inner">
+      <ul class="footer-nav-links">
+        <li><a href="../news.html" data-num="01">News</a></li>
+        <li><a href="../match.html" data-num="02">Match</a></li>
+        <li><a href="../gallery.html" data-num="03" class="current">Gallery</a></li>
+        <li><a href="../event.html" data-num="05">Event</a></li>
+        <li><a href="../FanGuide.html" data-num="06">Fan Guide</a></li>
+        <li><a href="../contact.html" data-num="07">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 BLASTERS · TUAT AMERICAN FOOTBALL · ALL RIGHTS RESERVED</span>
+    <a href="#top" class="footer-top-link">Back to Top <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 14V1M7 1L1 7M7 1L13 7" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 8) * 0.06}s`;
+    io.observe(el);
+  });
+
+  // Photo count
+  const photos = Array.from(document.querySelectorAll('.photo-item img'));
+  if (photos.length > 0) {
+    document.getElementById('photo-count-num').textContent = photos.length;
+  }
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  let current = 0;
+
+  function openLightbox(idx) {
+    if (!photos.length) return;
+    current = idx;
+    lbImg.src = photos[current].src;
+    lbImg.alt = photos[current].alt;
+    lbCounter.textContent = (current + 1) + ' / ' + photos.length;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  function prevPhoto() { openLightbox((current - 1 + photos.length) % photos.length); }
+  function nextPhoto() { openLightbox((current + 1) % photos.length); }
+
+  document.querySelectorAll('.photo-item').forEach((item, idx) => {
+    if (item.querySelector('img')) {
+      item.style.cursor = 'none';
+      item.addEventListener('click', () => openLightbox(idx));
+    }
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', prevPhoto);
+  lbNext.addEventListener('click', nextPhoto);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevPhoto();
+    if (e.key === 'ArrowRight') nextPhoto();
+  });
+
+  // Cursor hover
+  document.querySelectorAll('a, button, .photo-item').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+</script>
+
+</body>
+</html>
