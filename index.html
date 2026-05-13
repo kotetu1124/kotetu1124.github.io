@@ -576,7 +576,7 @@ section.chapter {
 }
 .chapter-title {
   font-family: var(--ff-display);
-  font-size: clamp(56px, 9vw, 160px);
+  font-size: clamp(40px, 5.6vw, 88px);
   line-height: 0.9;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -768,9 +768,58 @@ section.chapter {
   visibility: hidden;
 }
 
+.last-result-banner {
+  background: var(--ink);
+  position: relative;
+  padding-bottom: 0;
+}
+.last-result-banner .chapter-header { margin-bottom: 40px; }
+
+.matchup-result .team-record {
+  font-family: var(--ff-display);
+  font-size: clamp(48px, 7vw, 96px);
+  color: var(--bone);
+  margin-top: 20px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.matchup-result .team-record.win {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.matchup-result .team-name.jp {
+  font-family: var(--ff-jp-display, var(--ff-display));
+  font-size: clamp(28px, 4vw, 56px);
+}
+.matchup-result .result-status {
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.matchup-result .result-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-family: var(--ff-label);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--gold);
+}
+
 .match-tools {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
   margin-bottom: 40px;
 }
@@ -810,9 +859,16 @@ section.chapter {
 .tool-card .score {
   font-family: var(--ff-display);
   font-size: clamp(32px, 4vw, 56px);
-  color: var(--gold);
   margin: 0 12px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
 }
+.tool-card .score .home-s { color: var(--bone); }
+.tool-card .score .away-s { color: var(--bone); }
+.tool-card .score .away-s.win,
+.tool-card .score .home-s.win { color: var(--gold); }
+.tool-card .score .dash { color: var(--gold); opacity: 0.7; margin: 0 2px; }
 .tool-card .detail {
   font-family: var(--ff-mono);
   font-size: 11px;
@@ -1609,6 +1665,49 @@ footer.site-footer {
   </div>
 </section>
 
+<!-- ==================== LAST RESULT (above NEXT BATTLE) ==================== -->
+<section class="chapter last-result-banner">
+  <div class="chapter-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 00</div>
+      <h2 class="chapter-title">Last <em>Result</em></h2>
+      <div class="chapter-meta">
+        LATEST MATCH<br>
+        2026.04.25 · 新歓試合
+      </div>
+    </div>
+
+    <div class="matchup matchup-result" data-reveal>
+      <span class="matchup-corner tl"></span>
+      <span class="matchup-corner tr"></span>
+      <span class="matchup-corner bl"></span>
+      <span class="matchup-corner br"></span>
+
+      <div class="team-block home">
+        <span class="team-tag">HOME</span>
+        <div class="team-name">BLASTERS</div>
+        <div class="team-sub">Tokyo Univ. of Agri. &amp; Tech.</div>
+        <div class="team-record">21</div>
+      </div>
+
+      <div class="matchup-center">
+        <div class="result-status">Final · 敗戦</div>
+        <p class="match-date">04 · 25</p>
+        <p class="match-time">2026 SAT · 新歓試合</p>
+        <p class="match-venue">東京農工大学 小金井キャンパスグラウンド</p>
+        <a href="pages/match.html" class="result-link">全試合結果を見る <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5H19M19 5L14 1M19 5L14 9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </div>
+
+      <div class="team-block away">
+        <span class="team-tag">AWAY</span>
+        <div class="team-name jp">亜細亜大学</div>
+        <div class="team-sub">Asia University</div>
+        <div class="team-record win">25</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== NEXT GAME ==================== -->
 <section class="chapter chapter-next" id="next-game">
   <div class="bg-word" aria-hidden="true">FIXTURE</div>
@@ -1648,11 +1747,6 @@ footer.site-footer {
     </div>
 
     <div class="match-tools">
-      <div class="tool-card" data-reveal>
-        <div class="label">Last Result · 最新結果</div>
-        <div class="main">BLASTERS <span class="score">21-25</span> 亜細亜大学</div>
-        <a href="pages/match.html" class="link">全試合結果を見る <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5H19M19 5L14 1M19 5L14 9" stroke="currentColor" stroke-width="1.5"/></svg></a>
-      </div>
       <div class="tool-card" data-reveal>
         <div class="label">Schedule · 全日程</div>
         <div class="main">2026 SEASON FIXTURES</div>
