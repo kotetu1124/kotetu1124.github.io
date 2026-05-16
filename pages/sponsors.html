@@ -1,0 +1,914 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>協賛店一覧 | BLASTERS — TUAT American Football</title>
+  <meta name="description" content="東京農工大学アメリカンフットボール部 BLASTERS を支えてくださる協賛店の一覧です。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <style>
+/* ================================================
+   DESIGN TOKENS（index.html と完全統一）
+================================================ */
+:root {
+  --abyss: #06100a;
+  --ink: #0a1812;
+  --forest: #12241a;
+  --moss: #1c3527;
+  --sage: #2d5043;
+  --gold: #c9a747;
+  --gold-bright: #e8c76a;
+  --gold-deep: #8a6f1f;
+  --bone: #ede4d0;
+  --ash: #8d8676;
+  --blood: #8b1a1a;
+
+  --ff-display: 'Anton', sans-serif;
+  --ff-display-2: 'Bebas Neue', sans-serif;
+  --ff-label: 'Barlow Condensed', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+  --ff-body: 'Zen Kaku Gothic New', "Hiragino Kaku Gothic ProN", sans-serif;
+  --ff-serif-jp: 'Noto Serif JP', serif;
+
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.8, 0, .2, 1);
+}
+
+/* ================================================
+   RESET
+================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--abyss);
+  color: var(--bone);
+  font-family: var(--ff-body);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; border: none; background: none; cursor: none; color: inherit; }
+
+/* ================================================
+   NOISE & GRAIN OVERLAY
+================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.8 0 0 0 0 0.75 0 0 0 0 0.6 0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+}
+
+/* ================================================
+   CUSTOM CURSOR
+================================================ */
+.cursor-dot {
+  position: fixed;
+  width: 6px; height: 6px;
+  background: var(--gold-bright);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out);
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s;
+}
+body.cursor-hover .cursor-dot { width: 0; height: 0; }
+body.cursor-hover .cursor-ring { width: 60px; height: 60px; border-color: var(--gold-bright); }
+@media (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+  body { cursor: auto; }
+  a, button { cursor: pointer; }
+}
+
+/* ================================================
+   NAV（index.html と完全統一）
+================================================ */
+nav.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 24px 48px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: center;
+  mix-blend-mode: difference;
+  color: var(--bone);
+}
+.nav-brand {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-brand .slash { color: var(--gold); }
+.nav-brand-sub {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  opacity: 0.7;
+  display: block;
+  margin-top: 2px;
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--ff-label);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 8px 0;
+}
+.nav-links a::before {
+  content: attr(data-num);
+  font-size: 9px;
+  color: var(--gold);
+  margin-right: 6px;
+  vertical-align: super;
+  opacity: 0.7;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 2px;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.4s var(--ease-out);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--ff-label);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.nav-cta .live-dot {
+  width: 8px; height: 8px;
+  background: var(--blood);
+  border-radius: 50%;
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,26,26,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(139,26,26,0); }
+}
+
+/* ================================================
+   PAGE HERO（このページ専用）
+================================================ */
+.page-hero {
+  min-height: 38vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 56px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(201,167,71,0.15);
+}
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(45,80,67,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(201,167,71,0.15) 0%, transparent 50%);
+  z-index: 0;
+}
+.page-hero-stripes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    117deg,
+    transparent 0 90px,
+    rgba(201,167,71,0.025) 90px 92px
+  );
+}
+.page-hero-bg-word {
+  position: absolute;
+  right: -2vw;
+  bottom: -4vw;
+  z-index: 1;
+  font-family: var(--ff-display);
+  font-size: clamp(100px, 18vw, 300px);
+  line-height: 0.78;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,167,71,0.08);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.page-hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.page-hero-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.page-hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--gold);
+}
+.page-hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(56px, 10vw, 140px);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+.page-hero-title .gold { color: var(--gold); }
+.page-hero-sub {
+  font-family: var(--ff-label);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.5);
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+/* ================================================
+   SPONSORS SECTION
+================================================ */
+.sponsors-section {
+  padding: 100px 48px 120px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* プラチナバナー */
+.sponsor-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1c3015 0%, #2d4a1e 50%, #1a2c12 100%);
+  border: 1.5px solid var(--gold);
+  border-radius: 4px;
+  padding: 28px 40px;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+  transition: filter 0.25s var(--ease-out);
+}
+.sponsor-banner:hover { filter: brightness(1.1); }
+.sponsor-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 12px,
+    rgba(201,167,71,0.04) 12px,
+    rgba(201,167,71,0.04) 13px
+  );
+  pointer-events: none;
+}
+.sponsor-banner-label {
+  position: absolute;
+  top: 10px; right: 18px;
+  font-family: var(--ff-label);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.sponsor-banner-name {
+  font-family: var(--ff-display);
+  font-size: clamp(24px, 3.5vw, 40px);
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+.sponsor-banner-url {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: rgba(154,176,158,0.8);
+  margin-top: 6px;
+  letter-spacing: 0.1em;
+}
+.sponsor-banner-btn {
+  flex-shrink: 0;
+  background: var(--gold);
+  color: var(--abyss);
+  font-family: var(--ff-label);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  z-index: 1;
+  transition: background 0.3s;
+}
+.sponsor-banner:hover .sponsor-banner-btn { background: var(--gold-bright); }
+
+/* グリッド */
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* カード */
+.sponsor-card {
+  display: block;
+  background: var(--forest);
+  border: 0.5px solid var(--sage);
+  border-radius: 4px;
+  padding: 18px 18px 34px;
+  position: relative;
+  transition: border-color 0.2s var(--ease-out), background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+.sponsor-card:hover {
+  border-color: var(--gold);
+  background: var(--moss);
+  transform: translateY(-3px);
+}
+.sponsor-card-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bone);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.sponsor-divider {
+  width: 20px; height: 1.5px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+.sponsor-card-addr {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: rgba(107,126,115,1);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}
+
+/* バッジ */
+.sponsor-badge {
+  position: absolute;
+  bottom: 10px; right: 10px;
+  font-family: var(--ff-label);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.sponsor-badge.official {
+  background: rgba(201,167,71,0.12);
+  color: var(--gold);
+  border: 0.5px solid rgba(201,167,71,0.3);
+}
+.sponsor-badge.tabelog {
+  background: rgba(220,80,60,0.1);
+  color: #e07060;
+  border: 0.5px solid rgba(220,80,60,0.25);
+}
+.sponsor-badge.gmap {
+  background: rgba(70,140,200,0.1);
+  color: #6aacdc;
+  border: 0.5px solid rgba(70,140,200,0.25);
+}
+
+/* フッターノート */
+.sponsors-footer {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(201,167,71,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.sponsors-count {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: rgba(237,228,208,0.3);
+  text-transform: uppercase;
+}
+.sponsors-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sponsors-legend span {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.sponsors-legend .l-official {
+  background: rgba(201,167,71,0.1);
+  color: var(--gold);
+  border: 0.5px solid rgba(201,167,71,0.25);
+}
+.sponsors-legend .l-tabelog {
+  background: rgba(220,80,60,0.08);
+  color: #e07060;
+  border: 0.5px solid rgba(220,80,60,0.2);
+}
+.sponsors-legend .l-gmap {
+  background: rgba(70,140,200,0.08);
+  color: #6aacdc;
+  border: 0.5px solid rgba(70,140,200,0.2);
+}
+
+/* ================================================
+   FOOTER（index.html と完全統一）
+================================================ */
+footer.site-footer {
+  background: var(--abyss);
+  color: var(--bone);
+  padding: 100px 48px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.footer-bg-word {
+  position: absolute;
+  bottom: -8vw; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--ff-display);
+  font-size: clamp(200px, 32vw, 600px);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,167,71,0.06);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.footer-grid {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+.footer-brand { max-width: 400px; }
+.footer-brand-mark {
+  font-family: var(--ff-display);
+  font-size: clamp(72px, 8vw, 120px);
+  line-height: 0.9;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.footer-brand-desc {
+  font-family: var(--ff-serif-jp);
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(237,228,208,0.7);
+  margin-bottom: 24px;
+}
+.footer-socials { display: flex; gap: 12px; }
+.footer-sns-icon {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(201,167,71,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bone);
+  transition: all 0.3s var(--ease-out);
+  font-size: 16px;
+}
+.footer-sns-icon:hover {
+  background: var(--gold);
+  color: var(--abyss);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.footer-col h4 {
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(201,167,71,0.2);
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  padding: 8px 0;
+  color: rgba(237,228,208,0.8);
+  transition: all 0.3s;
+}
+.footer-col a:hover { color: var(--gold); transform: translateX(4px); }
+.footer-access p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(237,228,208,0.75);
+  margin-bottom: 12px;
+}
+.footer-access .station {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(201,167,71,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.4);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.footer-top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold);
+  transition: gap 0.3s;
+}
+.footer-top-link:hover { gap: 16px; }
+
+/* ================================================
+   SCROLL REVEAL
+================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+[data-reveal].in { opacity: 1; transform: translateY(0); }
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media (max-width: 900px) {
+  nav.site-nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .page-hero { padding: 0 24px 48px; }
+  .sponsors-section { padding: 80px 24px 100px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  footer.site-footer { padding: 80px 24px 32px; }
+}
+@media (max-width: 600px) {
+  .sponsors-grid { grid-template-columns: repeat(2, 1fr); }
+  .sponsor-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px 24px;
+  }
+  .sponsor-banner-label { display: none; }
+  .sponsors-footer { flex-direction: column; align-items: flex-start; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+  </style>
+</head>
+<body id="top">
+
+  <!-- カスタムカーソル -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- ==================== NAV ==================== -->
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-brand">
+      BLASTERS
+      <span class="slash">/</span>
+      <span>
+        <span class="nav-brand-sub">TUAT AMERICAN FOOTBALL</span>
+      </span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../pages/news.html"      data-num="01">News</a></li>
+      <li><a href="../pages/match.html"     data-num="02">Match</a></li>
+      <li><a href="../pages/event.html"     data-num="03">Event</a></li>
+      <li><a href="../pages/FanGuide.html"  data-num="04">Fan Guide</a></li>
+      <li><a href="../pages/sponsors.html"  data-num="05" class="active">Sponsors</a></li>
+      <li><a href="../pages/contact.html"   data-num="06">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <span class="live-dot"></span>
+      2026 SEASON
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE HERO ==================== -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-stripes"></div>
+    <div class="page-hero-bg-word" aria-hidden="true">SPONSORS</div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">Supporting Our Team</p>
+      <h1 class="page-hero-title"><span class="gold">Sponsors</span></h1>
+      <p class="page-hero-sub">HP 掲載協賛店一覧　（順不同）</p>
+    </div>
+  </section>
+
+  <!-- ==================== SPONSORS ==================== -->
+  <div class="sponsors-section">
+
+    <!-- プラチナスポンサー -->
+    <a class="sponsor-banner" href="https://www.katsurayama-tech.com/" target="_blank" rel="noopener noreferrer" data-reveal>
+      <span class="sponsor-banner-label">Platinum Sponsor</span>
+      <div>
+        <div class="sponsor-banner-name">カツラヤマテクノロジー</div>
+        <div class="sponsor-banner-url">katsurayama-tech.com</div>
+      </div>
+      <div class="sponsor-banner-btn">公式サイトへ →</div>
+    </a>
+
+    <!-- 協賛店グリッド -->
+    <div class="sponsors-grid">
+
+      <a class="sponsor-card" href="https://www.ogu.co.jp/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">尾久自動車学校</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東京都小金井市東町 3-17-19</div>
+        <span class="sponsor-badge official">公式サイト</span>
+      </a>
+
+      <a class="sponsor-card" href="https://www.musako.co.jp/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">むさし小金井自動車教習所</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">小金井市緑町 1-3-26</div>
+        <span class="sponsor-badge official">公式サイト</span>
+      </a>
+
+      <a class="sponsor-card" href="https://tabelog.com/tokyo/A1325/A132501/13268540/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">らぁ麺　玉椿</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東町 4-38-26 トーケンプラザ 106</div>
+        <span class="sponsor-badge tabelog">食べログ</span>
+      </a>
+
+      <a class="sponsor-card" href="https://adarsha.jp/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">アダルサ</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東京都小金井市東町 4-46-12 2F</div>
+        <span class="sponsor-badge official">公式サイト</span>
+      </a>
+
+      <a class="sponsor-card" href="https://tabelog.com/tokyo/A1325/A132501/13301035/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">アロイ</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東京都小金井市東町 4-46-12 2F</div>
+        <span class="sponsor-badge tabelog">食べログ</span>
+      </a>
+
+      <a class="sponsor-card" href="https://tabelog.com/tokyo/A1325/A132501/13175430/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">ひがこ DINING 彩り</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">小金井市東町 4-38-17 スカイハイム II</div>
+        <span class="sponsor-badge tabelog">食べログ</span>
+      </a>
+
+      <a class="sponsor-card" href="http://noboriya.jp/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">のぼり屋物産 Meat&amp;Delica のぼりや</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">府中市晴見町 1-15-22</div>
+        <span class="sponsor-badge official">公式サイト</span>
+      </a>
+
+      <a class="sponsor-card" href="https://www.housing-east.co.jp/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">株式会社ハウジングイースト 東小金井店</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東京都小金井市梶野町 5-2-37</div>
+        <span class="sponsor-badge official">公式サイト</span>
+      </a>
+
+      <a class="sponsor-card" href="https://tabelog.com/tokyo/A1325/A132501/13260196/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">キッチン男の晩ごはん</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東京都小金井市東町 4-43-10 1F</div>
+        <span class="sponsor-badge tabelog">食べログ</span>
+      </a>
+
+      <a class="sponsor-card" href="https://www.google.com/maps/search/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E8%8C%82%E6%9C%A8%E5%95%86%E4%BC%9A+%E5%B0%8F%E9%87%91%E4%BA%95%E5%B8%82%E7%B7%91%E7%94%BA2-16-27" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">株式会社茂木商会　日本自動車整備</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東京都小金井市緑町 2-16-27</div>
+        <span class="sponsor-badge gmap">Googleマップ</span>
+      </a>
+
+      <a class="sponsor-card" href="https://tabelog.com/tokyo/A1326/A132602/13131437/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">中華大楽フーチン</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">府中市晴見町 3-17-3</div>
+        <span class="sponsor-badge tabelog">食べログ</span>
+      </a>
+
+      <a class="sponsor-card" href="https://www.isshin-one-hearts.com/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">天ぷら　一心</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">小金井市東町 4-38-24</div>
+        <span class="sponsor-badge official">公式サイト</span>
+      </a>
+
+      <a class="sponsor-card" href="https://www.garne.co.jp/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">小金井自動車学校</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">東京都小金井市中町 4-3-15</div>
+        <span class="sponsor-badge official">公式サイト</span>
+      </a>
+
+      <a class="sponsor-card" href="https://tabelog.com/tokyo/A1325/A132501/13022645/" target="_blank" rel="noopener noreferrer" data-reveal>
+        <div class="sponsor-card-name">カレーショップ サイのツノ</div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-card-addr">小金井市東町 4-37-19</div>
+        <span class="sponsor-badge tabelog">食べログ</span>
+      </a>
+
+    </div><!-- /.sponsors-grid -->
+
+    <div class="sponsors-footer">
+      <p class="sponsors-count">— 14 Sponsors —</p>
+      <div class="sponsors-legend">
+        <span class="l-official">公式サイト</span>
+        <span class="l-tabelog">食べログ</span>
+        <span class="l-gmap">Googleマップ</span>
+      </div>
+    </div>
+
+  </div><!-- /.sponsors-section -->
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-bg-word">BLASTERS</div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-mark">BLASTERS</div>
+        <p class="footer-brand-desc">
+          東京農工大学アメリカンフットボール部<br>
+          関東学生アメリカンフットボール連盟 3部所属<br>
+          Tokyo University of Agriculture and Technology American Football Club
+        </p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/blasters_noko/" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+          <a href="https://x.com/BLASTERS_noko" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa fa-twitter"></i></a>
+          <a href="https://www.youtube.com/channel/UCIcFFuSZwOZVh5TpxAFk4BQ" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a href="../pages/news.html">ニュース</a>
+        <a href="../pages/match.html">試合状況</a>
+        <a href="../pages/event.html">イベント</a>
+        <a href="../pages/FanGuide.html">観戦ガイド</a>
+        <a href="../pages/event.html#for-new-students">新入生の方へ</a>
+        <a href="../pages/sponsors.html">協賛店一覧</a>
+        <a href="../pages/contact.html">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Access</h4>
+        <div class="footer-access">
+          <p>
+            <span class="station">工学部キャンパス</span>
+            JR中央線 武蔵小金井駅<br>徒歩約15分
+          </p>
+          <p>
+            <span class="station">農学部キャンパス</span>
+            JR南武線 府中本町駅<br>徒歩約10分
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 BLASTERS · TUAT AMERICAN FOOTBALL · ALL RIGHTS RESERVED</span>
+      <a href="#top" class="footer-top-link">
+        Back to Top
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7 14V1M7 1L1 7M7 1L13 7" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // =============== Custom Cursor ===============
+    const dot  = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+    });
+    function animateRing() {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // =============== Scroll Reveal ===============
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 5) * 0.06}s`;
+      io.observe(el);
+    });
+  </script>
+
+</body>
+</html>
