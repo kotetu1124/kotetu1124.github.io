@@ -10,7 +10,7 @@
   {{TEAM_NAME}}        : チーム名（例: TOKYO WARRIORS）
   {{TEAM_NAME_JP}}     : チーム名・日本語（例: 東京ウォリアーズ）
   {{TEAM_SHORT}}       : チーム略称（例: TW）
-  {{EST_YEAR}}         : 創設年（例: 1985）
+  {{EST_YEAR}}         : 創設年（例: 1975）
   {{LEAGUE}}           : リーグ名（例: Xリーグ DIV.1）
   {{CATCHPHRASE}}      : キャッチコピー（例: 圧倒せよ、フィールドを。）
   {{HEAD_COACH}}       : ヘッドコーチ名
