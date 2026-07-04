@@ -1,0 +1,757 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確定新歓を開催しました — BLASTERS | 東京農工大学アメリカンフットボール部</title>
+<meta name="description" content="2026年6月19日に開催した確定新歓の様子をご報告します。新たにBLASTERSの一員となった新入生と部員・スタッフが一堂に会し、懇親を深めました。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+/* ================================================
+   DESIGN TOKENS (news.htmlと共通)
+================================================ */
+:root {
+  --abyss: #06100a;
+  --ink: #0a1812;
+  --forest: #12241a;
+  --moss: #1c3527;
+  --sage: #2d5043;
+  --gold: #c9a747;
+  --gold-bright: #e8c76a;
+  --gold-deep: #8a6f1f;
+  --bone: #ede4d0;
+  --ash: #8d8676;
+  --blood: #8b1a1a;
+  --win: #3a7a4a;
+
+  --ff-display: 'Anton', sans-serif;
+  --ff-display-2: 'Bebas Neue', sans-serif;
+  --ff-label: 'Barlow Condensed', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+  --ff-body: 'Zen Kaku Gothic New', "Hiragino Kaku Gothic ProN", sans-serif;
+  --ff-serif-jp: 'Noto Serif JP', serif;
+
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.8, 0, .2, 1);
+}
+
+/* ================================================
+   RESET
+================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--abyss);
+  color: var(--bone);
+  font-family: var(--ff-body);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; border: none; background: none; cursor: none; color: inherit; }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+  opacity: 0.035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.8 0 0 0 0 0.75 0 0 0 0 0.6 0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 999;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+}
+
+/* ================================================
+   CURSOR
+================================================ */
+.cursor-dot {
+  position: fixed; width: 6px; height: 6px;
+  background: var(--gold-bright); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out);
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed; width: 40px; height: 40px;
+  border: 1px solid var(--gold); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s;
+}
+body.cursor-hover .cursor-dot { width: 0; height: 0; }
+body.cursor-hover .cursor-ring { width: 60px; height: 60px; border-color: var(--gold-bright); }
+@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } a, button { cursor: pointer; } }
+
+/* ================================================
+   NAV
+================================================ */
+nav.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 24px 48px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: center;
+  mix-blend-mode: difference;
+  color: var(--bone);
+  animation: navIn 0.8s 0.3s var(--ease-out) both;
+}
+@keyframes navIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+.nav-brand {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-brand .slash { color: var(--gold); }
+.nav-brand-sub {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  opacity: 0.7;
+  display: block;
+  margin-top: 2px;
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--ff-label);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 8px 0;
+}
+.nav-links a::before {
+  content: attr(data-num);
+  font-size: 9px;
+  color: var(--gold);
+  margin-right: 6px;
+  vertical-align: super;
+  opacity: 0.7;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 2px;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.4s var(--ease-out);
+}
+.nav-links a:hover::after,
+.nav-links a.current::after { width: 100%; }
+.nav-links a.current { color: var(--gold); }
+.nav-cta {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--ff-label); font-size: 12px;
+  letter-spacing: 0.2em; font-weight: 700;
+  text-transform: uppercase;
+}
+.nav-cta .live-dot {
+  width: 8px; height: 8px; background: var(--blood); border-radius: 50%;
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,26,26,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(139,26,26,0); }
+}
+
+/* ================================================
+   ARTICLE HERO
+================================================ */
+.article-hero {
+  position: relative;
+  padding: 200px 48px 60px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.article-hero-mesh {
+  position: absolute; inset: -20%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 25% 40%, rgba(45,80,67,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(201,167,71,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(18,36,26,0.85) 0%, transparent 60%),
+    linear-gradient(180deg, var(--abyss) 0%, var(--ink) 100%);
+  filter: blur(40px);
+}
+.article-hero-stripes {
+  position: absolute; inset: 0; z-index: 1;
+  background: repeating-linear-gradient(
+    117deg,
+    transparent 0 90px,
+    rgba(201,167,71,0.03) 90px 92px
+  );
+}
+.article-hero-bg-word {
+  position: absolute;
+  right: -3vw;
+  bottom: -4vw;
+  z-index: 2;
+  font-family: var(--ff-display);
+  font-size: clamp(140px, 20vw, 360px);
+  line-height: 0.78;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,167,71,0.1);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.article-hero-inner {
+  position: relative; z-index: 10;
+  max-width: 920px; margin: 0 auto;
+}
+.article-breadcrumb {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.55);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s 0.4s var(--ease-out) both;
+}
+.article-breadcrumb a { color: var(--gold); transition: opacity 0.3s; }
+.article-breadcrumb a:hover { opacity: 0.7; }
+.article-breadcrumb .sep { color: var(--ash); opacity: 0.6; }
+.article-meta {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.5s var(--ease-out) both;
+}
+.article-meta .date {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+.article-meta .category {
+  padding: 5px 14px;
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--abyss);
+  background: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.article-title {
+  font-family: var(--ff-serif-jp);
+  font-weight: 900;
+  font-size: clamp(30px, 4.4vw, 56px);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: var(--bone);
+  margin-bottom: 24px;
+  animation: fadeUp 0.9s 0.55s var(--ease-out) both;
+}
+.article-title em {
+  font-style: normal;
+  color: var(--gold);
+}
+.article-lead {
+  font-family: var(--ff-serif-jp);
+  font-size: 16px;
+  line-height: 2.0;
+  color: rgba(237,228,208,0.85);
+  padding-top: 24px;
+  border-top: 1px solid rgba(237,228,208,0.15);
+  animation: fadeUp 0.9s 0.7s var(--ease-out) both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================
+   ARTICLE BODY
+================================================ */
+.article-section {
+  padding: 60px 48px 100px;
+  position: relative;
+}
+.article-inner {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.article-figure {
+  margin: 24px 0 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.article-figure figure {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 1px solid rgba(201,167,71,0.2);
+  background: linear-gradient(135deg, var(--forest), var(--abyss));
+}
+.article-figure img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+.article-figure figure:hover img {
+  transform: scale(1.04);
+}
+.article-figure figure::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(6,16,10,0.5) 100%);
+  pointer-events: none;
+}
+
+.article-body {
+  font-family: var(--ff-serif-jp);
+  font-size: 16px;
+  line-height: 2.05;
+  color: rgba(237,228,208,0.88);
+}
+.article-body p {
+  margin-bottom: 1.6em;
+}
+.article-body p:last-child {
+  margin-bottom: 0;
+}
+.article-body strong {
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+.article-divider {
+  margin: 64px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,167,71,0.4), transparent);
+}
+
+.article-signature {
+  font-family: var(--ff-serif-jp);
+  font-size: 14px;
+  color: rgba(237,228,208,0.7);
+  text-align: right;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px dashed rgba(201,167,71,0.25);
+}
+.article-signature .team {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ================================================
+   BACK LINK
+================================================ */
+.article-nav {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(237,228,208,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--ff-label);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gold);
+  transition: gap 0.3s;
+}
+.back-link:hover { gap: 22px; }
+.back-link svg { transition: transform 0.3s; }
+
+.share-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.5);
+  text-transform: uppercase;
+}
+.share-links a {
+  width: 38px; height: 38px;
+  border: 1px solid rgba(201,167,71,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bone);
+  transition: all 0.3s;
+}
+.share-links a:hover {
+  background: var(--gold);
+  color: var(--abyss);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ================================================
+   FOOTER
+================================================ */
+footer.site-footer {
+  background: var(--abyss);
+  color: var(--bone);
+  padding: 100px 48px 32px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(201,167,71,0.1);
+}
+.footer-bg-word {
+  position: absolute;
+  bottom: -8vw; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--ff-display);
+  font-size: clamp(200px, 32vw, 600px);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,167,71,0.06);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.footer-grid {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+.footer-brand { max-width: 400px; }
+.footer-brand-mark {
+  font-family: var(--ff-display);
+  font-size: clamp(72px, 8vw, 120px);
+  line-height: 0.9;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.footer-brand-desc {
+  font-family: var(--ff-serif-jp);
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(237,228,208,0.7);
+  margin-bottom: 24px;
+}
+.footer-socials { display: flex; gap: 12px; }
+.footer-sns-icon {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(201,167,71,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--bone);
+  transition: all 0.3s var(--ease-out);
+  font-size: 16px;
+}
+.footer-sns-icon:hover {
+  background: var(--gold); color: var(--abyss); border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.footer-col h4 {
+  font-family: var(--ff-label);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(201,167,71,0.2);
+}
+.footer-col a {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 14px;
+  padding: 8px 0;
+  color: rgba(237,228,208,0.8);
+  transition: all 0.3s;
+}
+.footer-col a:hover {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+.footer-access p {
+  font-size: 13px; line-height: 1.7;
+  color: rgba(237,228,208,0.75);
+  margin-bottom: 12px;
+}
+.footer-access .station {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.footer-bottom {
+  max-width: 1400px; margin: 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(201,167,71,0.15);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(237,228,208,0.4);
+  text-transform: uppercase;
+  position: relative; z-index: 2;
+}
+.footer-top-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--gold);
+  transition: gap 0.3s;
+}
+.footer-top-link:hover { gap: 16px; }
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+  nav.site-nav { padding: 16px 20px; grid-template-columns: auto auto; }
+  .nav-links { display: none; }
+  .nav-cta { font-size: 10px; gap: 8px; }
+  .article-hero { padding: 140px 20px 40px; }
+  .article-section { padding: 40px 20px 60px; }
+  .article-figure {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 16px 0 40px;
+  }
+  .article-body { font-size: 15px; line-height: 1.95; }
+  .article-nav { flex-direction: column; align-items: flex-start; }
+  footer.site-footer { padding: 60px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ==================== CURSOR ==================== -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- ==================== NAV ==================== -->
+<nav class="site-nav">
+  <div class="nav-brand">
+    <div>
+      <a href="../../../index.html">BLASTERS<span class="slash">/</span></a>
+      <span class="nav-brand-sub">TUAT AMERICAN FOOTBALL</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../../news.html" data-num="01" class="current">News</a></li>
+    <li><a href="../../match.html" data-num="02">Match</a></li>
+    <li><a href="../../event.html" data-num="03">Event</a></li>
+    <li><a href="../../FanGuide.html" data-num="04">Fan Guide</a></li>
+    <li><a href="../../sponsors.html" data-num="05">Sponsors</a></li>
+    <li><a href="../../gallery.html" data-num="06">Gallery</a></li>
+    <li><a href="../../contact.html" data-num="07">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <span class="live-dot"></span>
+    <span>2026 SEASON · LIVE</span>
+  </div>
+</nav>
+
+<!-- ==================== ARTICLE HERO ==================== -->
+<section class="article-hero">
+  <div class="article-hero-mesh"></div>
+  <div class="article-hero-stripes"></div>
+  <div class="article-hero-bg-word" aria-hidden="true">NEWS</div>
+
+  <div class="article-hero-inner">
+    <div class="article-breadcrumb">
+      <a href="../../../index.html">HOME</a>
+      <span class="sep">/</span>
+      <a href="../../news.html">NEWS</a>
+      <span class="sep">/</span>
+      <span>2026.06.19</span>
+    </div>
+
+    <div class="article-meta">
+      <span class="date">2026.06.19</span>
+      <span class="category">NEWS</span>
+    </div>
+
+    <h1 class="article-title">確定新歓を <em>開催しました</em></h1>
+
+    <p class="article-lead">
+      2026年6月19日、BLASTERSでは確定新歓を開催しました。新たに部の一員となった新入生と部員・スタッフが一堂に会し、食事を囲みながら懇親を深めました。当日の様子をご報告します。
+    </p>
+  </div>
+</section>
+
+<!-- ==================== ARTICLE BODY ==================== -->
+<section class="article-section">
+  <div class="article-inner">
+
+    <div class="article-figure">
+      <figure>
+        <img src="../../../image/0619確定新歓/S__316424228.jpg" alt="確定新歓の様子 1">
+      </figure>
+      <figure>
+        <img src="../../../image/0619確定新歓/S__316424229.jpg" alt="確定新歓の様子 2">
+      </figure>
+      <figure>
+        <img src="../../../image/0619確定新歓/S__316424230.jpg" alt="確定新歓の様子 3">
+      </figure>
+      <figure>
+        <img src="../../../image/0619確定新歓/S__316424231.jpg" alt="確定新歓の様子 4">
+      </figure>
+      <figure>
+        <img src="../../../image/0619確定新歓/S__316424232.jpg" alt="確定新歓の様子 5">
+      </figure>
+      <figure>
+        <img src="../../../image/0619確定新歓/S__316424233.jpg" alt="確定新歓の様子 6">
+      </figure>
+      <figure>
+        <img src="../../../image/0619確定新歓/S__316424234.jpg" alt="確定新歓の様子 7">
+      </figure>
+    </div>
+
+    <div class="article-body">
+      <p>本日は、6月19日に開催しました確定新歓の様子についてご報告させていただきます。</p>
+
+      <p>確定新歓では、新たにBLASTERSの一員となった新入生と部員・スタッフが一堂に会し、お好み焼きを囲みながら懇親を深めました。</p>
+
+      <p>アメフト未経験からスタートした新入生たちも、すでにチームの一員として活動を始めています。部活動を通じて築いていく仲間との絆を、食事を共にする場でさらに強めました。</p>
+
+      <p>今後ともBLASTERSをよろしくお願いいたします。</p>
+    </div>
+
+    <div class="article-signature">
+      <span>東京農工大学アメリカンフットボール部</span>
+      <span class="team">BLASTERS</span>
+    </div>
+
+    <!-- BACK / SHARE -->
+    <div class="article-nav">
+      <a href="../../news.html" class="back-link">
+        <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M20 5H1M1 5L6 1M1 5L6 9" stroke="currentColor" stroke-width="1.5"/></svg>
+        ニュース一覧へ戻る
+      </a>
+      <div class="share-links">
+        <span>SHARE</span>
+        <a href="https://x.com/BLASTERS_noko" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/blasters_noko/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="footer-bg-word">BLASTERS</div>
+
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-mark">BLASTERS</div>
+      <p class="footer-brand-desc">
+        東京農工大学アメリカンフットボール部<br>
+        関東学生アメリカンフットボール連盟 3部所属<br>
+        Tokyo University of Agriculture and Technology American Football Club
+      </p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/blasters_noko/" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="https://x.com/BLASTERS_noko" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.youtube.com/channel/UCIcFFuSZwOZVh5TpxAFk4BQ" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+        <a href="https://www.tiktok.com/@blasters_tuat" class="footer-sns-icon" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.17 8.17 0 0 0 4.79 1.54V6.78a4.85 4.85 0 0 1-1.02-.09z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a href="../../news.html">ニュース</a>
+      <a href="../../match.html">試合状況</a>
+      <a href="../../gallery.html">ギャラリー</a>
+      <a href="../../event.html">イベント</a>
+      <a href="../../FanGuide.html">観戦ガイド</a>
+      <a href="../../event.html#for-new-students">新入生の方へ</a>
+      <a href="../../contact.html">Contact</a>
+      <a href="../../sponsors.html">協賛店一覧</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Access</h4>
+      <div class="footer-access">
+        <p><span class="station">工学部キャンパス</span>JR中央線 武蔵小金井駅<br>徒歩約15分</p>
+        <p><span class="station">農学部キャンパス</span>JR南武線 府中本町駅<br>徒歩約10分</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 BLASTERS · TUAT AMERICAN FOOTBALL · ALL RIGHTS RESERVED</span>
+    <a href="#top" class="footer-top-link">Back to Top <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 14V1M7 1L1 7M7 1L13 7" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  </div>
+</footer>
+
+<script>
+  // Custom Cursor
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  document.querySelectorAll('a, button, .article-figure figure').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+</script>
+
+</body>
+</html>
